@@ -29,7 +29,7 @@ const Header: React.FC = () => {
       <Navigation>
         <ul>
           <li>
-            <a href="#">Inicio</a>
+            <a href="#" className='active'>Inicio</a>
           </li>
           <li>
             <a href="#">Explorar</a>

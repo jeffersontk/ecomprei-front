@@ -13,7 +13,7 @@ const Cards: React.FC = () => {
           <Image src={discountBanner} alt="" />
           <span>23% OFF</span>
         </CardDiscount>
-        <CartButton>
+        <CartButton title="adicionar ao carrinho">
           <BsCartPlus />
         </CartButton>
         <ImageContainer>

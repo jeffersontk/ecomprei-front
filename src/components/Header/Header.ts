@@ -105,7 +105,12 @@ export const Navigation = styled('nav', {
     li: {
       a:{
         textDecoration: 'none',
-        color: '$white'
+        color: '$white',
+        fontWeight: 600,
+
+        '&.active': {
+          color: '$yellow500'
+        }
       }
     }
   }
