@@ -20,6 +20,10 @@ export const Section = styled('div', {
     background: '$black',
     borderRadius: 4,
 
+    h3: {
+      color: '$white',
+    },
+
     input:{
       width: '250px',
       height: '35px',

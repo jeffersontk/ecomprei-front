@@ -14,7 +14,7 @@ const Header: React.FC = () => {
       </a>
 
       <SearchContainer>
-        <input type="text" />
+        <input type="text" placeholder='Encontre aqui'/>
         <button>
           <BiSearchAlt />
         </button>

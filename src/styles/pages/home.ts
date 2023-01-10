@@ -5,7 +5,7 @@ export const Container = styled('main', {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '4rem'
+  gap: '2rem'
 })
 
 export const Banner = styled('div', {
@@ -34,4 +34,36 @@ export const Banner = styled('div', {
       opacity: "0.95"
     }
   }
+})
+
+
+export const SectionHighlighted = styled('section', {
+  width: '100%',
+  h2:{
+    color: "$graphite",
+    marginTop: '2rem',
+    marginBottom: '2rem',
+  }
+})
+
+export const Categories = styled('ul', {
+  background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
+  height: '50px',
+  width: '100%',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+
+  li:{
+    listStyle: 'none',
+    color: '$white',
+    fontWeight: 600,
+  }
+})
+
+export const GridCards = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  gap: '1rem',
 })

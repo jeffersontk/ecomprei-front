@@ -1,6 +1,7 @@
 import Image from "next/image";
 import hero from '../assets/hero.png'
-import { Banner, Container } from "../styles/pages/home";
+import Cards from "../components/Cards";
+import { Banner, Categories, Container, GridCards, SectionHighlighted } from "../styles/pages/home";
 
 export default function Home() {
   return (
@@ -10,9 +11,25 @@ export default function Home() {
         <a href="#" title="compre agora">Compre agora</a>
       </Banner>
 
-      <section>
-
-      </section>
+      <SectionHighlighted>
+        <Categories>
+          <li>Moda</li>
+          <li>Eletrônicos</li>
+          <li>Utilidades</li>
+          <li>Beleza</li>
+        </Categories>
+        <h2>Destaques da semana</h2>
+        <GridCards>
+          <Cards />
+          <Cards />
+          <Cards />
+          <Cards />
+          <Cards />
+          <Cards />
+          <Cards />
+          <Cards />
+        </GridCards>
+      </SectionHighlighted>
     </Container>
   )
 }

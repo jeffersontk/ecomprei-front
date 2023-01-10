@@ -26,7 +26,7 @@ export const SearchContainer = styled('div', {
     border: 'none',
     width: '100%',
     borderRadius: 8,
-    paddingLeft: 4,
+    paddingLeft: '1rem',
   },
 
   button :{
@@ -42,6 +42,10 @@ export const SearchContainer = styled('div', {
     cursor: 'pointer',
     
     backgroundColor: '$yellow500',
+    
+    '&:hover':{
+      backgroundColor: '$yellow300',
+    },
 
     svg:{
       width: '1.5rem',
