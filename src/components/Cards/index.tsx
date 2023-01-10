@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { Card, CardDiscount, CartButton, ContainerTitle, Content, ContentCard, ContentImage, DescriptionPrice, ImageContainer, Price, RealPrice } from './Cards';
+import { Card, CardDiscount, CartButton, ContainerTitle, Content, ContentCard, ContentImage, DescriptionPrice, ImageContainer, Price, PriceContent, RealPrice } from './Cards';
 import tshirt from '../../assets/tshirt.png'
 import discountBanner from '../../assets/discount-banner.png'
 import {BsCartPlus} from 'react-icons/bs'
@@ -20,7 +20,7 @@ const Cards: React.FC = () => {
           <Image src={tshirt} alt="" />
         </ImageContainer>
       </ContentImage>
-      <div>
+      <PriceContent>
         <ContainerTitle>
           <h3>title produtcs</h3>
         </ContainerTitle>
@@ -34,7 +34,7 @@ const Cards: React.FC = () => {
           </Content>
           <button>Comprar</button>
         </ContentCard>
-      </div>
+      </PriceContent>
     </Card>
   );
 }

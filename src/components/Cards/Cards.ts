@@ -8,7 +8,6 @@ export const Card = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center',
 })
 
 
@@ -66,6 +65,9 @@ export const CartButton = styled('button', {
     height: '20px',
     color: '$graphite',
   }
+})
+
+export const PriceContent = styled('div', {
 })
 
 export const ContainerTitle = styled('div', {
