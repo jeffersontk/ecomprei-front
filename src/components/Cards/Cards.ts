@@ -88,12 +88,16 @@ export const ContentCard = styled('div', {
   alignItems: 'flex-end',
   gap: '1.5rem',
 
-  button: {
+  a: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    
     width: '100px',
     height: '40px',
 
     border: 'none',
-    background: '$yellow300',
+    background: '$yellow500',
     borderRadius: '4px',
 
     color: '$white',
@@ -101,7 +105,7 @@ export const ContentCard = styled('div', {
     cursor: 'pointer',
 
     '&:hover':{
-      background: '$yellow500',
+      background: '$yellow300',
     }
   }
 })

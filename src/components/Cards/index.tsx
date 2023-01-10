@@ -32,7 +32,7 @@ const Cards: React.FC = () => {
               Economize agora R$ 57<span>.49</span>
             </DescriptionPrice>
           </Content>
-          <button>Comprar</button>
+          <a>Comprar</a>
         </ContentCard>
       </PriceContent>
     </Card>
