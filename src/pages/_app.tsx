@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { globalStyles } from '../styles/global';
-import { Container, FooterContainer, HeaderContainer } from '../styles/pages/app';
+import { Container, ContentFooter, FooterContainer, HeaderContainer, MainContainer } from '../styles/pages/app';
 
 globalStyles();
 
@@ -12,9 +12,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <HeaderContainer>
         <Header />
       </HeaderContainer>
-      <Component {...pageProps} />
+      <MainContainer>
+        <Component {...pageProps} />
+      </MainContainer>
       <FooterContainer>
-        <Footer />
+        <ContentFooter>
+          <Footer />
+        </ContentFooter>
       </FooterContainer>
     </Container>
   )

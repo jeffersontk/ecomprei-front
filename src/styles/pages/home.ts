@@ -10,6 +10,11 @@ export const Container = styled('main', {
 
 export const Banner = styled('div', {
   position: 'relative',
+  
+  img: {
+    maxWidth: '1300px',
+    maxHeight: '435px'
+  },
 
   a: {
     textDecoration: 'none',

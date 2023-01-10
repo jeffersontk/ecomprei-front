@@ -20,14 +20,16 @@ export const Section = styled('div', {
     background: '$black',
     borderRadius: 4,
 
-    h3: {
+    span: {
       color: '$white',
     },
 
     input:{
       width: '250px',
       height: '35px',
-      paddingLeft: '0.5rem'
+      paddingLeft: '0.5rem',
+      borderRadius: 4,
+      border: 'none',
     },
     
     textarea:{
@@ -50,16 +52,41 @@ export const Section = styled('div', {
   }
 })
 
-export const AboutUs = styled('div', {
+export const Sac = styled('div', {
+  marginTop: '1rem',
   maxWidth: '650px',
   display: 'flex',
   flexDirection: 'column',
-  gap: '1.5rem',
+  gap: '1rem',
+})
+
+export const MenuFooter = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+
+  ul:{
+    marginTop: '1rem',
+    listStyle: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.875rem',
+
+    li: {
+      a:{
+        textDecoration: 'none',
+        color: '$black',
+
+        '&:hover': {
+          opacity: '0.9'
+        }
+      }
+    }
+  }
 })
 
 export const Informative = styled('div', {
   borderWidth: '1px',
-  borderTopColor: '$white',
+  borderTopColor: '$black',
   borderTopStyle: 'solid',
   paddingTop: '1rem',
 
@@ -78,7 +105,8 @@ export const Informative = styled('div', {
     },
     svg: {
       height: '30px',
-      width: '30px'
+      width: '30px',
+      color: '$orange500'
     }
   }
 })

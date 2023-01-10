@@ -4,9 +4,15 @@ export const Container = styled('div', {
   width: '100%',
   maxWidth: '1280px',
   display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem'
+})
+
+export const HeaderSearchAndCart = styled('div', {
+  width: '100%',
+  display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  gap: '4rem'
 })
 
 export const SearchContainer = styled('div', {
@@ -22,6 +28,7 @@ export const SearchContainer = styled('div', {
   borderRadius: 8,
 
   input: {
+    background: '$white',
     outline: 'none',
     border: 'none',
     width: '100%',
@@ -82,5 +89,24 @@ export const CartButton = styled('button', {
     borderRadius: '50%',
 
     color: '$white'
+  }
+})
+
+export const Navigation = styled('nav', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+  ul:{
+    display: 'flex',
+    gap: '1rem',
+
+    li: {
+      a:{
+        textDecoration: 'none',
+        color: '$white'
+      }
+    }
   }
 })

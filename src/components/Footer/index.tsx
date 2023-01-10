@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import { AboutUs, Container, Informative, Section } from './Footer';
-import logo from '../../assets/logo-ecomprei-white.svg'
+import { Container, Informative, MenuFooter, Sac, Section } from './Footer';
+import logo from '../../assets/logo-ecomprei.svg'
 import {FaFacebookF, FaTiktok, FaInstagram, FaWhatsapp} from 'react-icons/fa'
 
 const Footer: React.FC = () => {
@@ -12,23 +12,38 @@ const Footer: React.FC = () => {
           <a href="#">
             <Image src={logo} alt="É Comprei" />
           </a>
-          <AboutUs>
-            <h2>Sobre nós</h2>
-            <p>Lorem ipsum dolor sit amet consectetur. Sit lorem consequat purus aliquam neque duis. Fermentum odio enim placerat non tristique adipiscing sed. Rutrum viverra arcu mi posuere at vitae imperdiet a. Eget volutpat integer at nisl fusce ornare sed iaculis.</p>
-            <p>Lorem ipsum dolor sit amet consectetur. Sit lorem consequat purus aliquam neque duis. Fermentum odio enim placerat non tristique adipiscing sed. Rutrum viverra arcu mi posuere at vitae imperdiet a. Eget volutpat integer at nisl fusce ornare sed iaculis.</p>
-          </AboutUs>
+          <Sac>
+            <h4>ATENDIMENTO AO CLIENTE</h4>
+            <span><strong>SAC</strong> (Serviço de atendimento ao Cliente)</span>
+            <span><strong>E-mail:</strong> contato@ecomprei.shop</span>
+            <span><strong>Whatsapp:</strong> +55 (21) 966554433</span>
+          </Sac>
         </div>
+        <MenuFooter>
+          <h4>Políticas e duvidas</h4>
+          <ul>
+            <li>
+              <a href="#">Quem somos</a>
+            </li>
+            <li>
+              <a href="#">Troca e devoluções</a>
+            </li>
+            <li>
+              <a href="#">Informações de entrega</a>
+            </li>
+            <li>
+              <a href="#">Termos de uso e privacidade</a>
+            </li>
+          </ul>
+        </MenuFooter>
         <form>
-          <h3>Entre em contato</h3>
-          <input placeholder='Nome'/>
-          <input placeholder='E-mail'/>
-          <input placeholder='Telefone'/>
-          <textarea placeholder='Deixe sua mensagem' maxLength={150} />
+          <span>Assine nossa newsletter e receba <br/> as melhores ofertas de GRAÇA!</span>
+          <input placeholder='Seu e-mail'/>
           <button type="submit">Enviar</button>
         </form>
       </Section>
       <Informative>
-        <div>Direitos reservados ecomprei.shop</div>
+        <div>ⓒ Direitos reservados ecomprei.shop</div>
         <div>
           <a href="#">
             <FaWhatsapp />

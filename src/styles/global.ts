@@ -6,11 +6,13 @@ export const globalStyles = globalCss({
     padding: 0,
   },
   body:{
-    background: '#fff',
+    background: '$white',
     '-webkit-font-smoothing': 'antialiased',
+    color: '$black',
   },
   'body, input, textarea, button': {
     fontFamily: 'Open Sans',
     fontWeight: 400,
+    color: '$black',
   }
 })
