@@ -19,6 +19,13 @@ export const {
       gray300: '#c4c4cc',
       gray100: '#e1e1e6',
 
+      black: '#221F23',
+      graphite: '#303A44',
+
+      yellow300: '#F5AE26',
+      yellow500: '#FEA800',
+      orange500: '#F07301',
+
       green500: '#00875f',
       green300: '#00b37e',
     },
