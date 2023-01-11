@@ -3,15 +3,15 @@ import React from 'react';
 import { Container, Informative, MenuFooter, Sac, Section } from './Footer';
 import logo from '../../assets/logo-ecomprei.svg'
 import {FaFacebookF, FaTiktok, FaInstagram, FaWhatsapp} from 'react-icons/fa'
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
     <Container>
       <Section>
         <div>
-          <a href="#">
-            <Image src={logo} alt="É Comprei" />
-          </a>
+          <Image src={logo} alt="É Comprei" />
+      
           <Sac>
             <h4>ATENDIMENTO AO CLIENTE</h4>
             <span><strong>SAC</strong> (Serviço de atendimento ao Cliente)</span>
@@ -23,16 +23,16 @@ const Footer: React.FC = () => {
           <h4>Políticas e duvidas</h4>
           <ul>
             <li>
-              <a href="#">Quem somos</a>
+              <Link href="/sobre">Quem somos</Link>
             </li>
             <li>
-              <a href="#">Troca e devoluções</a>
+              <Link href="#">Troca e devoluções</Link>
             </li>
             <li>
-              <a href="#">Informações de entrega</a>
+              <Link href="#">Informações de entrega</Link>
             </li>
             <li>
-              <a href="#">Termos de uso e privacidade</a>
+              <Link href="#">Termos de uso e privacidade</Link>
             </li>
           </ul>
         </MenuFooter>
@@ -45,18 +45,18 @@ const Footer: React.FC = () => {
       <Informative>
         <div>ⓒ Direitos reservados ecomprei.shop</div>
         <div>
-          <a href="#">
+          <Link href="#">
             <FaWhatsapp />
-          </a>
-          <a href="#">
+          </Link>
+          <Link href="#">
             <FaInstagram />
-          </a>
-          <a href="#">
+          </Link>
+          <Link href="#">
             <FaTiktok />
-          </a>
-          <a href="#">
+          </Link>
+          <Link href="#">
             <FaFacebookF />
-          </a>
+          </Link>
         </div>
       </Informative>
     </Container>

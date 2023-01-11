@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   return (
     <Container>
       <HeaderSearchAndCart>
-        <Link href="#">
+        <Link href="/">
           <Image src={logo} alt="É Comprei" />
         </Link>
 
