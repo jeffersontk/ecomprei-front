@@ -9,7 +9,7 @@ export default function Home() {
     <Container>
       <Banner>
         <Image src={hero} alt="banner é fácil, é rápido, é comprei" title="é fácil, é rápido, é comprei"/>
-        <a href="#" title="compre agora">Compre agora</a>
+        <a href="/produtos" title="compre agora">Compre agora</a>
       </Banner>
 
       <SectionHighlighted>

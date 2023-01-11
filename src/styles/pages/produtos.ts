@@ -4,6 +4,12 @@ export const Container = styled('main', {
   width: '100%',
 })
 
+export const Title = styled('h2', {
+  color: '$yellow500',
+  marginBottom: '2rem',
+  lineHeight: '40px'
+})
+
 export const ProductSlider = styled('section', {
   marginTop: '2rem',
   marginBottom: '2rem',
@@ -17,7 +23,8 @@ export const FilterSection = styled('div', {
   marginBottom: '2rem',
 
   h2: {
-    color: '$yellow500'
+    color: '$yellow500',  
+    lineHeight: '40px'
   },
 
   ul: {
