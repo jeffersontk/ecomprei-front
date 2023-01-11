@@ -5,16 +5,16 @@ const Categories: React.FC = () => {
   return (
     <CategoriesList>
       <li>
-        <Link href="/produtos/moda">Moda</Link>
+        <Link href="/produtos/moda?categoria=todos">Moda</Link>
       </li>
       <li>
         <Link href="/produtos/eletronicos">Eletrônicos</Link>
       </li>
       <li>
-        <Link href="/produtos/utilidades">Utilidades</Link>
+        <Link href="/produtos/utilidades&acessorios">Utilidades & Acessórios</Link>
       </li>
       <li>
-      <Link href="/produtos/beleza">Beleza</Link>
+      <Link href="/produtos/saude&beleza">Saúde & Beleza</Link>
       </li>
     </CategoriesList>
   );

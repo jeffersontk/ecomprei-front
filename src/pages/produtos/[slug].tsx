@@ -3,42 +3,64 @@ import React from 'react';
 import Cards from '../../components/Cards';
 import Categories from '../../components/Categories';
 import { GridCards } from '../../styles/pages/home';
-import { Container, FilterSection } from '../../styles/pages/produtos';
+import { Container, FilterSection, Product, ProductSlider } from '../../styles/pages/produtos';
 import { useRouter } from "next/router"
 
 export default function Produtos() {
-  const {query, } = useRouter()
+  const { query } = useRouter()
   const title = query.slug || 'Moda'
   const subtitle = query.categoria || 'Feminina'
+
+  const isActive = (find: string) => {
+    if(subtitle.includes(find)){
+      return 'active'
+    }
+    return ''
+  }
+
+  const formatTitle = (title:string) => {
+    let format = title
+    switch (format) {
+      case 'utilidades&acessorios':
+        return 'Utilidades & Acessórios'.toUpperCase()
+      case 'saude&beleza':
+        return 'Saúde & Beleza'.toUpperCase()
+      default:
+        return format.toUpperCase()
+    }
+  }
+
   return (
     <Container>
       <Categories />
-      <section>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </section>
-      {
-      }
-      <FilterSection>
-        <h2>{String(title).toUpperCase()} {query.categoria && `/ ${String(subtitle).toUpperCase()}`}</h2>
+      <ProductSlider>
+        <Product className='product1'><a href="#">Comprar</a></Product>
+        <Product className='product2'><a href="#">Comprar</a></Product>
+        <Product className='product3'><a href="#">Comprar</a></Product>
+        <Product className='product4'><a href="#">Comprar</a></Product>
+      </ProductSlider>
+
+      <FilterSection >
+        <h2>{formatTitle(String(title))} {query.categoria && `/ ${String(subtitle).toUpperCase()}`}</h2>
         {
           title === 'moda' &&
           <ul>
-            <li className='active'>
+            <li className={isActive('todos')}>
+              <Link href="/produtos/moda?categoria=todos">Todos</Link>
+            </li>
+            <li className={isActive('feminina')}>
               <Link href="/produtos/moda?categoria=feminina">Feminina</Link>
             </li>
-            <li>
+            <li className={isActive('masculino')}>
               <Link href="/produtos/moda?categoria=masculino">Masculina</Link>
             </li>
-            <li>
+            <li className={isActive('infantil')}>
               <Link href="/produtos/moda?categoria=infantil">Infantil</Link>
             </li>
           </ul>
         }
       </FilterSection>
-      <GridCards>
+      <GridCards >
         <Cards />
         <Cards />
         <Cards />

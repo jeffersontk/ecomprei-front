@@ -13,10 +13,10 @@ export const CategoriesList = styled('ul', {
     listStyle: 'none',
     color: '$white',
     fontWeight: 600,
-    cursor: 'pointer',
     transition: 'transform 0.5s',
-
+    
     a:{
+      cursor: 'pointer',
       textDecoration: 'none',
       color: '$white',
     },

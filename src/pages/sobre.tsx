@@ -1,9 +1,10 @@
 import React from 'react';
+import Layout from '../components/Layout';
 import { AboutContent } from '../styles/pages/about';
 
 export default function Sobre(){
   return (
-    <div>
+    <Layout>
       <AboutContent>
         <h1>Sobre nós</h1>
         <h4><strong>Nosso Negócio</strong></h4>
@@ -13,6 +14,6 @@ export default function Sobre(){
         <h4><strong>Nossos Valores</strong></h4>
         <p>Inclusão, transparência, acessibilidade e qualidade.</p>
       </AboutContent>
-    </div>
+    </Layout>
   );
 }
