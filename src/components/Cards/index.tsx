@@ -4,6 +4,7 @@ import { Card, CardDiscount, CartButton, ContainerTitle, Content, ContentCard, C
 import tshirt from '../../assets/tshirt.png'
 import discountBanner from '../../assets/discount-banner.png'
 import {BsCartPlus} from 'react-icons/bs'
+import Link from 'next/link';
 
 const Cards: React.FC = () => {
   return (
@@ -32,7 +33,7 @@ const Cards: React.FC = () => {
               Economize agora R$ 57<span>.49</span>
             </DescriptionPrice>
           </Content>
-          <a>Comprar</a>
+          <Link href="#">Comprar</Link>
         </ContentCard>
       </PriceContent>
     </Card>

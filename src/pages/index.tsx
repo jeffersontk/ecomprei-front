@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import hero from '../assets/hero.png'
 import Cards from "../components/Cards";
 import Categories from "../components/Categories";
@@ -9,7 +10,7 @@ export default function Home() {
     <Container>
       <Banner>
         <Image src={hero} alt="banner é fácil, é rápido, é comprei" title="é fácil, é rápido, é comprei"/>
-        <a href="/produtos" title="compre agora">Compre agora</a>
+        <Link href="/produtos" title="compre agora">Compre agora</Link>
       </Banner>
 
       <SectionHighlighted>
