@@ -11,9 +11,9 @@ const Header: React.FC = () => {
   return (
     <Container>
       <HeaderSearchAndCart>
-        <a href="#">
+        <Link href="#">
           <Image src={logo} alt="É Comprei" />
-        </a>
+        </Link>
 
         <SearchContainer>
           <input type="text" placeholder='Encontre aqui'/>
@@ -33,7 +33,7 @@ const Header: React.FC = () => {
             <Link href="/" className='active'>Inicio</Link>
           </li>
           <li>
-            <a href="/produtos">Explorar</a>
+            <Link href="/produtos">Explorar</Link>
           </li>
         </ul>
       </Navigation>
