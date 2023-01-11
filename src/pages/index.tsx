@@ -1,7 +1,8 @@
 import Image from "next/image";
 import hero from '../assets/hero.png'
 import Cards from "../components/Cards";
-import { Banner, Categories, Container, GridCards, SectionHighlighted } from "../styles/pages/home";
+import Categories from "../components/Categories";
+import { Banner, Container, GridCards, SectionHighlighted } from "../styles/pages/home";
 
 export default function Home() {
   return (
@@ -12,12 +13,7 @@ export default function Home() {
       </Banner>
 
       <SectionHighlighted>
-        <Categories>
-          <li>Moda</li>
-          <li>Eletrônicos</li>
-          <li>Utilidades</li>
-          <li>Beleza</li>
-        </Categories>
+        <Categories />
         <h2>Destaques da semana</h2>
         <GridCards>
           <Cards />

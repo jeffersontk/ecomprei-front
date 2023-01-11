@@ -23,7 +23,13 @@ export const HeaderContainer = styled('header', {
 })
 
 export const MainContainer = styled('main', {
-  marginTop: 'calc(141px + 2rem)'
+  marginTop: 'calc(141px + 2rem)',
+  width: '100%',
+  maxWidth: '1280px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 })
 
 export const FooterContainer = styled('footer', {

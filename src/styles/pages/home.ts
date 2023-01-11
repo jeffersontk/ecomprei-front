@@ -1,6 +1,6 @@
 import { styled } from "..";
 
-export const Container = styled('main', {
+export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -48,28 +48,6 @@ export const SectionHighlighted = styled('section', {
     color: "$graphite",
     marginTop: '2rem',
     marginBottom: '2rem',
-  }
-})
-
-export const Categories = styled('ul', {
-  background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
-  height: '50px',
-  width: '100%',
-
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-around',
-
-  li:{
-    listStyle: 'none',
-    color: '$white',
-    fontWeight: 600,
-    cursor: 'pointer',
-    transition: 'transform 0.5s',
-
-    '&:hover':{
-      transform: 'scale(1.2)'
-    }
   }
 })
 

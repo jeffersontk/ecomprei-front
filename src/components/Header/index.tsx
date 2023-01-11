@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import {BiSearchAlt} from 'react-icons/bi'
@@ -29,10 +30,10 @@ const Header: React.FC = () => {
       <Navigation>
         <ul>
           <li>
-            <a href="#" className='active'>Inicio</a>
+            <Link href="/" className='active'>Inicio</Link>
           </li>
           <li>
-            <a href="#">Explorar</a>
+            <a href="/produtos">Explorar</a>
           </li>
         </ul>
       </Navigation>
