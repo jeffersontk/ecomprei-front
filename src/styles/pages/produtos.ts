@@ -4,6 +4,11 @@ export const Container = styled('main', {
   width: '100%',
 })
 
+export const ProductSlider = styled('section', {
+  marginTop: '2rem',
+  marginBottom: '2rem',
+})
+
 export const FilterSection = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
