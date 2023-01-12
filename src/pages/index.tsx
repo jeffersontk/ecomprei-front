@@ -11,7 +11,7 @@ export default function Home() {
     <Layout>
       <Container>
         <Banner>
-          <Image src={hero} alt="banner é fácil, é rápido, é comprei" title="é fácil, é rápido, é comprei"/>
+          <Image src={hero} width={1140} alt="banner é fácil, é rápido, é comprei" title="é fácil, é rápido, é comprei"/>
           <Link href="/produtos" title="compre agora">Compre agora</Link>
         </Banner>
 

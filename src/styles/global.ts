@@ -10,6 +10,9 @@ export const globalStyles = globalCss({
     '-webkit-font-smoothing': 'antialiased',
     color: '$black',
   },
+  html:{
+    scrollBehavior: 'smooth'
+  },
   'body, input, textarea, button': {
     fontFamily: 'Open Sans',
     fontWeight: 400,

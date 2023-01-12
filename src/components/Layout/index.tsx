@@ -15,6 +15,7 @@ const Layout = ({ children }: LayoutProps) => (
       stiffness: 260,
       damping: 20,
     }}
+    style={{width: '100%'}}
   >
     {children}
   </motion.div>

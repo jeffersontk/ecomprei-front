@@ -2,7 +2,7 @@ import { styled } from "../../styles";
 
 export const Container = styled('div', {
   width: '100%',
-  maxWidth: '1280px',
+  maxWidth: '1140px',
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem'

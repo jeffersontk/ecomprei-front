@@ -25,7 +25,7 @@ export const HeaderContainer = styled('header', {
 export const MainContainer = styled('main', {
   marginTop: 'calc(141px + 2rem)',
   width: '100%',
-  maxWidth: '1280px',
+  maxWidth: '1140px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

@@ -9,7 +9,7 @@ import { useRouter } from "next/router"
 export default function Produtos() {
   const { query } = useRouter()
   const title = query.slug || 'Moda'
-  const subtitle = query.categoria || 'Feminina'
+  const subtitle = query.filtro || 'Feminina'
 
   const isActive = (find: string) => {
     if(subtitle.includes(find)){
@@ -41,21 +41,21 @@ export default function Produtos() {
       </ProductSlider>
 
       <FilterSection >
-        <h2>{formatTitle(String(title))} {query.categoria && `/ ${String(subtitle).toUpperCase()}`}</h2>
+        <h2>{formatTitle(String(title))} {query.filtro && `/ ${String(subtitle).toUpperCase()}`}</h2>
         {
           title === 'moda' &&
           <ul>
             <li className={isActive('todos')}>
-              <Link href="/produtos/moda?categoria=todos">Todos</Link>
+              <Link href="/produtos/moda?filtro=todos">Todos</Link>
             </li>
             <li className={isActive('feminina')}>
-              <Link href="/produtos/moda?categoria=feminina">Feminina</Link>
+              <Link href="/produtos/moda?filtro=feminina">Feminina</Link>
             </li>
             <li className={isActive('masculino')}>
-              <Link href="/produtos/moda?categoria=masculino">Masculina</Link>
+              <Link href="/produtos/moda?filtro=masculino">Masculina</Link>
             </li>
             <li className={isActive('infantil')}>
-              <Link href="/produtos/moda?categoria=infantil">Infantil</Link>
+              <Link href="/produtos/moda?filtro=infantil">Infantil</Link>
             </li>
           </ul>
         }

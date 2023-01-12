@@ -5,7 +5,7 @@ const Categories: React.FC = () => {
   return (
     <CategoriesList>
       <li>
-        <Link href="/produtos/moda?categoria=todos">Moda</Link>
+        <Link href="/produtos/moda?filtro=todos">Moda</Link>
       </li>
       <li>
         <Link href="/produtos/eletronicos">Eletrônicos</Link>

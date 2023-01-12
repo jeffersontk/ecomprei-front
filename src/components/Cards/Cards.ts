@@ -83,11 +83,15 @@ export const ContainerTitle = styled('div', {
 
 export const ContentCard = styled('div', {
   display: 'flex',
+  flexDirection: 'column',
   padding: '1rem',
-  justifyContent: 'space-between',
-  alignItems: 'flex-end',
-  gap: '1.5rem',
+  gap: '0.5rem',
 
+  '.action': {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+    
   a: {
     display: 'flex',
     justifyContent: 'center',
@@ -104,6 +108,8 @@ export const ContentCard = styled('div', {
     fontWeight: 600,
     cursor: 'pointer',
 
+    textDecoration: 'none',
+
     '&:hover':{
       background: '$yellow300',
     }
@@ -113,19 +119,21 @@ export const ContentCard = styled('div', {
 export const Content = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'flex-start',
+
+  div:{
+    display: 'flex',
+    width: '100%',
+    gap: '1rem'
+  }
 })
 
 export const Price = styled('strong', {
   display: 'flex',
   fontSize: '1.85rem',
   color: '$black',
-  position: 'relative',
 
   span: {
-    position: 'absolute',
-    top: 2,
-    right: 30,
-
     fontSize: '1rem'
   }
 })
@@ -133,15 +141,11 @@ export const Price = styled('strong', {
 export const RealPrice = styled('span', {
   display: 'flex',
   textDecoration: 'line-through',
-  position: 'relative',
   color: '$gray300',
   fontWeight: 600,
 
   span: {
     textDecoration: 'line-through',
-    position: 'absolute',
-    top: 0,
-    left: 52,
 
     fontSize: '0.75rem'
   }
@@ -150,14 +154,10 @@ export const RealPrice = styled('span', {
 export const DescriptionPrice = styled('span', {
   display: 'flex',
   fontSize: '0.85rem',
-  position: 'relative',
   color: '$red300',  
   fontWeight: 500,
 
   span: {
-    position: 'absolute',
-    top: 0,
-    right: -13,
     fontSize: '0.55rem'
   }
 })

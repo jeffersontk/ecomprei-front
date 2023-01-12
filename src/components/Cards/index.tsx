@@ -27,13 +27,17 @@ const Cards: React.FC = () => {
         </ContainerTitle>
         <ContentCard>
           <Content>
-            <Price>R$ 192<span>.49</span></Price>
-            <RealPrice>R$ 249<span>.99</span></RealPrice>
+            <div>
+              <Price>R$ 192<span>.49</span></Price>
+              <RealPrice>R$ 249<span>.99</span></RealPrice>
+            </div>
             <DescriptionPrice>
               Economize agora R$ 57<span>.49</span>
             </DescriptionPrice>
           </Content>
-          <Link href="#">Comprar</Link>
+          <div className='action'>
+            <Link href="/checkout/12322sac">Comprar</Link>
+          </div>
         </ContentCard>
       </PriceContent>
     </Card>
