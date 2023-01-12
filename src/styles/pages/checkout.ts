@@ -11,9 +11,11 @@ export const CopyCheckout = styled('div', {
   display: 'flex',
   flexDirection: 'column',
 
-  a: {
+  button: {
     textDecoration: 'none',
     textAlign: 'center',
+    border: 'none',
+    cursor: 'pointer',
     
     background: '$orange500',
     color: '$white',
@@ -44,7 +46,7 @@ export const SliderContainer = styled('div', {
 
   img:{
     width: '100%',
-    maxHeight: '430px',
+    maxHeight: '600px',
     objectFit: 'contain',
 
     '&:not(:last-of-type)':{

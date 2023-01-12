@@ -18,7 +18,7 @@ const CardCheckout: React.FC = () => {
             </button>
           </ImageContainer>
           <DetailProduct>
-            <h3>Camiseta termina slim fit com proteção UV50</h3>
+            <h3>Camiseta manga longa térmica slim fit com proteção UV50</h3>
             <ContentSelects>
               <div>
                 <label htmlFor="#">Tamanho:</label>

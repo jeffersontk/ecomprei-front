@@ -55,7 +55,7 @@ export default function Checkout() {
     initial: 0,
     slides: {
       perView: 1,
-      spacing: 10,
+      spacing: 0,
     },
   })
 
@@ -63,8 +63,8 @@ export default function Checkout() {
     {
       initial: 0,
       slides: {
-        perView: 4,
-        spacing: 0,
+        perView: 6,
+        spacing: 5,
       },
     },
     [ThumbnailPlugin(instanceRef)]
@@ -74,16 +74,6 @@ export default function Checkout() {
     <Layout>
       <ContainerSectionCheckout>
         <CopyCheckout>
-     
-          <br /> 
-          <h1>Camiseta termina slim fit com proteção UV50</h1>
-          <br />
-          <p>Esteja pronto para aproveitar o sol sem se preocupar com os danos da radiação UV com nossa camiseta solar de ajuste ao corpo.</p>
-          <br />
-          <p>Nossa camiseta solar com ajuste ao corpo é feita com tecido elástico e tecnologia UPF 50+ para garantir que você esteja seguro dos raios UV enquanto desfruta de suas atividades ao ar livre. Com sua modelagem justa, essa camiseta não só o protege, essa camiseta foi desenhada para se ajustar perfeitamente ao seu corpo!</p>
-          <br />
-          <p> Com a gola em U e as mangas compridas, você também tem a proteção adicional para o pescoço e braços. O tecido é respirável e macio ao toque, garantindo conforto durante todo o dia. Adquira já a sua camiseta solar de gola U e manga comprida de ajuste ao corpo e desfrute de dias de sol sem preocupações!</p>
-          <br />
           <Slider>
             <SliderContainer ref={sliderRef} className="keen-slider">
               <div className="keen-slider__slide number-slide1">
@@ -138,9 +128,18 @@ export default function Checkout() {
               </div>
             </ThumbnailContainer>
           </Slider>
-         {/*  <p> Não perca mais tempo, adquira já a sua camiseta solar de ajuste ao corpo e desfrute de dias de sol sem preocupações!</p> */}
           <br />
-          <Link href="#checkout">Comprar agora</Link>
+          <h1>Camiseta manga longa térmica slim fit com proteção UV50</h1>
+          <br />
+          <p>Esteja pronto para aproveitar o sol sem se preocupar com os danos da radiação UV com nossa camiseta solar de ajuste ao corpo.</p>
+          <br />
+          <p>Nossa camiseta solar com ajuste ao corpo é feita com tecido elástico e tecnologia UPF 50+ para garantir que você esteja seguro dos raios UV enquanto desfruta de suas atividades ao ar livre. Com sua modelagem justa, essa camiseta não só o protege, essa camiseta foi desenhada para se ajustar perfeitamente ao seu corpo!</p>
+          <br />
+          <p> Com a gola em U e as mangas compridas, você também tem a proteção adicional para o pescoço e braços. O tecido é respirável e macio ao toque, garantindo conforto durante todo o dia. Adquira já a sua camiseta solar de gola U e manga comprida de ajuste ao corpo e desfrute de dias de sol sem preocupações!</p>
+          <br />
+          <p> Não perca mais tempo, adquira já a sua camiseta solar de ajuste ao corpo e desfrute de dias de sol sem preocupações!</p>
+          <br />
+          <button>Comprar agora</button>
         </CopyCheckout>
         <CardCheckout/>
       </ContainerSectionCheckout>
