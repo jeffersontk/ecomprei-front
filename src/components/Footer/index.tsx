@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { Container, Informative, MenuFooter, Sac, Section } from './Footer';
+import { Container, Informative, MenuFooter, Sac, Section, SocialFooter } from './Footer';
 import logo from '../../assets/logo-ecomprei.svg'
 import {FaFacebookF, FaTiktok, FaInstagram, FaWhatsapp} from 'react-icons/fa'
 import Link from 'next/link';
@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
     <Container>
       <Section>
         <div>
-          <Image src={logo} alt="É Comprei" />
+        
       
           <Sac>
             <h4>ATENDIMENTO AO CLIENTE</h4>
@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
               <Link href="/sobre">Quem somos</Link>
             </li>
             <li>
-              <Link href="#">Troca e devoluções</Link>
+              <Link href="/faq">Perguntas frequentes</Link>
             </li>
             <li>
               <Link href="#">Informações de entrega</Link>
@@ -36,28 +36,27 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </MenuFooter>
-        <form>
-          <span>Assine nossa newsletter e receba <br/> as melhores ofertas de GRAÇA!</span>
-          <input placeholder='Seu e-mail'/>
-          <button type="submit">Enviar</button>
-        </form>
+        <SocialFooter>
+          <Image src={logo} alt="É Comprei" />
+          <div>
+            <Link href="#">
+              <FaWhatsapp />
+            </Link>
+            <Link href="#">
+              <FaInstagram />
+            </Link>
+            <Link href="#">
+              <FaTiktok />
+            </Link>
+            <Link href="#">
+              <FaFacebookF />
+            </Link>
+          </div>
+        </SocialFooter>
       </Section>
       <Informative>
         <div>ⓒ Direitos reservados ecomprei.shop</div>
-        <div>
-          <Link href="#">
-            <FaWhatsapp />
-          </Link>
-          <Link href="#">
-            <FaInstagram />
-          </Link>
-          <Link href="#">
-            <FaTiktok />
-          </Link>
-          <Link href="#">
-            <FaFacebookF />
-          </Link>
-        </div>
+        <span>Preço e condições de pagamento exclusivos para compras neste site oficial, podendo variar com o tempo da oferta.</span>
       </Informative>
     </Container>
   )

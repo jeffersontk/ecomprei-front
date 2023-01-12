@@ -94,19 +94,29 @@ export const Informative = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'center',
 
+  span: {
+    textAlign: 'center',
+    fontSize: '0.875rem'
+  }
+})
+
+export const SocialFooter = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  
   div: {
     display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
     gap: '1rem',
-    a:{
-      textDecoration: 'none',
-      color: '$white',
-    },
-    svg: {
-      height: '30px',
-      width: '30px',
-      color: '$orange500'
-    }
+
+  },
+  a:{
+    textDecoration: 'none',
+    color: '$white',
+  },
+  svg: {
+    height: '30px',
+    width: '30px',
+    color: '$orange500'
   }
 })

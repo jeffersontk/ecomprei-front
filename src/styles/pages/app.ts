@@ -32,6 +32,39 @@ export const MainContainer = styled('main', {
   justifyContent: 'center',
 })
 
+export const InformativeContainer = styled('section', {
+  width: '100%',
+  maxWidth: '1140px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '0.5rem',
+  
+  svg: {
+    color: '$orange500'
+  },
+
+  '.informative': {
+    width: '240px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+
+    '.informativeText': {
+      display: 'flex',
+      flexDirection: 'column',
+      
+      strong:{
+        color: '$orange500'
+      },
+      span: {
+        fontSize: '0.75rem',
+        color: '$graphite', 
+      }
+    }
+  }
+})
+
 export const FooterContainer = styled('footer', {
   width: '100%',
   paddingTop: '10px',
