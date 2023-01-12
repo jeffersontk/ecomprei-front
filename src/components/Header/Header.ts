@@ -108,7 +108,7 @@ export const Navigation = styled('nav', {
         color: '$white',
         fontWeight: 600,
 
-        '&.active': {
+        '&:hover': {
           color: '$yellow500'
         }
       }

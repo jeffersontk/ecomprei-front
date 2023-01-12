@@ -71,7 +71,7 @@ export const PriceContent = styled('div', {
 })
 
 export const ContainerTitle = styled('div', {
-  background: '$yellow500',
+  background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
   paddingLeft: '1rem',
   height: '40px',
   color: '$white',
@@ -89,31 +89,33 @@ export const ContentCard = styled('div', {
 
   '.action': {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    width: '100%',
+    
+    a: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      
+      width: '100%',
+      height: '40px',
+  
+      border: 'none',
+      background: '$orange500',
+      borderRadius: '4px',
+  
+      color: '$white',
+      fontWeight: 600,
+      cursor: 'pointer',
+  
+      textDecoration: 'none',
+  
+      '&:hover':{
+        background: '$yellow300',
+      }
+    }
   },
     
-  a: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    
-    width: '100px',
-    height: '40px',
-
-    border: 'none',
-    background: '$yellow500',
-    borderRadius: '4px',
-
-    color: '$white',
-    fontWeight: 600,
-    cursor: 'pointer',
-
-    textDecoration: 'none',
-
-    '&:hover':{
-      background: '$yellow300',
-    }
-  }
 })
 
 export const Content = styled('div', {

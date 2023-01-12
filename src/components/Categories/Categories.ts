@@ -19,6 +19,10 @@ export const CategoriesList = styled('ul', {
       cursor: 'pointer',
       textDecoration: 'none',
       color: '$white',
+
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.25rem'
     },
 
     '&:hover':{

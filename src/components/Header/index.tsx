@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import {BiSearchAlt} from 'react-icons/bi'
@@ -9,20 +8,6 @@ import { CartButton, Container, HeaderSearchAndCart, Navigation, SearchContainer
 
 
 const Header: React.FC = () => {
-  const { asPath, pathname } = useRouter()
-  const path = asPath
-  console.log('pathname', pathname)
-
-  const isActive = (find: string) => {
-    if(find === '/'){
-      return 'active'
-    }
-    if(find === '/produtos'){
-      return 'active'
-    }
-    
-    return ''
-  }
   return (
     <Container>
       <HeaderSearchAndCart>
@@ -45,10 +30,10 @@ const Header: React.FC = () => {
       <Navigation>
         <ul>
           <li>
-            <Link href="/" className={isActive('/')}>Inicio</Link>
+            <Link href="/">Inicio</Link>
           </li>
           <li>
-            <Link href="/produtos" className={isActive('/produtos')}>Explorar</Link>
+            <Link href="/produtos">Explorar</Link>
           </li>
         </ul>
       </Navigation>
