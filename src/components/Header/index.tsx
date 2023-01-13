@@ -61,28 +61,28 @@ const Header: React.FC = () => {
         </Link>
         <h4>Navegação</h4>
         <ul>
-          <li>
+          <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/">Inicio</Link>
           </li>
-          <li>
+          <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/produtos">Explorar</Link>
           </li>
         </ul>
         <Link href="/produtos"><h4>Categorias Populares <MdOutlineKeyboardArrowRight size={24}/></h4></Link>
         <ul>
-          <li>
+          <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/produtos/moda?categoria?=feminina">Roupas femininos</Link>
           </li>
-          <li>
+          <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/produtos/moda?categoria?=relogios">Relógios</Link>
           </li>
-          <li>
+          <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/produtos/moda?categoria?=roupasmasculinas">Roupas masculinas</Link>
           </li>
-          <li>
+          <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/produtos/moda?categoria?=eletronicos">Eletrônicos</Link>
           </li>
-          <li>
+          <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/produtos/moda?categoria?=maquiagem">maquiagem</Link>
           </li>
         </ul>
