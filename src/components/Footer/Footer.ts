@@ -5,49 +5,25 @@ export const Container = styled('div', {
   maxWidth: '1140px',
   display: 'flex',
   flexDirection: 'column',
-  gap: '4rem'
+  gap: '2rem'
 })
 
-export const Section = styled('div', {
-  display: 'flex',
-  justifyContent: 'space-between',
-
-  form:{
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-    padding: '1.5rem',
-    background: '$black',
-    borderRadius: 4,
-
-    span: {
-      color: '$white',
-    },
-
-    input:{
-      width: '250px',
-      height: '35px',
-      paddingLeft: '0.5rem',
-      borderRadius: 4,
-      border: 'none',
-    },
-    
-    textarea:{
-      paddingLeft: '0.5rem'
-
-    },
-
-    button:{
-      height: '35px',
-      border: 'none',
-      borderRadius: 4,
-      cursor: 'pointer',
-      
-      backgroundColor: '$yellow500',
-
-      color: '$white',
-      fontSize: '1rem',
-      fontWeight: 'bold'
+export const Section = styled('section', {
+}, {
+  variants:{
+    render: {
+      mobile: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem'
+      },
+      desktop: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }
     }
   }
 })
@@ -98,17 +74,26 @@ export const Informative = styled('div', {
     textAlign: 'center',
     fontSize: '0.875rem'
   }
+}, {
+  variants: {
+    render: {
+      mobile: {
+        padding: '1rem',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem'
+      },
+      desktop: {
+        flexDirection: 'row',
+      }
+    }
+  }
 })
 
 export const SocialFooter = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1rem',
-  
   div: {
     display: 'flex',
     gap: '1rem',
-
   },
   a:{
     textDecoration: 'none',
@@ -118,5 +103,22 @@ export const SocialFooter = styled('div', {
     height: '30px',
     width: '30px',
     color: '$orange500'
+  }
+}, {
+  variants: {
+    render: {
+      mobile: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        gap: '1rem'
+      },
+      desktop: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start'
+      }
+    }
   }
 })

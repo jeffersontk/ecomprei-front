@@ -1,11 +1,23 @@
-import { styled } from "../../styles";
+import { keyframes, styled } from "../../styles";
 
 export const Container = styled('div', {
   width: '100%',
   maxWidth: '1140px',
   display: 'flex',
+  alignItems: 'center',
   flexDirection: 'column',
-  gap: '1rem'
+  gap: '1rem',
+}, {
+  variants: {
+    render: {
+      mobile: {
+        padding: '1rem'
+      },
+      desktop: {
+        padding: '2rem 0',
+      }
+    }
+  }
 })
 
 export const HeaderSearchAndCart = styled('div', {
@@ -13,10 +25,47 @@ export const HeaderSearchAndCart = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+}, {
+  variants: {
+    render: {
+      mobile: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+        div: {
+          display: 'flex',
+        }
+      },
+      desktop: {
+        justifyContent: 'space-between',
+      },
+    }
+  }
+})
+
+export const BurgerButton = styled('button', {
+  background: 'transparent',
+  border: 'none',
+  marginRight: '1rem',
+
+  svg: {
+    color: '$white',
+  }
+}, {
+  variants: {
+    visible: {
+      show: {
+        display: 'block'
+      },
+      hidden: {
+        display: 'none'
+      }
+    }
+  }
 })
 
 export const SearchContainer = styled('div', {
-  width: '600px',
+
   height: '35px',
   display: 'flex',
   alignItems: 'center',
@@ -60,6 +109,27 @@ export const SearchContainer = styled('div', {
       color: '$white'
     }
   }
+},{
+
+},{
+  variants:{
+    render: {
+      mobile: {
+        width: '100%'
+      },
+      desktop: {
+        width: '600px',
+      }
+    },
+    visible: {
+      show: {
+        display: 'flex  !important'
+      },
+      hidden: {
+        display: 'none !important',
+      }
+    }
+  }
 })
 
 export const CartButton = styled('button', {
@@ -92,12 +162,31 @@ export const CartButton = styled('button', {
   }
 })
 
-export const Navigation = styled('nav', {
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+const goIn = keyframes({
+  '0%': {
+    opacity: 0,
+    transform: "translateX(-10px)",
+  },
+  '100%': { 
+    opacity: 1,
+    transform: "translateX(0px)",
+  },
+});
 
+const goOut = keyframes({
+  '0%': {
+    opacity: 1,
+    transform: "translateX(0px)",
+  },
+  '100%': { 
+    opacity: 0,
+    transform: "translateX(-10px)",
+  },
+});
+
+export const Navigation = styled('nav', {
+  position: 'relative',
+  
   ul:{
     display: 'flex',
     gap: '1rem',
@@ -111,6 +200,70 @@ export const Navigation = styled('nav', {
         '&:hover': {
           color: '$yellow500'
         }
+      }
+    }
+  }
+}, {
+  variants: {
+    render: {
+      mobile: {
+        position: 'absolute',
+        top: 0,
+        left: -600,
+        background: '$white',
+        height: '100vh',
+        width: '50%',
+        padding: '0 1rem',
+        paddingTop: '2rem',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        transition: 'left display 0.2s',
+        
+        button: {
+          position: 'absolute',
+          top: '1rem',
+          right: '1rem',
+          border: 'none',
+          background: 'none'
+        },
+        a: {
+          textDecoration: 'none',
+          color: '$graphite',
+         
+          h4: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }
+        },
+        ul: {
+          flexDirection: 'column',
+          li:{
+            listStyle: 'none',
+            a: {
+              color: '$gray300'
+            }
+          }
+        }
+      },
+      desktop: {  
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }
+    },
+    visible: {
+      show: {
+        animation: `${goIn}  ease-in 0.2s`,
+        left: 0,
+        display: 'flex !important',
+      },
+      hidden: {
+        animation: `${goOut} ease-in 0.2s`,
+        left: -600,
+        display: 'none !important'
       }
     }
   }

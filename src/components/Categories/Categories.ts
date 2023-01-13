@@ -2,12 +2,7 @@ import { styled } from "../../styles";
 
 export const CategoriesList = styled('ul', {
   background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
-  height: '50px',
   width: '100%',
-
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-around',
 
   li:{
     listStyle: 'none',
@@ -27,6 +22,32 @@ export const CategoriesList = styled('ul', {
 
     '&:hover':{
       transform: 'scale(1.2)'
+    }
+  }
+}, {
+  variants: {
+    render: {
+      mobile: {
+        display: 'grid',
+        gridTemplateColumns: 'minmax(100px, 150px) minmax(100px, 150px)',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        gap: '0.75rem',
+        height: '100%',
+        padding: '1rem 0',
+
+        li:{
+          a: {
+            fontSize: '0.875rem'
+          }
+        }
+      },
+      desktop: {
+        height: '50px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+      },
     }
   }
 })

@@ -8,6 +8,15 @@ export const Card = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+}, {
+  variants: {
+    render: {
+      mobile: {
+        width: '350px',
+      },
+      desktop: {}
+    }
+  }
 })
 
 
@@ -46,11 +55,12 @@ export const CardDiscount = styled('div', {
 export const CartButton = styled('button', {
   position: 'absolute',
   top: 10,
+  zIndex: 99,
   right: '1rem',
 
   width: '35px',
   height: '35px',
-  background: 'transparent',
+  background: '$white',
   borderRadius: '50%',
   border: 'none',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -132,7 +142,7 @@ export const Content = styled('div', {
 
 export const Price = styled('strong', {
   display: 'flex',
-  fontSize: '1.85rem',
+  fontSize: '1.25rem',
   color: '$black',
 
   span: {
@@ -148,7 +158,6 @@ export const RealPrice = styled('span', {
 
   span: {
     textDecoration: 'line-through',
-
     fontSize: '0.75rem'
   }
 })

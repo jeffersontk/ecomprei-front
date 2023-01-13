@@ -5,10 +5,13 @@ import tshirt from '../../assets/tshirt.png'
 import discountBanner from '../../assets/discount-banner.png'
 import {BsCartPlus} from 'react-icons/bs'
 import Link from 'next/link';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 const Cards: React.FC = () => {
+  const matches = useMediaQuery('(min-width: 768px)')
+  
   return (
-    <Card>
+    <Card render={matches ? "desktop" : "mobile"}>
       <ContentImage>
         <CardDiscount>
           <Image src={discountBanner} alt="" />

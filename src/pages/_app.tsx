@@ -6,21 +6,24 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { globalStyles } from '../styles/global';
 import { Container, ContentFooter, FooterContainer, HeaderContainer, InformativeContainer, MainContainer } from '../styles/pages/app';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 globalStyles();
 
 export default function App({ Component, pageProps, router }: AppProps) {
+  const matches = useMediaQuery('(min-width: 768px)')
+
   return (
     <AnimatePresence mode='sync' initial={false}>
       <Container>
         <HeaderContainer>
           <Header />
         </HeaderContainer>
-        <MainContainer>
+        <MainContainer render={{"@initial": 'mobile', "@bp2": "desktop"}}>
           <Component {...pageProps} key={router.asPath} onExitComplete={() => window.scrollTo(0, 0)}/>
         </MainContainer>
 
-        <InformativeContainer>
+        <InformativeContainer render={{"@initial": 'mobile', "@bp2": "desktop"}}> 
           <div className='informative'>
             <RiSecurePaymentFill  size={75}/>
             <div className='informativeText'>

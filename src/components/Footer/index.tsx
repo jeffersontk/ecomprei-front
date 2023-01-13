@@ -4,14 +4,15 @@ import { Container, Informative, MenuFooter, Sac, Section, SocialFooter } from '
 import logo from '../../assets/logo-ecomprei.svg'
 import {FaFacebookF, FaTiktok, FaInstagram, FaWhatsapp} from 'react-icons/fa'
 import Link from 'next/link';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 const Footer: React.FC = () => {
+  const matches = useMediaQuery('(min-width: 768px)')
+
   return (
     <Container>
-      <Section>
+      <Section render={{'@initial': 'mobile', "@bp2": "desktop"}}>
         <div>
-        
-      
           <Sac>
             <h4>ATENDIMENTO AO CLIENTE</h4>
             <span><strong>SAC</strong> (Serviço de atendimento ao Cliente)</span>
@@ -36,7 +37,7 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </MenuFooter>
-        <SocialFooter>
+        <SocialFooter render={{'@initial': 'mobile', "@bp2": "desktop"}}>
           <Image src={logo} alt="É Comprei" />
           <div>
             <Link href="#">
@@ -54,7 +55,7 @@ const Footer: React.FC = () => {
           </div>
         </SocialFooter>
       </Section>
-      <Informative>
+      <Informative render={{'@initial': 'mobile', "@bp2": "desktop"}}>
         <div>ⓒ Direitos reservados ecomprei.shop</div>
         <span>Preço e condições de pagamento exclusivos para compras neste site oficial, podendo variar com o tempo da oferta.</span>
       </Informative>

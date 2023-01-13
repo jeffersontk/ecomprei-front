@@ -16,6 +16,17 @@ export const ProductSlider = styled('section', {
   display: 'flex',
   position: 'relative',
 
+}, {
+  variants: {
+    visible: {
+      show: {
+        display: 'flex'
+      },
+      hidden: {
+        display: 'none !important'
+      }
+    }
+  }
 })
 
 export const Product = styled('div',{

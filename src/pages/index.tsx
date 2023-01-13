@@ -1,32 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
-import hero from '../assets/hero.png'
+import Banner from "../components/Banner";
 import Cards from "../components/Cards";
 import Categories from "../components/Categories";
 import Layout from "../components/Layout";
-import { Banner, Container, GridCards, SectionHighlighted } from "../styles/pages/home";
+import SimpleCard from "../components/SimpleCard";
+import useMediaQuery from "../hooks/useMediaQuery";
+import { Container, GridCards, SectionHighlighted } from "../styles/pages/home";
 
 export default function Home() {
+  const matches = useMediaQuery('(min-width: 768px)')
+
   return (
     <Layout>
       <Container>
-        <Banner>
-          <Image src={hero} width={1140} alt="banner é fácil, é rápido, é comprei" title="é fácil, é rápido, é comprei"/>
-          <Link href="/produtos" title="compre agora">Compre agora</Link>
-        </Banner>
+        <Banner />
 
-        <SectionHighlighted>
+        <SectionHighlighted render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <Categories />
           <h2>Destaques da semana</h2>
-          <GridCards>
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
+          <GridCards render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
+            <SimpleCard />
+            <SimpleCard />
+            <SimpleCard />
+            <SimpleCard />
+            <SimpleCard />
+            <SimpleCard />
+            <SimpleCard />
+            <SimpleCard />
           </GridCards>
         </SectionHighlighted>
       </Container>

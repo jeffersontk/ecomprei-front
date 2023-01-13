@@ -11,7 +11,6 @@ export const Container = styled('div', {
 })
 
 export const HeaderContainer = styled('header', {
-  padding: '2rem 0',
   width: '100%',
   margin: '0 auto',
   backgroundColor: '$black',
@@ -30,15 +29,22 @@ export const MainContainer = styled('main', {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+}, {
+  variants: {
+    render: {
+      mobile: {
+        marginTop: 'calc(132px + 1rem)',
+      },
+      desktop: {
+        marginTop: 'calc(141px + 1rem)',
+      }
+    }
+  }
 })
 
 export const InformativeContainer = styled('section', {
   width: '100%',
   maxWidth: '1140px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  gap: '0.5rem',
   
   svg: {
     color: '$orange500'
@@ -63,6 +69,28 @@ export const InformativeContainer = styled('section', {
       }
     }
   }
+}, {
+  variants: {
+    render: {
+      mobile: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: '0.5rem',
+        
+        '.informative': {
+          marginLeft: '2rem',
+          width: '80%',
+        }
+      },
+      desktop: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+      }
+    }
+  }
 })
 
 export const FooterContainer = styled('footer', {
@@ -72,7 +100,7 @@ export const FooterContainer = styled('footer', {
 })
 
 export const ContentFooter = styled('div', {
-  padding: '2rem 0',
+  padding: '1rem 0',
   width: '100%',
   margin: '0 auto',
   display: 'flex',
