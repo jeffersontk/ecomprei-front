@@ -18,7 +18,7 @@ export const HeaderContainer = styled('header', {
   justifyContent: 'center',
   position: 'fixed',
   top: 0,
-  zIndex: 99,
+  zIndex: 999,
 })
 
 export const MainContainer = styled('main', {

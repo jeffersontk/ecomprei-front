@@ -1,15 +1,19 @@
 import Link from 'next/link';
 import React from 'react';
-import Cards from '../../components/Cards';
 import Categories from '../../components/Categories';
 import { GridCards } from '../../styles/pages/home';
 import { Container, FilterSection, Product, ProductSlider } from '../../styles/pages/produtos';
 import { useRouter } from "next/router"
+import SimpleCard from '../../components/SimpleCard';
+import Slider from '../../components/Slider';
+
 
 export default function Produtos() {
   const { query } = useRouter()
   const title = query.slug || 'Moda'
   const subtitle = query.filtro || 'Feminina'
+
+  
 
   const isActive = (find: string) => {
     if(subtitle.includes(find)){
@@ -33,14 +37,16 @@ export default function Produtos() {
   return (
     <Container>
       <Categories />
-      <ProductSlider>
+     {/*  <ProductSlider>
         <Product className='product1'><a href="#">Comprar</a></Product>
         <Product className='product2'><a href="#">Comprar</a></Product>
         <Product className='product3'><a href="#">Comprar</a></Product>
         <Product className='product4'><a href="#">Comprar</a></Product>
       </ProductSlider>
+ */}
+      <Slider />
 
-      <FilterSection >
+      <FilterSection render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
         <h2>{formatTitle(String(title))} {query.filtro && `/ ${String(subtitle).toUpperCase()}`}</h2>
         {
           title === 'moda' &&
@@ -60,17 +66,9 @@ export default function Produtos() {
           </ul>
         }
       </FilterSection>
-      <GridCards >
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
+      <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}}>
+        <SimpleCard />
+        <SimpleCard />
       </GridCards>
     </Container>
   );

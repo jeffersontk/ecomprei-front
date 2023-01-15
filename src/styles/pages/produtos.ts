@@ -7,6 +7,7 @@ export const Container = styled('main', {
 export const Title = styled('h2', {
   color: '$yellow500',
   marginBottom: '2rem',
+  marginTop: '2rem',
   lineHeight: '40px'
 })
 
@@ -113,13 +114,13 @@ export const Product = styled('div',{
 export const FilterSection = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center',
+ 
   marginTop: '2rem',
   marginBottom: '2rem',
 
   h2: {
     color: '$yellow500',  
-    lineHeight: '45px'
+    lineHeight: '45px',
   },
 
   ul: {
@@ -158,6 +159,22 @@ export const FilterSection = styled('div', {
       },
 
      
+    }
+  }
+}, {
+  variants: {
+    render: {
+      mobile: {
+        flexDirection: 'column',
+        padding: '0 1rem',
+        h2 :{
+          fontSize: '1.2rem'
+        }
+      },
+      desktop: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      }
     }
   }
 })

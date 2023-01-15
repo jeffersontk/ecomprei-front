@@ -1,15 +1,33 @@
 import { styled } from "..";
 
 export const ContainerSectionCheckout = styled('section', {
-  width: '100%',
-  display: 'grid',
-  gridTemplateColumns: 'minmax(100px, 758px) 350px',
-  gap: '2rem',
+ 
+}, {
+  variants: {
+    render: {
+      mobile: {
+        width: '100%',
+        display: 'grid',
+        gridTemplateColumns: '390px',
+        justifyContent: 'center',
+        gap: '2rem',
+        gridTemplateAreas: '"checkout" "copy"',
+      },
+      desktop: {
+        width: '100%',
+        display: 'grid',
+        gridTemplateColumns: 'minmax(100px, 758px) 350px',
+        gap: '2rem',
+        gridTemplateAreas: '"copy checkout" ',
+      }
+    }
+  }
 })
 
 export const CopyCheckout = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+
 
   button: {
     textDecoration: 'none',
@@ -35,6 +53,22 @@ export const CopyCheckout = styled('div', {
     height: '800px',
     objectFit: 'contain'
   }
+}, {
+  variants: { 
+    render: {
+      mobile: {
+        img:{
+          maxHeight: '360px',
+          gridArea: 'copy',
+        }
+      },
+      desktop: {
+        img:{
+          maxHeight: '600px',
+        }
+      },
+    }
+  }
 })
 
 export const Slider = styled('div', {
@@ -46,11 +80,25 @@ export const SliderContainer = styled('div', {
 
   img:{
     width: '100%',
-    maxHeight: '600px',
     objectFit: 'contain',
 
     '&:not(:last-of-type)':{
       marginLeft: '0.5rem'
+    }
+  }
+}, {
+  variants: { 
+    render: {
+      mobile: {
+        img:{
+          maxHeight: '360px',
+        }
+      },
+      desktop: {
+        img:{
+          maxHeight: '600px',
+        }
+      },
     }
   }
 })
@@ -70,6 +118,15 @@ export const CardCheckoutContainer = styled('div', {
   borderRadius: '8px',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   background: '$white',
+}, {
+  variants: {
+    render: {
+      mobile: {
+        gridArea: 'checkout',
+      },
+      desktop: {}
+    }
+  }
 })
 
 export const ImageContainer = styled('div', {

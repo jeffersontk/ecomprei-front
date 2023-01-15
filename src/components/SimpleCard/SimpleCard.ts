@@ -50,7 +50,7 @@ export const ContentText = styled('div', {
   div: {
     display: 'flex',
     gap: '1rem',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   }
 }, {
   variants: {

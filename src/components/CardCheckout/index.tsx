@@ -8,7 +8,7 @@ import tshirt from '../../assets/tshirt.png'
 
 const CardCheckout: React.FC = () => {
   return (
-    <CardCheckoutContainer  id="checkout">
+    <CardCheckoutContainer  id="checkout" render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <h2>Pedido</h2>
           <Divider />
           <ImageContainer>

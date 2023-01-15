@@ -10,7 +10,7 @@ import discountBanner from '../../assets/discount-banner.png'
 const SimpleCard: React.FC = () => {
   return (
     <CardContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-      <Link href="">
+      <Link href="/checkout/12322sac">
         <ContentImage>
           <CardDiscount>
             <Image src={discountBanner} alt="" />

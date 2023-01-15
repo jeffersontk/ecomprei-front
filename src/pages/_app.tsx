@@ -14,7 +14,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   const matches = useMediaQuery('(min-width: 768px)')
 
   return (
-    <AnimatePresence mode='sync' initial={false}>
+    <AnimatePresence initial={false}>
       <Container>
         <HeaderContainer>
           <Header />

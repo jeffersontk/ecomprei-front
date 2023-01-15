@@ -12,7 +12,7 @@ export default function Home() {
   const matches = useMediaQuery('(min-width: 768px)')
 
   return (
-    <Layout>
+/*     <Layout> */
       <Container>
         <Banner />
 
@@ -31,6 +31,6 @@ export default function Home() {
           </GridCards>
         </SectionHighlighted>
       </Container>
-    </Layout>
+/*     </Layout> */
   )
 }

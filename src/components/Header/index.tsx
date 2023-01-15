@@ -23,7 +23,7 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        <SearchContainer  render={{'@initial': 'mobile', '@bp2': 'desktop'}} visible={{"@initial": 'hidden', '@bp2': 'show'}}>
+        <SearchContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}} visible={{"@initial": 'hidden', '@bp2': 'show'}}>
           <input type="text" placeholder='Encontre aqui'/>
           <button>
             <BiSearchAlt />
@@ -71,19 +71,19 @@ const Header: React.FC = () => {
         <Link href="/produtos"><h4>Categorias Populares <MdOutlineKeyboardArrowRight size={24}/></h4></Link>
         <ul>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/moda?categoria?=feminina">Roupas femininos</Link>
+            <Link href="/produtos/moda?filtro=feminina">Roupas femininos</Link>
           </li>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/moda?categoria?=relogios">Relógios</Link>
+            <Link href="/produtos/acessorio?filtro=relogios">Relógios</Link>
           </li>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/moda?categoria?=roupasmasculinas">Roupas masculinas</Link>
+            <Link href="/produtos/moda?filtro=masculinas">Roupas masculinas</Link>
           </li>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/moda?categoria?=eletronicos">Eletrônicos</Link>
+            <Link href="/produtos/eletronico?filtro=carregadores">Carregadores</Link>
           </li>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/moda?categoria?=maquiagem">maquiagem</Link>
+            <Link href="/produtos/beleza?filtro=maquiagem">Maquiagem</Link>
           </li>
         </ul>
       </Navigation>

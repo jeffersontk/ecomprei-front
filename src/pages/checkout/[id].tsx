@@ -71,9 +71,9 @@ export default function Checkout() {
   )
 
   return (
-    <Layout>
-      <ContainerSectionCheckout>
-        <CopyCheckout>
+/*     <Layout> */
+      <ContainerSectionCheckout render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
+        <CopyCheckout render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <Slider>
             <SliderContainer ref={sliderRef} className="keen-slider">
               <div className="keen-slider__slide number-slide1">
@@ -141,8 +141,8 @@ export default function Checkout() {
           <br />
           <button>Comprar agora</button>
         </CopyCheckout>
-        <CardCheckout/>
+        <CardCheckout />
       </ContainerSectionCheckout>
-    </Layout>
+/*     </Layout> */
   )
 }
