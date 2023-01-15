@@ -4,10 +4,9 @@ export const BannerContainer = styled('div', {
   position: 'relative',
   
   img: {
-    maxWidth: '1140px',
+    objectFit: 'contain',
     width: '100%',
-    maxHeight: '490px',
-    objectFit: 'contain'
+    height: '100%',
   },
 
   a: {

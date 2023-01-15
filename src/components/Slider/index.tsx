@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import Image from 'next/image';
 import image1 from '../../assets/hero/headsetAirProMax.jpg'
 import image2 from '../../assets/hero/baseBeautyCream.png'
 import image3 from '../../assets/hero/kitpinceis.png'
-import { SliderContainer } from './Slider';
+import image4 from '../../assets/hero/headsetAirProMaxDesktop.jpg'
+import image5 from '../../assets/hero/baseBeautyCreamDesktop.jpg'
+import image6 from '../../assets/hero/kitpinceisDesktop.jpg'
+
+import { Dots, SliderContainer } from './Slider';
 
 const Slider: React.FC = () => {
-  const [sliderRef] = useKeenSlider<HTMLDivElement>(
+  const [currentSlide, setCurrentSlide] = React.useState(0)
+  const [loaded, setLoaded] = useState(false)
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: true,
     },
@@ -24,7 +30,7 @@ const Slider: React.FC = () => {
           if (mouseOver) return
           timeout = setTimeout(() => {
             slider.next()
-          }, 5000)
+          }, 3000)
         }
         slider.on("created", () => {
           slider.container.addEventListener("mouseover", () => {
@@ -45,20 +51,63 @@ const Slider: React.FC = () => {
   )
 
   return (
-    <SliderContainer ref={sliderRef} className="keen-slider">
-      <div className="keen-slider__slide number-slide1">
-        <button>Compre agora</button>
-        <Image src={image1} alt=""/>
-      </div>
-      <div className="keen-slider__slide number-slide2">
-        <button>Compre agora</button>
-        <Image src={image2} alt=""/>
-      </div>
-      <div className="keen-slider__slide number-slide3">
-        <button>Compre agora</button>
-        <Image src={image3} alt=""/>
-      </div>
-    </SliderContainer>
+    <>
+      <SliderContainer 
+        ref={sliderRef} 
+        className="keen-slider"
+        render={{"@initial": 'mobile', "@bp2": 'desktop'}}
+        visible={{"@initial": 'show', "@bp2": 'hidden'}}
+      >
+        <div className="keen-slider__slide number-slide1">
+          <button>Compre agora</button>
+          <Image src={image1} alt="headset Air Pro Max"/>
+        </div>
+        <div className="keen-slider__slide number-slide2">
+          <button>Compre agora</button>
+          <Image src={image2}  alt="Kit 20 pinceis profissional"/>
+        </div>
+        <div className="keen-slider__slide number-slide3">
+          <button>Compre agora</button>
+          <Image src={image3} alt="base beauty cream + esponja" />
+        </div>
+      </SliderContainer>
+      <SliderContainer 
+        ref={sliderRef} 
+        className="keen-slider"
+        render={{"@initial": 'mobile', "@bp2": 'desktop'}}
+        visible={{"@initial": 'hidden', "@bp2": 'show'}}
+      >
+        <div className="keen-slider__slide number-slide1">
+          <button>Compre agora</button>
+          <Image src={image4} alt="headset Air Pro Max" priority/>
+        </div>
+        <div className="keen-slider__slide number-slide2">
+          <button>Compre agora</button>
+          <Image src={image5} alt="Kit 20 pinceis profissional" priority/>
+        </div>
+        <div className="keen-slider__slide number-slide3">
+          <button>Compre agora</button>
+          <Image src={image6} alt="base beauty cream + esponja" priority/>
+        </div>
+      </SliderContainer>
+      {/* {loaded && instanceRef.current && (
+        <Dots className="dots">
+          {[
+            ...Array(instanceRef.current.track.details.slides.length).keys(),
+          ].map((idx) => {
+            return (
+              <button
+                key={idx}
+                onClick={() => {
+                  instanceRef.current?.moveToIdx(idx)
+                }}
+                className={"dot" + (currentSlide === idx ? " active" : "")}
+              ></button>
+            )
+          })}
+        </Dots>
+      )} */}
+    </>
   );
 }
 

@@ -13,7 +13,7 @@ const SimpleCard: React.FC = () => {
       <Link href="/checkout/12322sac">
         <ContentImage>
           <CardDiscount>
-            <Image src={discountBanner} alt="" />
+            <Image src={discountBanner} alt="" priority />
             <span>23% OFF</span>
           </CardDiscount>
           <CartButton title="adicionar ao carrinho">
