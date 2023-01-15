@@ -81,6 +81,9 @@ export const InformativeContainer = styled('section', {
         '.informative': {
           marginLeft: '2rem',
           width: '80%',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem',
         }
       },
       desktop: {

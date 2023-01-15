@@ -5,4 +5,5 @@ export const AboutContent = styled('div', {
   flexDirection: 'column',
   gap: '0.875rem',
   marginBottom: '1rem',
+  marginLeft: '1rem'
 })

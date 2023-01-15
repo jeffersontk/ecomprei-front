@@ -23,13 +23,13 @@ export const Section = styled('section', {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'flex-start'
       }
     }
   }
 })
 
 export const Sac = styled('div', {
-  marginTop: '1rem',
   maxWidth: '650px',
   display: 'flex',
   flexDirection: 'column',

@@ -118,6 +118,7 @@ export const CardCheckoutContainer = styled('div', {
   borderRadius: '8px',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   background: '$white',
+
 }, {
   variants: {
     render: {

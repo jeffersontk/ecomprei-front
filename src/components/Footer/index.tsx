@@ -30,9 +30,6 @@ const Footer: React.FC = () => {
               <Link href="/faq">Perguntas frequentes</Link>
             </li>
             <li>
-              <Link href="#">Informações de entrega</Link>
-            </li>
-            <li>
               <Link href="#">Termos de uso e privacidade</Link>
             </li>
           </ul>

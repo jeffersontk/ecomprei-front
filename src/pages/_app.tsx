@@ -25,21 +25,21 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
         <InformativeContainer render={{"@initial": 'mobile', "@bp2": "desktop"}}> 
           <div className='informative'>
-            <RiSecurePaymentFill  size={75}/>
+            <RiSecurePaymentFill  size={50}/>
             <div className='informativeText'>
               <strong>Compra Segura</strong>
               <span>Ambiente seguro para pagamentos online</span>
             </div>
           </div>
           <div className='informative'>
-            <FaShippingFast  size={75}/>
+            <FaShippingFast  size={60}/>
             <div className='informativeText'>
               <strong>Frete Grátis</strong>
               <span>Envio rápido e acompanhado com código de rastreio</span>
             </div>
           </div>
           <div className='informative'>
-            <RiMailSendLine  size={75}/>
+            <RiMailSendLine  size={60}/>
             <div className='informativeText'>
               <strong>Atendimento Rápido</strong>
               <span>Nossa equipe fará o atendimento o mais rápido possível</span>
