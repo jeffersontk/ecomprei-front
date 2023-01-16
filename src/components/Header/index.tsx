@@ -15,8 +15,6 @@ const Header: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<'show' |'hidden'>('hidden')
   const [openSearch, setOpenSearch] = useState<'show' |'hidden'>('hidden')
 
-  console.log('openSearch', openSearch)
-
   return (
     <Container render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
       <HeaderSearchAndCart render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
