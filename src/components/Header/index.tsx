@@ -38,10 +38,12 @@ const Header: React.FC = () => {
           >
             <BiSearchAlt  size={30}/>
           </ButtonOpenSearch>
-          <CartButton>
-            <AiOutlineShoppingCart />
-            <span>3</span>
-          </CartButton>
+          <Link href="/cart">
+            <CartButton>
+              <AiOutlineShoppingCart />
+              <span>3</span>
+            </CartButton>
+          </Link>
         </div>
       </HeaderSearchAndCart>
 

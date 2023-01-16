@@ -13,9 +13,9 @@ const CardCheckout: React.FC = () => {
           <Divider />
           <ImageContainer>
             <Image src={tshirt} alt="" width={137} height={154}/>
-            <button>
+            {/* <button>
               <FaTrashAlt />
-            </button>
+            </button> */}
           </ImageContainer>
           <DetailProduct>
             <h3>Camiseta manga longa térmica slim fit com proteção UV50</h3>
@@ -38,10 +38,10 @@ const CardCheckout: React.FC = () => {
                 </select>
               </div>
             </ContentSelects>
-            <PriceInfo>
+            {/* <PriceInfo>
               <OldPrice>R$ 249.99</OldPrice>
               <NewPrice>R$ 192.49</NewPrice>
-            </PriceInfo>
+            </PriceInfo> */}
           </DetailProduct>
           <Divider />
           <DetailPrice>

@@ -16,10 +16,11 @@ export const ContainerSectionCheckout = styled('section', {
       },
       desktop: {
         width: '100%',
-        display: 'grid',
+        display: 'grid',    
+        alignItems: 'flex-start',
         gridTemplateColumns: 'minmax(100px, 758px) 350px',
         gap: '2rem',
-        gridTemplateAreas: '"copy checkout" ',
+        gridTemplateAreas: '"copy checkout"',
       }
     }
   }
@@ -40,7 +41,9 @@ export const CardCheckoutContainer = styled('div', {
         gridArea: 'checkout',
         marginLeft: '0.25rem',
       },
-      desktop: {}
+      desktop: {
+        gridArea: 'checkout',
+      }
     }
   }
 })
@@ -147,7 +150,8 @@ export const DetailPrice = styled('div', {
     span: {
       fontWeight: 600,
       color: '$graphite',
-    }
+    },
+
   }
 })
 
@@ -159,6 +163,10 @@ export const TotalPrice = styled('div', {
 
   marginTop: '1rem',
   marginBottom: '1rem',
+
+  strong: {
+    color: '$graphite',
+  }
 })
 
 export const ButtonCheckout = styled('button', {

@@ -126,7 +126,7 @@ export function CopyCheckout () {
       
       <TextContainer direction="right">
         <ContentText direction="right">
-          <span>Nossa camiseta solar com ajuste ao corpo é feita com tecido elástico e tecnologia UPF 50+ para garantir que você esteja seguro dos raios UV enquanto desfruta de suas atividades ao ar livre. Com sua modelagem justa, essa camiseta não só o protege, essa camiseta foi desenhada para se ajustar perfeitamente ao seu corpo!</span>
+          <span>Nossa camiseta solar com ajuste ao corpo é feita com tecido elástico e tecnologia UPF 50+ para garantir que você esteja seguro dos raios UV enquanto desfruta de suas atividades ao ar livre. </span>
         </ContentText>
       </TextContainer>
 
@@ -134,7 +134,7 @@ export function CopyCheckout () {
       
       <TextContainer direction="left">
         <ContentText direction="left">
-          <span>Não perca mais tempo, adquira já a sua camiseta solar de ajuste ao corpo e desfrute de dias de sol sem preocupações!</span>
+          <span>Com sua modelagem justa, essa camiseta não só o protege, essa camiseta foi desenhada para se ajustar perfeitamente ao seu corpo!</span>
         </ContentText>
       </TextContainer>
 
@@ -153,6 +153,11 @@ export function CopyCheckout () {
           </div>
         </SliderContainer>
 
+      <TextContainer direction="right">
+        <ContentText direction="right">
+          <span>Não perca mais tempo, adquira já a sua camiseta solar de ajuste ao corpo e desfrute de dias de sol sem preocupações!</span>
+        </ContentText>
+      </TextContainer>
       <button>Comprar agora</button> 
     </CopyCheckoutContainer>
   );

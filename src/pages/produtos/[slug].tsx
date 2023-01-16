@@ -52,16 +52,16 @@ export default function Produtos() {
           title === 'moda' &&
           <ul>
             <li className={isActive('todos')}>
-              <Link href="/produtos/moda?filtro=todos#productsGrid">Todos</Link>
+              <Link href="/produtos/moda?filtro=todos">Todos</Link>
             </li>
             <li className={isActive('feminina')}>
-              <Link href="/produtos/moda?filtro=feminina#productsGrid">Feminina</Link>
+              <Link href="/produtos/moda?filtro=feminina">Feminina</Link>
             </li>
             <li className={isActive('masculino')}>
-              <Link href="/produtos/moda?filtro=masculino#productsGrid">Masculina</Link>
+              <Link href="/produtos/moda?filtro=masculino">Masculina</Link>
             </li>
             <li className={isActive('infantil')}>
-              <Link href="/produtos/moda?filtro=infantil#productsGrid">Infantil</Link>
+              <Link href="/produtos/moda?filtro=infantil">Infantil</Link>
             </li>
           </ul>
         }

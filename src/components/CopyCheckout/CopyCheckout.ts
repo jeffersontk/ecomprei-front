@@ -55,7 +55,7 @@ export const Slider = styled('div', {
 })
 
 export const SliderContainer = styled('div', {
-
+  width: '450px !important',
   img:{
     width: '450px',
     height: 'auto',
@@ -67,12 +67,15 @@ export const SliderContainer = styled('div', {
       mobile: {
         img:{
           maxHeight: '360px',
+          objectFit: 'contain',
         }
       },
       desktop: {
         width: '450px !important',
         img:{
-          maxHeight: '600px',
+          width: '450px',
+          height: 'auto',
+          objectFit: 'contain',
         }
       },
     }

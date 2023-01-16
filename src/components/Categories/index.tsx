@@ -14,23 +14,23 @@ const Categories: React.FC = () => {
   return (
     <CategoriesList render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
       <li>
-        <Link href="/produtos/moda?filtro=todos#productsGrid"><GiAmpleDress size={25}/> Moda</Link>
+        <Link href="/produtos/moda?filtro=todos"><GiAmpleDress size={25}/> Moda</Link>
       </li>
       <li>
-        <Link href="/produtos/eletronicos#productsGrid"><BsMouseFill size={25}/> Eletrônicos</Link>
+        <Link href="/produtos/eletronicos"><BsMouseFill size={25}/> Eletrônicos</Link>
       </li>
       <li>
-        <Link href="/produtos/utilidades#productsGrid"><ImSpoonKnife size={25}/> Utilidades</Link>
+        <Link href="/produtos/utilidades"><ImSpoonKnife size={25}/> Utilidades</Link>
      
       </li>
       <li>
-        <Link href="/produtos/acessorios#productsGrid"><IoWatchSharp size={25}/> Acessórios</Link>
+        <Link href="/produtos/acessorios"><IoWatchSharp size={25}/> Acessórios</Link>
       </li>
       <li>
-        <Link href="/produtos/saude#productsGrid"><FaDumbbell size={25}/>Saúde</Link>
+        <Link href="/produtos/saude"><FaDumbbell size={25}/>Saúde</Link>
       </li>
       <li>
-        <Link href="/produtos/beleza#productsGrid"><GiEyelashes size={25}/> Beleza</Link>
+        <Link href="/produtos/beleza"><GiEyelashes size={25}/> Beleza</Link>
       </li>
     </CategoriesList>
   );

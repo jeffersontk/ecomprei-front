@@ -174,6 +174,7 @@ export const FilterSection = styled('div', {
       desktop: {
         flexDirection: 'row',
         alignItems: 'center',
+        padding: '0',
       }
     }
   }
