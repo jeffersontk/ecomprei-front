@@ -65,6 +65,8 @@ export const SliderContainer = styled('div', {
   variants: { 
     render: {
       mobile: {
+        width: '390px !important',
+        
         img:{
           maxHeight: '360px',
           objectFit: 'contain',

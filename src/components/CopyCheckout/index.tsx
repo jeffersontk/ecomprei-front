@@ -138,7 +138,11 @@ export function CopyCheckout () {
         </ContentText>
       </TextContainer>
 
-      <SliderContainer ref={sliderRef} className="keen-slider">
+      <SliderContainer 
+        ref={sliderRef} 
+        className="keen-slider"
+        render={{'@initial': 'mobile', '@bp2': 'desktop'}}
+      >
           <div className="keen-slider__slide number-slide3">
             <Image src={image3} alt=""/>
           </div>
