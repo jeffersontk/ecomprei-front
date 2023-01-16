@@ -46,27 +46,27 @@ export default function Produtos() {
  */}
       <Slider />
 
-      <FilterSection render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
+      <FilterSection render={{'@initial': 'mobile', '@bp2': 'desktop'}} id="productsGrid">
         <h2>{formatTitle(String(title))} {query.filtro && `/ ${String(subtitle).toUpperCase()}`}</h2>
         {
           title === 'moda' &&
           <ul>
             <li className={isActive('todos')}>
-              <Link href="/produtos/moda?filtro=todos">Todos</Link>
+              <Link href="/produtos/moda?filtro=todos#productsGrid">Todos</Link>
             </li>
             <li className={isActive('feminina')}>
-              <Link href="/produtos/moda?filtro=feminina">Feminina</Link>
+              <Link href="/produtos/moda?filtro=feminina#productsGrid">Feminina</Link>
             </li>
             <li className={isActive('masculino')}>
-              <Link href="/produtos/moda?filtro=masculino">Masculina</Link>
+              <Link href="/produtos/moda?filtro=masculino#productsGrid">Masculina</Link>
             </li>
             <li className={isActive('infantil')}>
-              <Link href="/produtos/moda?filtro=infantil">Infantil</Link>
+              <Link href="/produtos/moda?filtro=infantil#productsGrid">Infantil</Link>
             </li>
           </ul>
         }
       </FilterSection>
-      <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}}>
+      <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
         <SimpleCard />
         <SimpleCard />
       </GridCards>

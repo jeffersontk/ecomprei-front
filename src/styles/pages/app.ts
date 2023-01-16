@@ -33,7 +33,7 @@ export const MainContainer = styled('main', {
   variants: {
     render: {
       mobile: {
-        marginTop: 'calc(132px + 1rem)',
+        marginTop: 'calc(77px + 1rem)',
       },
       desktop: {
         marginTop: 'calc(141px + 1rem)',

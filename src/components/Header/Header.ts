@@ -64,8 +64,54 @@ export const BurgerButton = styled('button', {
   }
 })
 
-export const SearchContainer = styled('div', {
+export const ButtonOpenSearch = styled('button', {
+  border: 'none',
+  background: '$black',
+  color: '$yellow500',
+  marginRight: '0.5rem'
+}, {
+  variants: {
+    visible: {
+      show: {
+        display: 'block',
+      },
+      hidden: {
+        display: 'none',
+      }
+    }
+  }
+})
+export const ButtonCloseSearch = styled('button', {
+  border: 'none',
+  background: '$black',
+  color: '$yellow500',
+})
 
+export const SearchContainer = styled('div', {
+  width: '100%',
+
+},{
+  variants:{
+    visible: {
+      show: {
+        display: 'flex !important',
+        flexDirection: 'column',
+
+        '.headerSearchContainer': {
+          display: 'flex',
+          gap: '0.5rem',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }
+      },
+      hidden: {
+        display: 'none !important',
+      }
+    }
+  }
+})
+
+export const InputContainer = styled('div', {
   height: '35px',
   display: 'flex',
   alignItems: 'center',
@@ -110,8 +156,6 @@ export const SearchContainer = styled('div', {
     }
   }
 },{
-
-},{
   variants:{
     render: {
       mobile: {
@@ -130,6 +174,9 @@ export const SearchContainer = styled('div', {
       }
     }
   }
+})
+export const SuggestionContainer = styled('div', {
+
 })
 
 export const CartButton = styled('button', {
