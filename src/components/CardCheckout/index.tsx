@@ -38,10 +38,6 @@ const CardCheckout: React.FC = () => {
                 </select>
               </div>
             </ContentSelects>
-            {/* <PriceInfo>
-              <OldPrice>R$ 249.99</OldPrice>
-              <NewPrice>R$ 192.49</NewPrice>
-            </PriceInfo> */}
           </DetailProduct>
           <Divider />
           <DetailPrice>
