@@ -67,8 +67,8 @@ export default function Produtos() {
         }
       </FilterSection>
       <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
-        <SimpleCard />
-        <SimpleCard />
+     {/*    <SimpleCard />
+        <SimpleCard /> */}
       </GridCards>
     </Container>
   );

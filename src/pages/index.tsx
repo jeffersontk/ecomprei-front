@@ -20,14 +20,14 @@ export default function Home() {
           <Categories />
           <h2>Destaques da semana</h2>
           <GridCards render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
+            {/* <SimpleCard />
             <SimpleCard />
             <SimpleCard />
             <SimpleCard />
             <SimpleCard />
             <SimpleCard />
             <SimpleCard />
-            <SimpleCard />
-            <SimpleCard />
+            <SimpleCard /> */}
           </GridCards>
         </SectionHighlighted>
       </Container>
