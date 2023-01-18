@@ -74,7 +74,11 @@ export const CartProduct = styled('div', {
 
       svg: {
         color: '$red300',
-        cursor: 'pointer'
+       
+        '&:hover':{
+          opacity: '0.8',
+          cursor: 'pointer'
+        }
       },
 
       '.count': {
@@ -89,7 +93,11 @@ export const CartProduct = styled('div', {
           height: '25px',
           color: '$white',
           borderRadius: '40px',
-          cursor: 'pointer'
+          
+          '&:hover':{
+            opacity: '0.8',
+            cursor: 'pointer'
+          }
         }
       }
     }
@@ -118,5 +126,10 @@ export const CartResume = styled('div', {
     color: '$white',
     height: '40px',
     borderRadius: '4px',
+
+    '&:hover':{
+      opacity: '0.9',
+      cursor: 'pointer'
+    }
   }
 })

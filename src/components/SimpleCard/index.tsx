@@ -7,25 +7,48 @@ import { CardContainer, ContentText } from './SimpleCard';
 import { CardDiscount, CartButton, ContentImage, Price, RealPrice } from '../Cards/Cards';
 import discountBanner from '../../assets/discount-banner.png'
 
-const SimpleCard: React.FC = () => {
+interface CardProps {
+  price: number
+  title: string
+  discount: number | null,
+  imgUrl: string
+}
+
+const SimpleCard: React.FC<CardProps> = ({discount, imgUrl, price, title}) => {
+
+  function calcularDesconto(precoTotal: number, porcentagemDesconto: number) {
+    let result = precoTotal - (precoTotal * (porcentagemDesconto / 100))
+    return result.toPrecision(3)
+  }
+
   return (
     <CardContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
       <Link href="/checkout/12322sac">
         <ContentImage>
-          <CardDiscount>
-            <Image src={discountBanner} alt="" priority />
-            <span>23% OFF</span>
-          </CardDiscount>
+          {
+            discount &&
+            <CardDiscount>
+              <Image src={discountBanner} alt="" priority/>
+              <span>{discount}% OFF</span>
+            </CardDiscount>
+          }
           <CartButton title="adicionar ao carrinho">
             <BsCartPlus />
           </CartButton>
-          <Image src={tshirt} alt="" className='productImage'/>
+          <Image src={imgUrl} alt="" className='productImage'  width={200} height={200} />
         </ContentImage>
         <ContentText render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-          <h4>Camiseta manga longa térmica slim fit com proteção UV50</h4>
+          <h4>{title}</h4>
           <div>
-            <Price>R$ 192<span>.49</span></Price>
-            <RealPrice>R$ 249<span>.99</span></RealPrice>
+            {
+              discount ?
+              <Price>R$ {calcularDesconto(price, discount)}</Price>
+              : <Price>R$ {price}</Price>
+            }
+            {
+              discount &&
+              <RealPrice>R$ {price}</RealPrice>
+            }
           </div>
         </ContentText>
       </Link>

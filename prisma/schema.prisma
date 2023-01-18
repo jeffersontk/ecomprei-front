@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  relationMode      = "prisma"
+}
+
+model ImageUrl {
+  id        String   @id @default(uuid())
+  url       String
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+}
+
+model variantProduct {
+  id        String   @id @default(uuid())
+  variant   String?
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+}
+
+model Product {
+  id            String           @id @default(uuid())
+  title         String
+  price         Float
+  discount      Int?
+  shipping      String
+  size          String?
+  variants      variantProduct[]
+  category      String
+  subCategory   String?
+  shopUrl       String
+  ImageUrl      String
+  variantsImage ImageUrl[]
+  status        Boolean
+  highlighted   Boolean?
+
+  @@map("products")
+}

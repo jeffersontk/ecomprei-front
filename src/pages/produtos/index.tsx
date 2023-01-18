@@ -1,30 +1,47 @@
-import React from 'react';
-import Cards from '../../components/Cards';
+import { GetStaticProps } from 'next';
+import { ImageUrl, Product, variantProduct } from 'prisma/prisma-client';
+import React, { useEffect } from 'react';
 import Categories from '../../components/Categories';
-import Layout from '../../components/Layout';
 import SimpleCard from '../../components/SimpleCard';
 import Slider from '../../components/Slider';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import { getProducts } from '../../server/lib/products';
 import { GridCards } from '../../styles/pages/home';
-import { Container, Product, ProductSlider, Title } from '../../styles/pages/produtos';
+import { Container, Title } from '../../styles/pages/produtos';
 
-export default function Produtos() {
-  const matches = useMediaQuery('(min-width: 768px)')
-
+export default function Produtos({products}: any) {
   return (
-/*     <Layout> */
-      <Container>
-        <Categories />
+    <Container>
+      <Categories />
 
-        <Slider />
+      <Slider />
 
-        <Title>Produtos em Destaques</Title>
+      <Title>Produtos em Destaques</Title>
 
-        <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}}>
-          <SimpleCard />
-          <SimpleCard />
-        </GridCards>
-      </Container>
-/*     </Layout> */
+      <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}}>
+        {
+          products &&
+          products.map((product:any) => (
+            <SimpleCard  
+              key={product.id}
+              discount={product.discount}
+              imgUrl={product.ImageUrl}
+              price={product.price}
+              title={product.title}
+            />
+          ))
+        }
+      </GridCards>
+    </Container>
   );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const products = await getProducts()
+
+  return {
+    props: {
+      products
+    },
+    revalidate: 5
+  }
 }

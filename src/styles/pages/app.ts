@@ -4,7 +4,6 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
   minHeight: '100vh',
   gap: '2rem',
   position: 'relative',
@@ -19,6 +18,17 @@ export const HeaderContainer = styled('header', {
   position: 'fixed',
   top: 0,
   zIndex: 999,
+}, {
+  variants: {
+    visible: {
+      show: {
+        display: 'flex',
+      },
+      hidden: {
+        display: 'none !important',
+      }
+    }
+  }
 })
 
 export const MainContainer = styled('main', {
@@ -94,12 +104,34 @@ export const InformativeContainer = styled('section', {
       }
     }
   }
+},{
+  variants: {
+    visible: {
+      show: {
+        display: 'flex',
+      },
+      hidden: {
+        display: 'none !important',
+      }
+    }
+  }
 })
 
 export const FooterContainer = styled('footer', {
   width: '100%',
   paddingTop: '10px',
   background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
+}, {
+  variants: {
+    visible: {
+      show: {
+        display: 'flex',
+      },
+      hidden: {
+        display: 'none !important',
+      }
+    }
+  }
 })
 
 export const ContentFooter = styled('div', {

@@ -27,8 +27,9 @@ export const CardContainer = styled('div', {
       desktop: {
         '.productImage': {
           objectFit: 'contain',
-          width: '220px',
-          height: '100%'
+          width: '280px',
+          height: '100%',
+          borderRadius: '4px',
         }
       }
     }
