@@ -7,8 +7,7 @@ export const getProducts = async () => {
   const products = await prisma.product.findMany({
     include: {
       variantsImage: true,
-      variants: true,
-      sizes: true
+      variants: true
     }
   })
   
@@ -22,8 +21,7 @@ export const getProductsByCategory = async (category: string) => {
     },
     include: {
       variantsImage: true,
-      variants: true,
-      sizes: true
+      variants: true
      }
   })
 
@@ -56,9 +54,6 @@ export const postProducts = async (data: ProductDto) => {
           create: variants
         },
         discount,
-        sizes: {
-          create: sizes
-        },
         category,
         subCategory,
         ImageUrl,

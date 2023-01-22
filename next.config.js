@@ -11,13 +11,7 @@ const nextConfig = {
         pathname: '/wk5c55kzi/**',
       },
     ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  }
 }
 
 module.exports = nextConfig
