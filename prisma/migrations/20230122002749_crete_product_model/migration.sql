@@ -19,7 +19,7 @@ CREATE TABLE `variantProduct` (
 -- CreateTable
 CREATE TABLE `sizeProduct` (
     `id` VARCHAR(191) NOT NULL,
-    `size` VARCHAR(191) NOT NULL,
+    `size` VARCHAR(191) NULL,
     `productId` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
