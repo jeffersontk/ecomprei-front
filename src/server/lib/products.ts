@@ -5,11 +5,11 @@ const prisma = new PrismaClient()
 
 export const getProducts = async () => {
   const products = await prisma.product.findMany({
-   include: {
-    variantsImage: true,
-    variants: true,
-    sizes: true
-   }
+    include: {
+      variantsImage: true,
+      variants: true,
+      sizes: true
+    }
   })
   
   return products
