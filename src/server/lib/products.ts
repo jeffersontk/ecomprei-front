@@ -8,7 +8,6 @@ export const getProducts = async () => {
    include: {
     variantsImage: true,
     variants: true,
-    sizes: true,
    }
   })
 
@@ -23,7 +22,6 @@ export const getProductsByCategory = async (category: string) => {
     include: {
       variantsImage: true,
       variants: true,
-      sizes: true,
      }
   })
 
