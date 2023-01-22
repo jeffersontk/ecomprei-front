@@ -29,7 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     params: { slug: post },
   }))
 
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 export default function Produtos({products}: any) {
