@@ -25,7 +25,7 @@ model variantProduct {
 
 model sizeProduct {
   id        String   @id @default(uuid())
-  size      String
+  size      String?
   Product   Product? @relation(fields: [productId], references: [id])
   productId String?
 }

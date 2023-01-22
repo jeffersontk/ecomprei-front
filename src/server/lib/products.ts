@@ -8,7 +8,7 @@ export const getProducts = async () => {
    include: {
     variantsImage: true,
     variants: true,
-    sizes: true,
+    sizes: true
    }
   })
 
@@ -23,7 +23,7 @@ export const getProductsByCategory = async (category: string) => {
     include: {
       variantsImage: true,
       variants: true,
-      sizes: true,
+      sizes: true
      }
   })
 
@@ -46,8 +46,6 @@ export const postProducts = async (data: ProductDto) => {
       variantsImage,
       highlighted
     } = data;
-
-    console.log('data', data)
 
     const product = await prisma.product.create({
       data:{
