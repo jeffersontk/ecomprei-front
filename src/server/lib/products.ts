@@ -4,12 +4,7 @@ import { ProductDto } from '../../utils/types/productsType'
 const prisma = new PrismaClient()
 
 export const getProducts = async () => {
-  const products = await prisma.product.findMany({
-    include: {
-      variantsImage: true,
-      variants: true
-    }
-  })
+  const products = await prisma.product.findMany()
   
   return products
 }
@@ -18,11 +13,7 @@ export const getProductsByCategory = async (category: string) => {
   const products = await prisma.product.findMany({
     where: {
       category
-    },
-    include: {
-      variantsImage: true,
-      variants: true
-     }
+    }
   })
 
   return products

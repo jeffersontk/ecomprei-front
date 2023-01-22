@@ -88,7 +88,7 @@ export default function Admin({products}: any) {
     setLinksImageList([])
   }
 
-  if(isCurrentCodeAccess) {
+  if(!isCurrentCodeAccess) {
     return(
       <Container>
         <FormContainer autoComplete="off">
