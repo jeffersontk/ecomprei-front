@@ -11,9 +11,8 @@ export const productController = async (req: NextApiRequest, res: NextApiRespons
       return res.status(200).json({
         data: products
       })
-    case 'POST': 
+    case 'POST':
       const product = await postProducts(req.body)
-  
       return res.status(201).json({
         data: product
       })

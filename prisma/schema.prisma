@@ -23,13 +23,20 @@ model variantProduct {
   productId String?
 }
 
+model sizeProduct {
+  id        String   @id @default(uuid())
+  size      String
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+}
+
 model Product {
   id            String           @id @default(uuid())
   title         String
   price         Float
   discount      Int?
   shipping      String
-  size          String?
+  sizes         sizeProduct[]
   variants      variantProduct[]
   category      String
   subCategory   String?

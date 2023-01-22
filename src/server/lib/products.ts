@@ -1,5 +1,3 @@
-
-import { NextApiRequest } from 'next'
 import {PrismaClient} from 'prisma/prisma-client'
 import { ProductDto } from '../../utils/types/productsType'
 
@@ -9,8 +7,24 @@ export const getProducts = async () => {
   const products = await await prisma.product.findMany({
    include: {
     variantsImage: true,
-    variants: true
+    variants: true,
+    sizes: true,
    }
+  })
+
+  return products
+}
+
+export const getProductsByCategory = async (category: string) => {
+  const products = await await prisma.product.findMany({
+    where: {
+      category
+    },
+    include: {
+      variantsImage: true,
+      variants: true,
+      sizes: true,
+     }
   })
 
   return products
@@ -23,7 +37,7 @@ export const postProducts = async (data: ProductDto) => {
       title,
       variants,
       discount,
-      size,
+      sizes,
       category,
       subCategory,
       ImageUrl,
@@ -32,6 +46,8 @@ export const postProducts = async (data: ProductDto) => {
       variantsImage,
       highlighted
     } = data;
+
+    console.log('data', data)
 
     const product = await prisma.product.create({
       data:{
@@ -42,7 +58,9 @@ export const postProducts = async (data: ProductDto) => {
           create: variants
         },
         discount,
-        size,
+        sizes: {
+          create: sizes
+        },
         category,
         subCategory,
         ImageUrl,

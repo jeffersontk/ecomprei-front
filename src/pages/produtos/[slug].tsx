@@ -1,19 +1,41 @@
 import Link from 'next/link';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Categories from '../../components/Categories';
 import { GridCards } from '../../styles/pages/home';
 import { Container, FilterSection, Product, ProductSlider } from '../../styles/pages/produtos';
 import { useRouter } from "next/router"
 import SimpleCard from '../../components/SimpleCard';
 import Slider from '../../components/Slider';
+import { getProductsByCategory } from '../../server/lib/products';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 
-export default function Produtos() {
+export const getStaticProps: GetStaticProps = async (context) => {
+  const {params} = context
+
+  const products = await getProductsByCategory(`${params?.slug}`)
+
+  return {
+    props: {
+      products
+    },
+    revalidate: 5
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const categories = ["beleza", "eletronicos", "utilidades", "acessorios", "saude", "moda"]
+  const paths = categories.map((post) => ({
+    params: { slug: post },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export default function Produtos({products}: any) {
   const { query } = useRouter()
   const title = query.slug || 'Moda'
   const subtitle = query.filtro || 'Feminina'
-
-  
 
   const isActive = (find: string) => {
     if(subtitle.includes(find)){
@@ -37,13 +59,6 @@ export default function Produtos() {
   return (
     <Container>
       <Categories />
-     {/*  <ProductSlider>
-        <Product className='product1'><a href="#">Comprar</a></Product>
-        <Product className='product2'><a href="#">Comprar</a></Product>
-        <Product className='product3'><a href="#">Comprar</a></Product>
-        <Product className='product4'><a href="#">Comprar</a></Product>
-      </ProductSlider>
- */}
       <Slider />
 
       <FilterSection render={{'@initial': 'mobile', '@bp2': 'desktop'}} id="productsGrid">
@@ -67,10 +82,31 @@ export default function Produtos() {
         }
       </FilterSection>
       <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
-     {/*    <SimpleCard />
-        <SimpleCard /> */}
+        {
+          products &&
+          products.map((product:any) => (
+            <SimpleCard  
+              key={product.id}
+              discount={product.discount}
+              imgUrl={product.ImageUrl}
+              price={product.price}
+              title={product.title}
+            />
+          ))
+        }
       </GridCards>
     </Container>
   );
 }
 
+
+/* export const getStaticProps: GetStaticProps = async (context) => {
+  const products = await getProducts()
+  console.log('context', context)
+  return {
+    props: {
+      products
+    },
+    revalidate: 5
+  }
+} */

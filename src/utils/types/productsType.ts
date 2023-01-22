@@ -2,18 +2,26 @@ export interface ProductDto {
   price: number,
   shipping: string,
   title: string,
-  variants?: any,
+  variants: variantType[],
   discount: number,
-  size?: string,
+  sizes: sizeType[],
   category: string,
   subCategory?: string,
   shopUrl: string,
   ImageUrl: string,
-  variantsImage: any,
+  variantsImage: imageUrlType[],
   status: boolean,
   highlighted?: boolean,
 }
 
 type imageUrlType = {
   url: string
+}
+
+type variantType = {
+  variant: string
+}
+
+type sizeType = {
+  size: string
 }
