@@ -28,6 +28,21 @@ export const getProductsByCategory = async (category: string) => {
   return products
 }
 
+export const getProductById = async (id: string) => {
+  const product = await prisma.product.findUnique({
+    where: {
+      id
+    },
+    include: {
+      variants: true,
+      sizes: true,
+      variantsImage: true,
+    }
+  })
+
+  return product
+}
+
 export const postProducts = async (data: ProductDto) => {
      const {
       price,

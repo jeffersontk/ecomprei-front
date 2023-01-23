@@ -20,7 +20,7 @@ const Header: React.FC = () => {
       <HeaderSearchAndCart render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
         <div>
           <BurgerButton visible={{'@initial': 'show', '@bp2': 'hidden'}} onClick={()=> setOpenMenu('show')}><GiHamburgerMenu size={30}/></BurgerButton>
-          <Link href="/">
+          <Link href="/" prefetch={false}>
             <Image src={logo} alt="É Comprei" />
           </Link>
         </div>
@@ -68,10 +68,10 @@ const Header: React.FC = () => {
       <Navigation render={{'@initial': 'desktop' }} visible={{'@initial': 'hidden', '@bp2': 'show'}}>
         <ul>
           <li>
-            <Link href="/">Inicio</Link>
+            <Link href="/" prefetch={false}>Inicio</Link>
           </li>
           <li>
-            <Link href="/produtos">Explorar</Link>
+            <Link href="/produtos" prefetch={false}>Explorar</Link>
           </li>
         </ul>
       </Navigation>
@@ -84,28 +84,25 @@ const Header: React.FC = () => {
         <h4>Navegação</h4>
         <ul>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/">Inicio</Link>
+            <Link href="/" prefetch={false}>Inicio</Link>
           </li>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos">Explorar</Link>
+            <Link href="/produtos" prefetch={false}>Explorar</Link>
           </li>
         </ul>
-        <Link href="/produtos"><h4>Categorias Populares <MdOutlineKeyboardArrowRight size={24}/></h4></Link>
+        <Link href="/produtos" prefetch={false}><h4>Categorias Populares <MdOutlineKeyboardArrowRight size={24}/></h4></Link>
         <ul>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/moda?filtro=feminina">Roupas femininos</Link>
+            <Link href="/produtos/moda?filtro=feminina" prefetch={false}>Roupas femininos</Link>
           </li>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/acessorio?filtro=relogios">Relógios</Link>
+            <Link href="/produtos/acessorio?filtro=relogios" prefetch={false}>Relógios</Link>
           </li>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/moda?filtro=masculinas">Roupas masculinas</Link>
+            <Link href="/produtos/moda?filtro=masculinas" prefetch={false}>Roupas masculinas</Link>
           </li>
           <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/eletronico?filtro=carregadores">Carregadores</Link>
-          </li>
-          <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/beleza?filtro=maquiagem">Maquiagem</Link>
+            <Link href="/produtos/beleza?filtro=maquiagem" prefetch={false}>Maquiagem</Link>
           </li>
         </ul>
       </Navigation>

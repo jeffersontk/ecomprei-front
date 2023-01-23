@@ -11,9 +11,14 @@ import image4 from '../../assets/produtos/4.jpg'
 import image5 from '../../assets/produtos/5.jpg'
 import image6 from '../../assets/produtos/6.jpg'
 import copyImage from '../../assets/produtos/copyImage1.jpg'
-import copyImage2 from '../../assets/produtos/copyImage2.jpg'
 
-export function CopyCheckout () {
+interface copyCheckout {
+  title: string
+}
+
+export function CopyCheckout ({
+  title
+}: copyCheckout) {
     
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
@@ -52,65 +57,12 @@ export function CopyCheckout () {
       slider.on("updated", nextTimeout)
     },
   ])
-
-  const [thumbnailRef] = useKeenSlider(
-    {
-      initial: 0,
-      slides: {
-        perView: 6,
-        spacing: 5,
-      },
-    },
-    [ThumbnailPlugin(instanceRef)]
-  )
-
+  
   return (
     <CopyCheckoutContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-{/*       <Slider>
-   
-        <ThumbnailContainer ref={thumbnailRef} className="keen-slider thumbnail">
-          <div className="keen-slider__slide number-slide1">
-            <Image src={image1} alt="" />
-          </div>
-          <div className="keen-slider__slide number-slide2">
-            <Image src={image2} alt="" />
-          </div>
-          <div className="keen-slider__slide number-slide3">
-            <Image src={copyImage2} alt=""/>
-          </div>
-          <div className="keen-slider__slide number-slide3">
-            <Image src={copyImage} alt=""/>
-          </div>
-          <div className="keen-slider__slide number-slide3">
-            <Image src={image3} alt="" />
-          </div>
-          <div className="keen-slider__slide number-slide4">
-            <Image src={image4} alt="" />
-          </div>
-          <div className="keen-slider__slide number-slide5">
-            <Image src={image5} alt="" />
-          </div>
-          <div className="keen-slider__slide number-slide6">
-            <Image src={image6} alt="" />
-          </div>
-        </ThumbnailContainer>
-      </Slider> */}
-      {/* <br />
-      <h1>Camiseta manga longa térmica slim fit com proteção UV50</h1>
-      <br />
-      <p>Esteja pronto para aproveitar o sol sem se preocupar com os danos da radiação UV com nossa camiseta solar de ajuste ao corpo.</p>
-      <br />
-      <p></p>
-      <br />
-      <p> Com a gola em U e as mangas compridas, você também tem a proteção adicional para o pescoço e braços. O tecido é respirável e macio ao toque, garantindo conforto durante todo o dia. Adquira já a sua camiseta solar de gola U e manga comprida de ajuste ao corpo e desfrute de dias de sol sem preocupações!</p>
-      <br />
-      <p> </p>
-      <br /> */}
-{/*      */}
-
       <TextContainer direction="right">
         <ContentText direction="right" render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-          <span className='title'>Camiseta manga longa térmica slim fit com proteção UV50</span>
+          <span className='title'>{title}</span>
         </ContentText>
       </TextContainer>
 

@@ -8,6 +8,7 @@ import Layout from "../components/Layout";
 import SimpleCard from "../components/SimpleCard";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { getProducts } from "../server/lib/products";
+import { stripe } from "../server/lib/stripe";
 import { Container, GridCards, SectionHighlighted } from "../styles/pages/home";
 
 export default function Home({products}: any) {
@@ -27,6 +28,7 @@ export default function Home({products}: any) {
               products.map((product:any) => (
                 <SimpleCard  
                   key={product.id}
+                  id={product.id}
                   discount={product.discount}
                   imgUrl={product.ImageUrl}
                   price={product.price}
@@ -43,7 +45,8 @@ export default function Home({products}: any) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getProducts()
-
+  const response = await stripe.products.list()
+  
   return {
     props: {
       products

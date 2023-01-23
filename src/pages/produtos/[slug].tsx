@@ -9,29 +9,6 @@ import Slider from '../../components/Slider';
 import { getProductsByCategory } from '../../server/lib/products';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const {params} = context
-
-  const products = await getProductsByCategory(`${params?.slug}`)
-
-  return {
-    props: {
-      products
-    },
-    revalidate: 5
-  }
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = ["beleza", "eletronicos", "utilidades", "acessorios", "saude", "moda"]
-  const paths = categories.map((post) => ({
-    params: { slug: post },
-  }))
-
-  return { paths, fallback: true }
-}
-
 export default function Produtos({products}: any) {
   const { query } = useRouter()
   const title = query.slug || 'Moda'
@@ -86,7 +63,8 @@ export default function Produtos({products}: any) {
           products &&
           products.map((product:any) => (
             <SimpleCard  
-              key={product.id}
+              key={product.id} 
+              id={product.id}
               discount={product.discount}
               imgUrl={product.ImageUrl}
               price={product.price}
@@ -99,14 +77,24 @@ export default function Produtos({products}: any) {
   );
 }
 
+export const getStaticProps: GetStaticProps = async (context) => {
+  const {params} = context
 
-/* export const getStaticProps: GetStaticProps = async (context) => {
-  const products = await getProducts()
-  console.log('context', context)
+  const products = await getProductsByCategory(`${params?.slug}`)
+
   return {
     props: {
       products
     },
     revalidate: 5
   }
-} */
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const categories = ["beleza", "eletronicos", "utilidades", "acessorios", "saude", "moda"]
+  const paths = categories.map((post) => ({
+    params: { slug: post },
+  }))
+
+  return { paths, fallback: true }
+}

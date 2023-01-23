@@ -1,3 +1,4 @@
 {
-  "files.autoSave": "onWindowChange"
+  "files.autoSave": "onWindowChange",
+  "WillLuke.nextjs.hasPrompted": true
 }

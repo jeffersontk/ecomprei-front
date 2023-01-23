@@ -22,7 +22,8 @@ export default function Produtos({products}: any) {
           products &&
           products.map((product:any) => (
             <SimpleCard  
-              key={product.id}
+              key={product.id} 
+              id={product.id}
               discount={product.discount}
               imgUrl={product.ImageUrl}
               price={product.price}

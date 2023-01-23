@@ -8,13 +8,14 @@ import { CardDiscount, CartButton, ContentImage, Price, RealPrice } from '../Car
 import discountBanner from '../../assets/discount-banner.png'
 
 interface CardProps {
+  id: string,
   price: number
   title: string
   discount: number | null,
   imgUrl: string
 }
 
-const SimpleCard: React.FC<CardProps> = ({discount, imgUrl, price, title}) => {
+const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title}) => {
 
   function calcularDesconto(precoTotal: number, porcentagemDesconto: number) {
     let result = precoTotal - (precoTotal * (porcentagemDesconto / 100))
@@ -23,7 +24,7 @@ const SimpleCard: React.FC<CardProps> = ({discount, imgUrl, price, title}) => {
 
   return (
     <CardContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-      <Link href="/checkout/12322sac">
+      <Link href={`/checkout/${id}`} prefetch={false}>
         <ContentImage>
           {
             discount &&
