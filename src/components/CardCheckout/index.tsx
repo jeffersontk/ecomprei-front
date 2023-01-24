@@ -3,8 +3,6 @@ import React from 'react';
 import { ButtonAddToCart, ButtonCheckout, CardCheckoutContainer, ContentSelects, DetailPrice, DetailProduct, Divider, ImageContainer, NewPrice, OldPrice, PriceInfo, TotalPrice } from '../../styles/pages/checkout';
 
 import {BsCartPlus} from 'react-icons/bs'
-import {FaTrashAlt} from 'react-icons/fa'
-import tshirt from '../../assets/tshirt.png'
 import { calculateDiscount } from '../../utils/calc';
 
 interface CardCheckoutProps {
@@ -30,13 +28,8 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
 }) => {
   return (
     <CardCheckoutContainer  id="checkout" render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-          <h2>Pedido</h2>
-          <Divider />
           <ImageContainer>
             <Image src={productImage} alt="" width={137} height={154}/>
-            {/* <button>
-              <FaTrashAlt />
-            </button> */}
           </ImageContainer>
           <DetailProduct>
             <h3>{title}</h3>
@@ -84,7 +77,7 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
             </div>
             <div>
               <span>Frete</span>
-              <strong>Gratis</strong>
+              <strong>{shipping}</strong>
             </div>
           </DetailPrice>
           <Divider />

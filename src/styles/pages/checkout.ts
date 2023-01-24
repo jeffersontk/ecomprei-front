@@ -31,7 +31,6 @@ export const CardCheckoutContainer = styled('div', {
   maxHeight: '680px',
   padding: '1rem',
   borderRadius: '8px',
-  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   background: '$white',
 
 }, {
@@ -40,9 +39,11 @@ export const CardCheckoutContainer = styled('div', {
       mobile: {
         gridArea: 'checkout',
         marginLeft: '0.25rem',
+        boxShadow: 'none',
       },
       desktop: {
         gridArea: 'checkout',
+        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
       }
     }
   }
