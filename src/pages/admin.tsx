@@ -74,7 +74,7 @@ export default function Admin({products}: any) {
   const [colorList, setColorList] = useState<ColorListType[]>([])
   const [status, setStatus] = useState(false)
   const [highlighted, setHighlighted] = useState(false)
-  console.log('products', products)
+
   const spreadFunction = (setFunction: any, params: any, value: any) => {
     setFunction((prev:any) => [...prev, {[params]: value}])
   }
@@ -112,7 +112,7 @@ export default function Admin({products}: any) {
     onClose()
   }
 
-  if(isCurrentCodeAccess) {
+  if(!isCurrentCodeAccess) {
     return(
       <Container>
         <FormContainer autoComplete="off">
@@ -183,16 +183,22 @@ export default function Admin({products}: any) {
               <div className='box'>
                 <label>Nome do produto</label>
                 <Input  {...register("title", { required: true})} />
+                {errors.title?.type === 'required' && <p role="alert" className='error'>Nome obrigatório</p>}
                 <label>preço do produto</label>
-                <Input  {...register("price", { required: true})} />
+                <Input  {...register("price", { required: true, pattern: /^-?\d+\.?\d*$/})} />
+                {errors.price?.type === 'required' && <p role="alert" className='error'>Preço obrigatório</p>}
+                {errors.price?.type === 'pattern' && <p role="alert" className='error'>Preço deve ser um numero e com . não ,</p>}
                 <label>Desconto</label>
                 <Input  type="number" {...register("discount")} />
                 <Select label='Categoria' options={categories} {...register("category", { required: true})}/>
+                {errors.category?.type === 'required' && <p role="alert" className='error'>Categoria obrigatório</p>}
                 <Select label='Subcategoria' options={SubCategory} {...register("subCategory")}/>
                 <label>Link do fornecedor</label>
                 <Input  {...register("shopUrl", { required: true})} />
+                {errors.shopUrl?.type === 'required' && <p role="alert" className='error'>Link do fornecedor obrigatório</p>}
                 <label>Link da Imagem principal</label>
                 <Input  {...register("ImageUrl", { required: true})} />
+                {errors.ImageUrl?.type === 'required' && <p role="alert" className='error'>Link de image obrigatório</p>}
                 <label>Id do produto na stripe</label>
                 <Input  {...register("stripeProductId")} />
               </div>

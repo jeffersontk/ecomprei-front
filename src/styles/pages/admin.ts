@@ -156,6 +156,11 @@ export const FormNewProduct = styled('form', {
     display: 'flex',
     flexDirection: 'column',
     gap: '0.5rem',
+
+    '.error': {
+      fontSize: '0.875rem',
+      color: '$red300'
+    }
   },
 
   /* input: {
