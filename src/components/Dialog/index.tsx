@@ -14,7 +14,7 @@ const fadeout = keyframes({
   to: { opacity: 0 },
 });
 
-const StyledOverlay = styled(DialogPrimitive.Overlay, {
+export const StyledOverlay = styled('div', {
   backgroundColor: 'rgba(0,0,0, 0.5)',
   position: 'fixed',
   inset: 0,
@@ -28,20 +28,20 @@ const StyledOverlay = styled(DialogPrimitive.Overlay, {
   },
 });
 interface DialogProps {
-  children: React.ReactNode
+  children: React.ReactNode,
 }
 
 
-export function Dialog({ children, ...props }: DialogProps) {
+export function Dialog({ children, ...props }: any) {
   return (
-    <DialogPrimitive.Root {...props}>
+    <DialogPrimitive.Root {...props} >
       <StyledOverlay />
       {children}
     </DialogPrimitive.Root>
   );
 }
 
-const StyledContent = styled(DialogPrimitive.Content, {
+export const StyledContent = styled('div', {
   backgroundColor: '$orange500',
   color: '$white',
   borderRadius: '6px',
@@ -68,7 +68,7 @@ const StyledContent = styled(DialogPrimitive.Content, {
   },
 });
 
-const StyledCloseButton = styled(DialogPrimitive.Close, {
+export const StyledCloseButton = styled(DialogPrimitive.Close, {
   fontFamily: 'inherit',
   background: '$white',
   border: 'none',

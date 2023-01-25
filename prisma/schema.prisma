@@ -30,21 +30,37 @@ model sizeProduct {
   productId String?
 }
 
+model paragrapher {
+  id            String       @id @default(uuid())
+  message       String
+  copyProduct   copyProduct? @relation(fields: [copyProductId], references: [id])
+  copyProductId String?
+}
+
+model copyProduct {
+  id         String        @id @default(uuid())
+  paragraphs paragrapher[]
+  Product    Product?      @relation(fields: [productId], references: [id])
+  productId  String?
+}
+
 model Product {
-  id            String           @id @default(uuid())
-  title         String
-  price         Float
-  discount      Int?
-  shipping      String
-  sizes         sizeProduct[]
-  variants      variantProduct[]
-  category      String
-  subCategory   String?
-  shopUrl       String
-  ImageUrl      String
-  variantsImage ImageUrl[]
-  status        Boolean
-  highlighted   Boolean?
+  id              String           @id @default(uuid())
+  title           String
+  price           Float
+  discount        Int?
+  shipping        String
+  sizes           sizeProduct[]
+  variants        variantProduct[]
+  category        String
+  subCategory     String?
+  shopUrl         String
+  ImageUrl        String
+  variantsImage   ImageUrl[]
+  status          Boolean
+  highlighted     Boolean?
+  stripeProductId String?
+  copy            copyProduct[]
 
   @@map("products")
 }

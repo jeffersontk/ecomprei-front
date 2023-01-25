@@ -57,7 +57,8 @@ export const postProducts = async (data: ProductDto) => {
       shopUrl,
       status,
       variantsImage,
-      highlighted
+      highlighted,
+      stripeProductId
     } = data;
 
     const product = await prisma.product.create({
@@ -80,7 +81,8 @@ export const postProducts = async (data: ProductDto) => {
         variantsImage: {
           create: variantsImage
         },
-        highlighted
+        highlighted,
+        stripeProductId
       }
     })
 

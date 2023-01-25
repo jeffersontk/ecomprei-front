@@ -12,6 +12,7 @@ export interface ProductDto {
   variantsImage: imageUrlType[],
   status: boolean,
   highlighted?: boolean,
+  stripeProductId?: string
 }
 
 type imageUrlType = {

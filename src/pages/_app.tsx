@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import { ChakraProvider } from '@chakra-ui/react'
 import { AnimatePresence } from 'framer-motion'
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   const isAdmin = router.asPath === '/admin'
 
   return (
+    <ChakraProvider>
     <AnimatePresence initial={false}>
       <Container>
         <HeaderContainer visible={isAdmin ? 'hidden' : 'show'}>
@@ -30,5 +32,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
         </FooterContainer>
       </Container>
     </AnimatePresence>
+    </ChakraProvider>
   )
 }

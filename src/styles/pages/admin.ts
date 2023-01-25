@@ -117,6 +117,23 @@ export const AdminContainer = styled('div', {
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
           overflow: 'hidden',
+
+          '&.active': {
+            '.dot': {
+              background: '$green300',
+              width: '20px',
+              height: '20px',
+              borderRadius: '50%',
+            }
+          },
+          '&.disable': {
+            '.dot': {
+              background: '$red300',
+              width: '20px',
+              height: '20px',
+              borderRadius: '50%',
+            }
+          }
         }
       }
     }
@@ -124,9 +141,16 @@ export const AdminContainer = styled('div', {
 })
 
 export const FormNewProduct = styled('form', {
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gap: '0.875rem',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  gap: '1rem',
+
+  '.boxContainer' :{
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '0.875rem',
+  },
 
   '.box': {
     display: 'flex',
@@ -134,13 +158,13 @@ export const FormNewProduct = styled('form', {
     gap: '0.5rem',
   },
 
-  input: {
+  /* input: {
     height: '30px',
     border: 'none',
     borderRadius: '4px',
     outline: 'none',
     paddingLeft: '0.5rem'
-  },
+  }, */
 
   select: {
     height: '30px',
@@ -153,10 +177,13 @@ export const FormNewProduct = styled('form', {
     height: '40px',
     border: 'none',
     borderRadius: '4px',
-    background: '$white',
-    color: '$orange500',
     fontWeight: 600,
-    fontSize: '1rem'
+    fontSize: '1rem',
+
+    '&:hover': {
+      opacity: '0.95',
+      cursor: 'pointer',
+    }
   },
 
   '.contentArraysItems': {
@@ -165,16 +192,19 @@ export const FormNewProduct = styled('form', {
     gap: '0.5rem',
 
     '.inputsAdds': {
+      display: 'flex',
+      alignItems: 'center',
+
       input: {
         width: '87%',
       },
       button: {
-        background: '#fff',
-        color: '$orange500',
+        background: '$orange500',
+        color: '$white',
         fontSize: '0.875rem',
         lineHeight: '0.875rem',
-        height: '30px',
-        width: '25px',
+        height: '40px',
+        width: '40px',
         marginLeft: '0.25rem',
 
         '&:hover': {
@@ -185,18 +215,16 @@ export const FormNewProduct = styled('form', {
     '.itemsList': {
       marginTop: '0.5rem',
       background: '$white',
-      padding: '0.875rem 0.5rem',
       borderRadius: '4px',
-      minHeight: '20px',
-      height: 'auto',
+      padding: '0.875rem 0.5rem',
 
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
+      gridTemplateColumns: 'minMax(50px, 80px)',
       gap: '0.25rem',
 
       span: {
         background: '$orange500',
-        padding: '0.3rem 0.875rem',
+        padding: '0.3rem 0.375rem',
         paddingRight: '0.3rem',
         borderRadius: '100px',
         color: '$white',
@@ -215,7 +243,11 @@ export const FormNewProduct = styled('form', {
           height: '20px',
           minWidth: '20px',
           borderRadius: '100px',
-          marginRight: '10px'
+          marginRight: '5px',
+
+          svg: {
+            color: '#fff',
+          }
         }
       }
     },
@@ -286,7 +318,7 @@ export const FormNewProduct = styled('form', {
       },
   
       '.SwitchRoot[data-state="checked"]': {
-        backgroundColor: '$white',
+        backgroundColor: '$orange500',
         outline: 'none'
       },
       
@@ -306,7 +338,7 @@ export const FormNewProduct = styled('form', {
       '.SwitchThumb[data-state="checked"]': {
         transform: 'translateX(19px)',
         outline: 'none',
-        backgroundColor: '$orange500',
+        backgroundColor: '$white',
       }
     }
   }
