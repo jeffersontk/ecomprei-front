@@ -40,7 +40,7 @@ export default function Produtos({products}: any) {
 
       <FilterSection render={{'@initial': 'mobile', '@bp2': 'desktop'}} id="productsGrid">
         <h2>{formatTitle(String(title))} {query.filtro && `/ ${String(subtitle).toUpperCase()}`}</h2>
-        {
+        {/* {
           title === 'moda' &&
           <ul>
             <li className={isActive('todos')}>
@@ -56,7 +56,7 @@ export default function Produtos({products}: any) {
               <Link href="/produtos/moda?filtro=infantil">Infantil</Link>
             </li>
           </ul>
-        }
+        } */}
       </FilterSection>
       <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
         {
@@ -79,7 +79,6 @@ export default function Produtos({products}: any) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const {params} = context
-
   const products = await getProductsByCategory(`${params?.slug}`)
 
   return {

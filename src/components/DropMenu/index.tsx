@@ -13,16 +13,17 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-  Button
+  Button, 
 } from '@chakra-ui/react';
 import { MenuButton, MenuItem, MenuList } from '@chakra-ui/menu';
 import { ButtonDropMenu, MenuListDropdown } from './DropMenu';
 import { StyledOverlay } from '../Dialog';
+import EditProduct from '../Forms/EditProduct';
 
 const DropMenu = ({product}: any) => {
   const { isOpen: isOpenAddCopy, onOpen: onOpenAddCopy, onClose: onCloseAddCopy } = useDisclosure()
   const { isOpen: isOpenEdit, onOpen: onOpenEdit, onClose: onCloseEdit } = useDisclosure()
-
+ 
   return (
     <>
       <Menu>
@@ -52,19 +53,12 @@ const DropMenu = ({product}: any) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Modal isOpen={isOpenEdit} onClose={onCloseEdit} isCentered>
+      <Modal isOpen={isOpenEdit} onClose={onCloseEdit} isCentered size="3xl">
         <ModalOverlay as={StyledOverlay} />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Editar Produto</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onCloseEdit}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
+          <EditProduct closeModal={onCloseEdit} product={product}/>
         </ModalContent>
       </Modal>
     </>

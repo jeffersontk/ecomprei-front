@@ -50,9 +50,8 @@ export const CardCheckoutContainer = styled('div', {
 })
 
 export const ImageContainer = styled('div', {
-  background: '$gray100',
+  background: 'transparent',
   borderRadius: '8px',
-  padding: '1rem',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -60,28 +59,10 @@ export const ImageContainer = styled('div', {
 
   position: 'relative',
 
-  button: {
-    position: 'absolute',
-    top: '1rem',
-    right: '1rem',
-
-    width: '30px',
-    height: '30px',
-    borderRadius: '50%',
-    border: 'none',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    color: '$gray300',
-
-    '&:hover': {
-      color: '$graphite',
-      cursor: 'pointer',
-    }
+  img: {
+    width: 'auto',
+    height: 'auto',
+    objectFit: 'cover'
   }
 })
 
@@ -110,7 +91,10 @@ export const ContentSelects = styled('div', {
 
   div:{
     display: 'flex',
-    gap: '0.25rem',
+    
+    label: {
+      margin:0
+    },
 
     select: {
       border: 'none',

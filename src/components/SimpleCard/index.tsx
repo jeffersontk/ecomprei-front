@@ -24,7 +24,6 @@ const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title}) =
 
   return (
     <CardContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-      <Link href={`/checkout/${id}`} prefetch={false}>
         <ContentImage>
           {
             discount ?
@@ -37,8 +36,11 @@ const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title}) =
           <CartButton title="adicionar ao carrinho">
             <BsCartPlus />
           </CartButton>
-          <Image src={imgUrl} alt="" className='productImage'  width={200} height={200} />
+          <Link href={`/checkout/${id}`} prefetch={false}>
+            <Image src={imgUrl} alt="" className='productImage'  width={200} height={200} />
+          </Link>
         </ContentImage>
+        <Link href={`/checkout/${id}`} prefetch={false}>
         <ContentText render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <h4>{title}</h4>
           <div>

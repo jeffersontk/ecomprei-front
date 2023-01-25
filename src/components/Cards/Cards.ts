@@ -66,6 +66,10 @@ export const CartButton = styled('button', {
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   cursor: 'pointer',
   
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
   '&:hover':{
     transform: 'scale(1.1)'
   },

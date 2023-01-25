@@ -224,7 +224,7 @@ export const FormNewProduct = styled('form', {
       padding: '0.875rem 0.5rem',
 
       display: 'grid',
-      gridTemplateColumns: 'minMax(50px, 80px)',
+      gridTemplateColumns: 'repeat(3, minMax(50px, 1fr))',
       gap: '0.25rem',
 
       span: {
@@ -236,6 +236,7 @@ export const FormNewProduct = styled('form', {
 
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',

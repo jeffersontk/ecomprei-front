@@ -1,13 +1,6 @@
-import  React, {useState, forwardRef, useEffect} from 'react'
-import { useForm } from 'react-hook-form';
-import { SubmitHandler, UseFormRegister } from 'react-hook-form/dist/types';
-import { Dialog, DialogContent, DialogTrigger } from "../components/Dialog";
-import { AdminContainer, Container, FormContainer, FormNewProduct } from "../styles/pages/admin";
-import { categories, SubCategory } from '../utils/option';
-import { ProductDto } from '../utils/types/productsType';
-import * as Switch from '@radix-ui/react-switch';
-import { getProducts } from '../server/lib/products';
-import axios from 'axios';
+import  React, {useState, forwardRef} from 'react'
+import { UseFormRegister } from 'react-hook-form/dist/types';
+import { AdminContainer, Container, FormContainer } from "../styles/pages/admin";
 import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import DropMenu from '../components/DropMenu';
@@ -19,15 +12,11 @@ import {
   ModalContent,
   ModalHeader,
   ModalCloseButton,
-  ModalBody,
-  ModalFooter,
   Button,
-  Input,
   Select as SelectChakra,
-  Tag,
-  TagLabel,
-  TagCloseButton,
 } from '@chakra-ui/react';
+import CreateProduct from '../components/Forms/createProduct';
+import { getProducts } from '../server/lib/products';
 
 export const Select = forwardRef<
 HTMLSelectElement,
@@ -48,69 +37,31 @@ HTMLSelectElement,
   )
 });
 
-type SizeListType = {
+export type SizeListType = {
   size: string
 }
 
-type ColorListType = {
+export type ColorListType = {
   variant: string
 }
 
-type ImageListType = {
+export type ImageListType = {
   url: string
+}
+
+export const spreadFunction = (setFunction: any, params: any, value: any, productId: string) => {
+  setFunction((prev:any) => [...prev, {
+    [params]: value,
+    productId
+  }])
 }
 
 export default function Admin({products}: any) {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { register, handleSubmit, watch, formState: { errors }, reset } = useForm<ProductDto>();
   const [codeAccess, setCodeAccess] = useState('')
   const currentCodeAccess = 'A1A2B1B2'
   const isCurrentCodeAccess = codeAccess === currentCodeAccess
-  const [sizes, setSizes] = useState<string>('')
-  const [sizeList, setSizeList] = useState<SizeListType[]>([])
-  const [linksImage, setLinksImage] = useState<string>('')
-  const [linksImageList, setLinksImageList] = useState<ImageListType[]>([])
-  const [color, setColor] = useState<string>('')
-  const [colorList, setColorList] = useState<ColorListType[]>([])
-  const [status, setStatus] = useState(false)
-  const [highlighted, setHighlighted] = useState(false)
 
-  const spreadFunction = (setFunction: any, params: any, value: any) => {
-    setFunction((prev:any) => [...prev, {[params]: value}])
-  }
-  
-  const onSubmit: SubmitHandler<ProductDto> = async (data, event) => {
-    event?.preventDefault()
-
-    const dataToPost = {
-      price: +data.price,
-      shipping: 'Grátis',
-      title: data.title,
-      variants: colorList,
-      sizes: sizeList,
-      discount: +data.discount,
-      category: data.category,
-      ImageUrl: data.ImageUrl,
-      shopUrl: data.shopUrl,
-      status,
-      variantsImage: linksImageList,
-      highlighted,
-      stripeProductId: data.stripeProductId
-    }
-    
-    await axios.post('/api/products', dataToPost)
-    .then(response => {
-      onClose()
-    })
-    .catch(errors => console.error(errors))
-    reset()
-    setColorList([])
-    setHighlighted(false)
-    setStatus(false)
-    setSizeList([])
-    setLinksImageList([])
-    onClose()
-  }
 
   if(!isCurrentCodeAccess) {
     return(
@@ -177,151 +128,7 @@ export default function Admin({products}: any) {
         <ModalContent>
           <ModalHeader>Adicionar Produto</ModalHeader>
           <ModalCloseButton />
-          <FormNewProduct onSubmit={handleSubmit(onSubmit)}>
-          <ModalBody>
-            <div className='boxContainer'>
-              <div className='box'>
-                <label>Nome do produto</label>
-                <Input  {...register("title", { required: true})} />
-                {errors.title?.type === 'required' && <p role="alert" className='error'>Nome obrigatório</p>}
-                <label>preço do produto</label>
-                <Input  {...register("price", { required: true, pattern: /^-?\d+\.?\d*$/})} />
-                {errors.price?.type === 'required' && <p role="alert" className='error'>Preço obrigatório</p>}
-                {errors.price?.type === 'pattern' && <p role="alert" className='error'>Preço deve ser um numero e com . não ,</p>}
-                <label>Desconto</label>
-                <Input  type="number" {...register("discount")} />
-                <Select label='Categoria' options={categories} {...register("category", { required: true})}/>
-                {errors.category?.type === 'required' && <p role="alert" className='error'>Categoria obrigatório</p>}
-                <Select label='Subcategoria' options={SubCategory} {...register("subCategory")}/>
-                <label>Link do fornecedor</label>
-                <Input  {...register("shopUrl", { required: true})} />
-                {errors.shopUrl?.type === 'required' && <p role="alert" className='error'>Link do fornecedor obrigatório</p>}
-                <label>Link da Imagem principal</label>
-                <Input  {...register("ImageUrl", { required: true})} />
-                {errors.ImageUrl?.type === 'required' && <p role="alert" className='error'>Link de image obrigatório</p>}
-                <label>Id do produto na stripe</label>
-                <Input  {...register("stripeProductId")} />
-              </div>
-              <div className='box'>
-                <div className='contentArraysItems'>
-                  <label>Tamanhos</label>
-                  <div className='inputsAdds'>
-                    <Input  max={3} onChange={e=> setSizes(e.target.value,)} value={sizes}/>
-                    <button type='button' onClick={()=> {
-                      spreadFunction(setSizeList, 'size', sizes)
-                      setSizes('')
-                    }}>+</button>
-                  </div>
-                  <div className='itemsList'>
-                    {
-                      sizeList.length > 0 &&
-                      sizeList.map((item, index) => (
-                        <Tag
-                          key={index}
-                          size="sm"
-                          borderRadius='full'
-                          variant='solid'
-                          colorScheme='green'
-                        >
-                          <TagLabel>{item.size}</TagLabel>
-                          <TagCloseButton />
-                        </Tag>
-                      ))
-                    }
-                  </div>
-                </div>
-
-                <div className='contentArraysItems'>
-                  <label>cor variantes</label>
-                  <div className='inputsAdds'>
-                    <Input onChange={e=> setColor(e.target.value,)} value={color}/>
-                    <button type='button' onClick={()=>{ 
-                      spreadFunction(setColorList, 'variant', color)
-                      setColor('')
-                    }}>+</button>
-                  </div>
-                  <div className='itemsList'>
-                    {
-                      colorList.length > 0 &&
-                      colorList.map((item, index) => (
-                        <span key={index}>
-                          <>
-                            {item.variant}
-                            <button 
-                              type='button'
-                              onClick={()=>  {
-                                let remove = colorList.filter(color => color.variant !== item.variant)
-                                setColorList(remove)
-                              }}
-                            >
-                              X
-                            </button>
-                          </>
-                        </span>
-                      ))
-                    }
-                  </div>
-                </div>
-                <div className='contentArraysItems'>
-                  <label>links de imagens</label>
-                  <div className='inputsAdds'>
-                    <Input onChange={e=> setLinksImage(e.target.value,)} value={linksImage}/>
-                    <button type='button' onClick={()=> {
-                      spreadFunction(setLinksImageList, 'url', linksImage)
-                      setLinksImage('')
-                    }}>+</button>
-                  </div>
-                  <div className='itemsListImage'>
-                    {
-                      linksImageList.length > 0 &&
-                      linksImageList.map((item, index) => (
-                        <span key={index}>
-                          <>
-                            <button 
-                              type='button'
-                              onClick={()=> {
-                                let remove = linksImageList.filter(image => image.url !== item.url)
-                                setLinksImageList(remove)
-                              }}
-                            >
-                              X
-                            </button>
-                            {item.url}
-                          </>
-                        </span>
-                      ))
-                    }
-                  </div>
-                </div>
-                <div className='switch-container'>
-                  <div className='switch'>
-                    <label htmlFor="highlighted">Destaque</label>
-                    <Switch.Root 
-                      className="SwitchRoot" 
-                      id="highlighted" 
-                      onCheckedChange={(e: any) => setHighlighted(e)}
-                    >
-                      <Switch.Thumb className="SwitchThumb" />
-                    </Switch.Root>
-                  </div>
-                  <div className='switch'>
-                    <label htmlFor="status">Disponível</label>
-                    <Switch.Root className="SwitchRoot" id="status" onCheckedChange={(e: any) => setStatus(e)}>
-                      <Switch.Thumb className="SwitchThumb" />
-                    </Switch.Root>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button mr={3} onClick={onClose}>
-              Cancelar
-            </Button>
-            <Button type='submit' colorScheme="orange">Cadastrar</Button>
-          </ModalFooter>
-          </FormNewProduct>
+          <CreateProduct closeModal={onClose}/>
         </ModalContent>
       </Modal>
       </>

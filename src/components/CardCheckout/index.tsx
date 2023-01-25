@@ -4,12 +4,14 @@ import { ButtonAddToCart, ButtonCheckout, CardCheckoutContainer, ContentSelects,
 
 import {BsCartPlus} from 'react-icons/bs'
 import { calculateDiscount } from '../../utils/calc';
+import { sizeType, variantType } from '../../utils/types/productsType';
+import { Box, FormLabel, Select } from '@chakra-ui/react';
 
 interface CardCheckoutProps {
   id: string
   title: string
-  sizes: []
-  colors: []
+  sizes: sizeType[]
+  colors: variantType[]
   price: number
   discount: number
   shipping: string | number
@@ -36,26 +38,25 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
             <ContentSelects>
               {
                 sizes.length > 0 &&
-                <div>
-                  <label htmlFor="#">Tamanho:</label>
-                  <select>
-                    <option>P</option>
-                    <option>M</option>
-                    <option>G</option>
-                    <option>GG</option>
-                  </select>
-                </div>
+                <Box display="flex" alignItems="center">
+                  <FormLabel htmlFor="#">Tamanho:</FormLabel>
+                  <Select height={'6'}>
+                    {sizes.map(item=> (
+                      <option key={item.id} value={item.size}>{item.size}</option>
+                    ))}
+                  </Select>
+                </Box>
               }
               {
                 colors.length > 0 && 
-                <div>
-                  <label htmlFor="#">Cor:</label>
-                  <select>
-                    <option>Preto</option>
-                    <option>Branco</option>
-                    <option>Azul</option>
-                  </select>
-                </div>
+                <Box display="flex" alignItems="center">
+                  <FormLabel htmlFor="#">Cor:</FormLabel>
+                  <Select height={30}>
+                    {colors.map(item=> (
+                      <option key={item.id} value={item.variant}>{item.variant}</option>
+                    ))}
+                  </Select>
+                </Box>
               }
             </ContentSelects>
           </DetailProduct>
