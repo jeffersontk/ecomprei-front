@@ -49,7 +49,7 @@ export type ImageListType = {
   url: string
 }
 
-export const spreadFunction = (setFunction: any, params: any, value: any, productId: string) => {
+export const spreadFunction = (setFunction: any, params: any, value: any, productId?: string) => {
   setFunction((prev:any) => [...prev, {
     [params]: value,
     productId
