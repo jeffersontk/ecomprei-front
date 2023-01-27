@@ -14,23 +14,23 @@ const Categories: React.FC = () => {
   return (
     <CategoriesList render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
       <li>
-        <Link href="/produtos/moda?filtro=todos" prefetch={false}><GiAmpleDress size={25}/> Moda</Link>
+        <Link href="/produtos/moda?filtro=todos"><GiAmpleDress size={25}/> Moda</Link>
       </li>
       <li>
-        <Link href="/produtos/eletronicos" prefetch={false}><BsMouseFill size={25}/> Eletrônicos</Link>
+        <Link href="/produtos/eletronicos"><BsMouseFill size={25}/> Eletrônicos</Link>
       </li>
       <li>
-        <Link href="/produtos/utilidades" prefetch={false}><ImSpoonKnife size={25}/> Utilidades</Link>
+        <Link href="/produtos/utilidades"><ImSpoonKnife size={25}/> Utilidades</Link>
      
       </li>
       <li>
-        <Link href="/produtos/acessorios" prefetch={false}><IoWatchSharp size={25}/> Acessórios</Link>
+        <Link href="/produtos/acessorios"><IoWatchSharp size={25}/> Acessórios</Link>
       </li>
       <li>
-        <Link href="/produtos/saude" prefetch={false}><FaDumbbell size={25}/>Saúde</Link>
+        <Link href="/produtos/saude"><FaDumbbell size={25}/>Saúde</Link>
       </li>
       <li>
-        <Link href="/produtos/beleza" prefetch={false}><GiEyelashes size={25}/> Beleza</Link>
+        <Link href="/produtos/beleza"><GiEyelashes size={25}/> Beleza</Link>
       </li>
     </CategoriesList>
   );

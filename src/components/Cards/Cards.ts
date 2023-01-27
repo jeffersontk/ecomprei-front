@@ -60,7 +60,7 @@ export const CartButton = styled('button', {
 
   width: '35px',
   height: '35px',
-  background: '$white',
+ backgroundColor: '#f9f9f9',
   borderRadius: '50%',
   border: 'none',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

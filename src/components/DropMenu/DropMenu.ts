@@ -2,12 +2,12 @@ import { styled } from "../../styles";
 
 export const ButtonDropMenu = styled('button', {
   border: 'none',
-  background: '$white',
+ backgroundColor: '#f9f9f9',
 })
 
 export const MenuListDropdown = styled('div', {
   padding: '0.5rem',
-  background: '$white',
+ backgroundColor: '#f9f9f9',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   borderRadius: '8px',
   display: 'flex',
@@ -18,7 +18,7 @@ export const MenuListDropdown = styled('div', {
     display: 'flex',
     gap: '0.5rem',
     border: 'none',
-    background: '$white',
+   backgroundColor: '#f9f9f9',
     padding: '5px',
 
     fontWeight: 600,

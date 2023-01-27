@@ -123,7 +123,7 @@ export const InputContainer = styled('div', {
   borderRadius: 8,
 
   input: {
-    background: '$white',
+   backgroundColor: '#f9f9f9',
     outline: 'none',
     border: 'none',
     width: '100%',
@@ -257,7 +257,7 @@ export const Navigation = styled('nav', {
         position: 'absolute',
         top: 0,
         left: -600,
-        background: '$white',
+       backgroundColor: '#f9f9f9',
         height: '100vh',
         width: '50%',
         padding: '0 1rem',

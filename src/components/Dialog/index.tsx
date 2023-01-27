@@ -70,7 +70,7 @@ export const StyledContent = styled('div', {
 
 export const StyledCloseButton = styled(DialogPrimitive.Close, {
   fontFamily: 'inherit',
-  background: '$white',
+ backgroundColor: '#f9f9f9',
   border: 'none',
   borderRadius: '100%',
   height: '25px',

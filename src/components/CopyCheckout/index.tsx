@@ -14,12 +14,14 @@ import copyImage from '../../assets/produtos/copyImage1.jpg'
 
 interface copyCheckout {
   title: string
+  copyTextWithImage: any
 }
 
 export function CopyCheckout ({
-  title
+  title,
+  copyTextWithImage
 }: copyCheckout) {
-    
+    const {alternated, rest} = copyTextWithImage
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
     loop: true,
@@ -60,13 +62,48 @@ export function CopyCheckout ({
   
   return (
     <CopyCheckoutContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-      <TextContainer direction="right">
-        <ContentText direction="right" render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-          <span className='title'>{title}</span>
-        </ContentText>
+       <TextContainer>
+          <ContentText render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
+            <span className='title'>{title}</span>
+          </ContentText>
       </TextContainer>
 
-      <Image src={image1} alt=""/>
+      {
+        alternated.map((item: any, index: number) => {
+            const direction = (index % 2 === 1) ? "left" : "right";
+            if (item.message) {
+                return (
+                    <TextContainer direction={direction} key={index}>
+                        <ContentText direction={direction} render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
+                            <span>{item.message}</span>
+                        </ContentText>
+                    </TextContainer>
+                )
+            } else {
+                return (
+                    <Image src={item.url} alt="" key={index} width={450} height={450}/>
+                )
+            }
+        })
+    }
+
+        {
+          copyTextWithImage.rest && 
+            <SliderContainer 
+              ref={sliderRef} 
+              className="keen-slider"
+              render={{'@initial': 'mobile', '@bp2': 'desktop'}}
+            >
+              {copyTextWithImage.rest.map((item: any) => (
+                <div className="keen-slider__slide number-slide" key={item}>
+                  <Image src={item.url} alt="" width={300} height={300}/>
+                </div>
+              ))}
+            </SliderContainer>
+        }
+    {/*  
+
+
       
       <TextContainer direction="left">
         <ContentText direction="left">
@@ -113,7 +150,7 @@ export function CopyCheckout ({
         <ContentText direction="right">
           <span>Não perca mais tempo, adquira já a sua camiseta solar de ajuste ao corpo e desfrute de dias de sol sem preocupações!</span>
         </ContentText>
-      </TextContainer>
+      </TextContainer> */}
       <button>Comprar agora</button> 
     </CopyCheckoutContainer>
   );

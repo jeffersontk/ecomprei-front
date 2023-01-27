@@ -5,6 +5,9 @@ export const getCopyByProductId = async (productId: string) => {
   const copy = await prisma.copyProduct.findMany({
     where: {
       productId
+    },
+    include: {
+      paragraphs: true
     }
   })
 

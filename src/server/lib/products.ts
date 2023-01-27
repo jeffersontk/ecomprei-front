@@ -39,6 +39,7 @@ export const getProductById = async (id: string) => {
       variants: true,
       sizes: true,
       variantsImage: true,
+      copies: true,
     }
   })
 

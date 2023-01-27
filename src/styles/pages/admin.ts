@@ -19,12 +19,12 @@ export const FormContainer = styled('form', {
   justifyContent: 'center',
   gap: '1rem',
   padding: '1rem',
-  background: '$white',
+ backgroundColor: '#f9f9f9',
   borderRadius: '4px',
 
   input: {
     border: 'none',
-    background: '$white',
+   backgroundColor: '#f9f9f9',
     borderBottom: '1px solid $gray300',
     outline: 'none',
   },
@@ -58,7 +58,7 @@ export const AdminContainer = styled('div', {
     },
 
     '.open-dialog': {
-      background: '$white',
+     backgroundColor: '#f9f9f9',
       padding: '0.5rem 1rem',
       border: 'none',
       color: '$orange500',
@@ -219,7 +219,7 @@ export const FormNewProduct = styled('form', {
     },
     '.itemsList': {
       marginTop: '0.5rem',
-      background: '$white',
+     backgroundColor: '#f9f9f9',
       borderRadius: '4px',
       padding: '0.875rem 0.5rem',
 
@@ -259,7 +259,7 @@ export const FormNewProduct = styled('form', {
     },
     '.itemsListImage': {
       marginTop: '0.5rem',
-      background: '$white',
+     backgroundColor: '#f9f9f9',
       padding: '0.875rem 0.5rem',
       borderRadius: '4px',
       minHeight: '20px',

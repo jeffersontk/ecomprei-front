@@ -27,11 +27,11 @@ export const ContainerSectionCheckout = styled('section', {
 })
 
 export const CardCheckoutContainer = styled('div', {
-  width: '350px',
+  width: '100%',
   maxHeight: '680px',
   padding: '1rem',
   borderRadius: '8px',
-  background: '$white',
+  background: '#f9f9f9',
 
 }, {
   variants: {
@@ -181,7 +181,7 @@ export const ButtonAddToCart = styled('button', {
   borderStyle: 'solid',
   borderColor: '$orange500',
 
-  background: '$white',
+ backgroundColor: '#f9f9f9',
 
   fontWeight: 600,
   color: '$orange500',

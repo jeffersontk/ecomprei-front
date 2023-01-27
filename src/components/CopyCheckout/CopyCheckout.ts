@@ -95,15 +95,13 @@ export const ThumbnailContainer = styled('div', {
 export const TextContainer = styled('div', {
   width: '100%',
   display: 'flex',
+  justifyContent: 'center'
 },{
   variants: {
     direction: {
       left: {
-        justifyContent: 'flex-start'
       },
       right: {
-        justifyContent: 'flex-end'
-        
       }
     }
   }
@@ -118,7 +116,11 @@ export const ContentText = styled('div', {
   minHeight: '80px',
   position: 'relative',
   
-  
+  borderTopRightRadius: '60px',
+  borderBottomRightRadius: '60px',
+  borderTopLeftRadius: '60px',
+  borderBottomLeftRadius: '60px',
+
   '.title': {
     width: '80%',
     fontWeight: 'bold',
@@ -145,9 +147,7 @@ export const ContentText = styled('div', {
     },
     direction: {
       left: {
-        borderTopRightRadius: '60px',
-        borderBottomRightRadius: '60px',
-
+     
         '::after': {
           position: 'absolute',
           background: '$black',
@@ -159,9 +159,6 @@ export const ContentText = styled('div', {
       },
     
       right: {
-        borderTopLeftRadius: '60px',
-        borderBottomLeftRadius: '60px',
-
         '&::before': {
           background: '$black',
           width: '90%',

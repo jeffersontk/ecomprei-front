@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import { ImageUrl, Product, variantProduct } from 'prisma/prisma-client';
 import React, { useEffect } from 'react';
 import Categories from '../../components/Categories';
@@ -10,35 +11,40 @@ import { Container, Title } from '../../styles/pages/produtos';
 
 export default function Produtos({products}: any) {
   return (
-    <Container>
-      <Categories />
+    <>
+      <Head>
+        <title>É comprei - Explorar</title>
+      </Head>
+      <Container>
+        <Categories />
 
-      <Slider />
+        <Slider />
 
-      <Title>Produtos em Destaques</Title>
+        <Title>Produtos em Destaques</Title>
 
-      <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}}>
-        {
-          products &&
-          products.map((product:any) => (
-            <SimpleCard  
+        <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}}>
+          {
+            products &&
+            products.map((product:any) => (
+              <SimpleCard  
               key={product.id} 
               id={product.id}
               discount={product.discount}
               imgUrl={product.ImageUrl}
               price={product.price}
               title={product.title}
-            />
-          ))
-        }
-      </GridCards>
-    </Container>
+              />
+              ))
+            }
+        </GridCards>
+      </Container>
+    </>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getProducts()
-
+  
   return {
     props: {
       products

@@ -46,7 +46,7 @@ export const MainContainer = styled('main', {
         marginTop: 'calc(77px + 1rem)',
       },
       desktop: {
-        marginTop: 'calc(141px + 1rem)',
+        marginTop: 'calc(150px + 2rem)',
       }
     }
   }
@@ -140,5 +140,5 @@ export const ContentFooter = styled('div', {
   margin: '0 auto',
   display: 'flex',
   justifyContent: 'center',
-  background: '$white',
+ backgroundColor: '#f9f9f9',
 })

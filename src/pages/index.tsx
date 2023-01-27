@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Banner from "../components/Banner";
@@ -15,7 +16,10 @@ export default function Home({products}: any) {
   const matches = useMediaQuery('(min-width: 768px)')
 
   return (
-/*     <Layout> */
+    <>
+      <Head>
+        <title>É Comprei</title>
+      </Head>
       <Container>
         <Banner />
 
@@ -39,7 +43,7 @@ export default function Home({products}: any) {
           </GridCards>
         </SectionHighlighted>
       </Container>
-/*     </Layout> */
+     </> 
   )
 }
 
