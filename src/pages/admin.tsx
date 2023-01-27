@@ -63,7 +63,7 @@ export default function Admin({products}: any) {
   const isCurrentCodeAccess = codeAccess === currentCodeAccess
 
 
-  if(!isCurrentCodeAccess) {
+  if(isCurrentCodeAccess) {
     return(
       <Container>
         <FormContainer autoComplete="off">

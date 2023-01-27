@@ -128,7 +128,10 @@ export default function CreateProduct({closeModal}: CreateProductProps) {
                           colorScheme='green'
                         >
                           <TagLabel>{item.size}</TagLabel>
-                          <TagCloseButton />
+                          <TagCloseButton onClick={()=>  {
+                                let remove = sizeList.filter(sizes => sizes.size !== item.size)
+                                setSizeList(remove)
+                              }}/>
                         </Tag>
                       ))
                     }

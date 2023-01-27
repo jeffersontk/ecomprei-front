@@ -6,12 +6,6 @@ import { ColorListType, ImageListType, Select, SizeListType, spreadFunction } fr
 import { ProductDto, ProductUpdate } from '../../utils/types/productsType';
 
 import {
-  useDisclosure, 
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
   ModalBody,
   ModalFooter,
   Button,
@@ -52,11 +46,12 @@ export default function EditProduct({closeModal, product}: CreateProductProps) {
   const [status, setStatus] = useState(product.status)
   const [highlighted, setHighlighted] = useState(product.highlighted)
   const [isLoading, setIsLoading] = useState(false)
+  const [itemRemoved, setItemRemoved] = useState<ImageListType[]>([])
 
   const onSubmit: SubmitHandler<ProductDto> = async (data, event) => {
     event?.preventDefault()
     setIsLoading(true)
-    const dataToPost = {
+    const dataToPut = {
       id: product.id,
       price: +data.price,
       shipping: 'Grátis',
@@ -71,11 +66,12 @@ export default function EditProduct({closeModal, product}: CreateProductProps) {
       status,
       variantsImage: linksImageList,
       highlighted,
-      stripeProductId: data.stripeProductId
+      stripeProductId: data.stripeProductId,
+      itemRemoved
     }
 
-    await axios.put('/api/products', dataToPost)
-    .then(response => {
+    await axios.put('/api/products', dataToPut)
+    .then(async response => {
       reset()
       setColorList([])
       setHighlighted(false)
@@ -83,6 +79,7 @@ export default function EditProduct({closeModal, product}: CreateProductProps) {
       setSizeList([])
       setLinksImageList([])
       setIsLoading(false)
+
       closeModal()
     })
     .catch(errors => {
@@ -168,6 +165,7 @@ export default function EditProduct({closeModal, product}: CreateProductProps) {
                             <button 
                               type='button'
                               onClick={()=>  {
+                                let itemRemoved = colorList.find(color => color.variant === item.variant)
                                 let remove = colorList.filter(color => color.variant !== item.variant)
                                 setColorList(remove)
                               }}
@@ -198,6 +196,8 @@ export default function EditProduct({closeModal, product}: CreateProductProps) {
                             <button 
                               type='button'
                               onClick={()=> {
+                                let findItemRemoved = linksImageList.find(image => image.url === item.url)
+                                setItemRemoved((prev:any) => [...prev, findItemRemoved])
                                 let remove = linksImageList.filter(image => image.url !== item.url)
                                 setLinksImageList(remove)
                               }}

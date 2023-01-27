@@ -26,7 +26,24 @@ CREATE TABLE `sizeProduct` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `products` (
+CREATE TABLE `paragrapher` (
+    `id` VARCHAR(191) NOT NULL,
+    `message` VARCHAR(191) NOT NULL,
+    `copyProductId` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `copyProduct` (
+    `id` VARCHAR(191) NOT NULL,
+    `productId` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Product` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `price` DOUBLE NOT NULL,
@@ -38,6 +55,7 @@ CREATE TABLE `products` (
     `ImageUrl` VARCHAR(191) NOT NULL,
     `status` BOOLEAN NOT NULL,
     `highlighted` BOOLEAN NULL,
+    `stripeProductId` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

@@ -19,6 +19,7 @@ import { MenuButton, MenuItem, MenuList } from '@chakra-ui/menu';
 import { ButtonDropMenu, MenuListDropdown } from './DropMenu';
 import { StyledOverlay } from '../Dialog';
 import EditProduct from '../Forms/EditProduct';
+import CopyProduct from '../Forms/CopyProduct';
 
 const DropMenu = ({product}: any) => {
   const { isOpen: isOpenAddCopy, onOpen: onOpenAddCopy, onClose: onCloseAddCopy } = useDisclosure()
@@ -40,17 +41,11 @@ const DropMenu = ({product}: any) => {
       <Modal isOpen={isOpenAddCopy} onClose={onCloseAddCopy} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Adicionar Copy</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <CopyProduct productId={product.id} closeModal={onCloseAddCopy}/>
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onCloseAddCopy}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
       <Modal isOpen={isOpenEdit} onClose={onCloseEdit} isCentered size="3xl">

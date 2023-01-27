@@ -31,17 +31,17 @@ model sizeProduct {
 }
 
 model paragrapher {
-  id            String       @id @default(uuid())
-  message       String
-  copyProduct   copyProduct? @relation(fields: [copyProductId], references: [id])
-  copyProductId String?
+  id            String      @id @default(uuid())
+  message       String      @db.LongText()
+  copyProduct   copyProduct @relation(fields: [copyProductId], references: [id])
+  copyProductId String
 }
 
 model copyProduct {
   id         String        @id @default(uuid())
   paragraphs paragrapher[]
-  Product    Product?      @relation(fields: [productId], references: [id])
-  productId  String?
+  product    Product?      @relation(fields: [productId], references: [id])
+  productId  String
 }
 
 model Product {
@@ -60,7 +60,5 @@ model Product {
   status          Boolean
   highlighted     Boolean?
   stripeProductId String?
-  copy            copyProduct[]
-
-  @@map("products")
+  copies          copyProduct[]
 }

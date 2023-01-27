@@ -31,10 +31,12 @@ export interface ProductUpdate {
   status: boolean,
   highlighted?: boolean,
   stripeProductId?: string
+  itemRemoved?: imageUrlType[]
 }
 
 
-type imageUrlType = {
+export type imageUrlType = {
+  id: string
   url: string
   productId: string
 }
