@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import {BiSearchAlt} from 'react-icons/bi'
 import {AiOutlineClose} from 'react-icons/ai'
@@ -9,12 +9,14 @@ import {GiHamburgerMenu} from 'react-icons/gi'
 import logo from '../../assets/logo-ecomprei.svg'
 import { BurgerButton, ButtonCloseSearch, ButtonOpenSearch, CartButton, Container, HeaderSearchAndCart, InputContainer, Navigation, SearchContainer, SuggestionContainer, } from './Header';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import { CartContext } from '../../context/CartContext';
 
 
 const Header: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<'show' |'hidden'>('hidden')
   const [openSearch, setOpenSearch] = useState<'show' |'hidden'>('hidden')
-
+  const { cartItems } = useContext(CartContext);
+  
   return (
     <Container render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
       <HeaderSearchAndCart render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
@@ -38,12 +40,15 @@ const Header: React.FC = () => {
           >
             <BiSearchAlt  size={30}/>
           </ButtonOpenSearch>
-          <Link href="/cart">
-            <CartButton>
-              <AiOutlineShoppingCart />
-              <span>3</span>
-            </CartButton>
-          </Link>
+            <Link href="/cart">
+              <CartButton>
+                <AiOutlineShoppingCart />
+                {
+                  cartItems.length > 0 &&
+                    <span>{cartItems.length}</span>
+                }
+              </CartButton>
+            </Link>
         </div>
       </HeaderSearchAndCart>
 

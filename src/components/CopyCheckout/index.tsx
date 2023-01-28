@@ -95,62 +95,12 @@ export function CopyCheckout ({
               render={{'@initial': 'mobile', '@bp2': 'desktop'}}
             >
               {copyTextWithImage.rest.map((item: any) => (
-                <div className="keen-slider__slide number-slide" key={item}>
+                <div className="keen-slider__slide number-slide" key={item.id}>
                   <Image src={item.url} alt="" width={300} height={300}/>
                 </div>
               ))}
             </SliderContainer>
         }
-    {/*  
-
-
-      
-      <TextContainer direction="left">
-        <ContentText direction="left">
-          <span >Esteja pronto para aproveitar o sol sem se preocupar com os danos da radiação UV com nossa camiseta solar de ajuste ao corpo.</span>
-        </ContentText>
-      </TextContainer>
-
-      <Image src={image2} alt=""/>
-      
-      <TextContainer direction="right">
-        <ContentText direction="right">
-          <span>Nossa camiseta solar com ajuste ao corpo é feita com tecido elástico e tecnologia UPF 50+ para garantir que você esteja seguro dos raios UV enquanto desfruta de suas atividades ao ar livre. </span>
-        </ContentText>
-      </TextContainer>
-
-      <Image src={copyImage} alt=""/>
-      
-      <TextContainer direction="left">
-        <ContentText direction="left">
-          <span>Com sua modelagem justa, essa camiseta não só o protege, essa camiseta foi desenhada para se ajustar perfeitamente ao seu corpo!</span>
-        </ContentText>
-      </TextContainer>
-
-      <SliderContainer 
-        ref={sliderRef} 
-        className="keen-slider"
-        render={{'@initial': 'mobile', '@bp2': 'desktop'}}
-      >
-          <div className="keen-slider__slide number-slide3">
-            <Image src={image3} alt=""/>
-          </div>
-          <div className="keen-slider__slide number-slide4">
-            <Image src={image4} alt=""/>
-          </div>
-          <div className="keen-slider__slide number-slide5">
-            <Image src={image5} alt=""/>
-          </div>
-          <div className="keen-slider__slide number-slide6">
-            <Image src={image6} alt=""/>
-          </div>
-        </SliderContainer>
-
-      <TextContainer direction="right">
-        <ContentText direction="right">
-          <span>Não perca mais tempo, adquira já a sua camiseta solar de ajuste ao corpo e desfrute de dias de sol sem preocupações!</span>
-        </ContentText>
-      </TextContainer> */}
       <button>Comprar agora</button> 
     </CopyCheckoutContainer>
   );

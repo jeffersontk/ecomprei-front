@@ -56,7 +56,7 @@ export const CartProduct = styled('div', {
       color: '$graphite',
       
       '.product-name': {
-        fontSize: '1.15rem',
+        fontSize: '1rem',
         fontWeight: 600,
 
       },

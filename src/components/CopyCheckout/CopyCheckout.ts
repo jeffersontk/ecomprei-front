@@ -15,7 +15,7 @@ export const CopyCheckoutContainer = styled('div', {
     
     background: '$orange500',
     color: '$white',
-    width: '390px',
+    width: '100%',
     height: '45px',
 
     display: 'flex',
@@ -111,23 +111,21 @@ export const ContentText = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '90%',
+  width: '100%',
   height: 'auto',
-  minHeight: '80px',
+  minHeight: '60px',
   position: 'relative',
+  borderRadius: '16px',
   
-  borderTopRightRadius: '60px',
-  borderBottomRightRadius: '60px',
-  borderTopLeftRadius: '60px',
-  borderBottomLeftRadius: '60px',
 
   '.title': {
-    width: '80%',
+    width: '100%',
     fontWeight: 'bold',
-    color: '$white'
+    color: '$white',
+    textAlign: 'center'
   },
   span: {
-    width: '80%',
+    width: '95%',
     color: '$white',
     padding: '0.875rem'
   }
@@ -142,6 +140,9 @@ export const ContentText = styled('div', {
      desktop: {
       '.title': {
         fontSize: '1.5rem',
+      },
+      span: {
+        width: '80%'
       }
      }
     },
@@ -151,8 +152,6 @@ export const ContentText = styled('div', {
         '::after': {
           position: 'absolute',
           background: '$black',
-          borderTopRightRadius: '60px',
-          borderBottomRightRadius: '60px',
           width: '100%',
 
         },
@@ -161,7 +160,7 @@ export const ContentText = styled('div', {
       right: {
         '&::before': {
           background: '$black',
-          width: '90%',
+          width: '100%',
         },
       },
   }

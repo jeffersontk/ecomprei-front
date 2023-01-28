@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import { ButtonAddToCart, ButtonCheckout, CardCheckoutContainer, ContentSelects, DetailPrice, DetailProduct, Divider, ImageContainer, NewPrice, OldPrice, PriceInfo, TotalPrice } from '../../styles/pages/checkout';
 
-import {BsCartPlus} from 'react-icons/bs'
+import {BsCartCheck, BsCartPlus} from 'react-icons/bs'
 import { calculateDiscount } from '../../utils/calc';
 import { sizeType, variantType } from '../../utils/types/productsType';
 import { Box, FormLabel, Select } from '@chakra-ui/react';
+import { CartContext } from '../../context/CartContext';
 
 interface CardCheckoutProps {
   id: string
@@ -28,6 +29,10 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
   title,
   productImage
 }) => {
+  const { addToCart, cartItems } = useContext(CartContext);
+  
+  const isProductIncludeInCart = cartItems.find(item => item.id === id)
+
   return (
     <CardCheckoutContainer  id="checkout" render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <ImageContainer>
@@ -91,7 +96,23 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
           </TotalPrice>
           
           <ButtonCheckout>Comprar</ButtonCheckout>
-          <ButtonAddToCart><BsCartPlus size={20} />Adicionar ao carrinho</ButtonAddToCart>
+          <ButtonAddToCart 
+            onClick={()=> {
+              addToCart({id, title, price, variantColors: colors, sizes, imgUrl: productImage, quantity: 1})
+            }}>
+              {
+                isProductIncludeInCart ? 
+                <>
+                  <BsCartCheck size={20}/>
+                  Produto no carrinho
+                </>
+                : <>
+                    <BsCartPlus size={20} />
+                    Adicionar ao carrinho
+                </>
+              }
+             
+            </ButtonAddToCart>
         </CardCheckoutContainer>
   );
 }

@@ -33,6 +33,8 @@ export default function Produtos({products}: any) {
               imgUrl={product.ImageUrl}
               price={product.price}
               title={product.title}
+              sizes={product.sizes}
+              variantColors={product.variants}
               />
               ))
             }

@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import FooterInformative from '../components/FooterInformative';
 import { globalStyles } from '../styles/global';
 import { Container, ContentFooter, FooterContainer, HeaderContainer, MainContainer } from '../styles/pages/app';
+import { CartProvider } from '../context/CartContext';
 
 
 globalStyles();
@@ -15,23 +16,25 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
   return (
     <ChakraProvider>
-    <AnimatePresence initial={false}>
-      <Container>
-        <HeaderContainer visible={isAdmin ? 'hidden' : 'show'}>
-          <Header />
-        </HeaderContainer>
-        <MainContainer render={{"@initial": 'mobile', "@bp2": "desktop"}}>
-          <Component {...pageProps} key={router.asPath} onExitComplete={() => window.scrollTo(0, 0)}/>
-        </MainContainer>
+      <CartProvider>
+        <AnimatePresence initial={false}>
+          <Container>
+            <HeaderContainer visible={isAdmin ? 'hidden' : 'show'}>
+              <Header />
+            </HeaderContainer>
+            <MainContainer render={{"@initial": 'mobile', "@bp2": "desktop"}}>
+              <Component {...pageProps} key={router.asPath} onExitComplete={() => window.scrollTo(0, 0)}/>
+            </MainContainer>
 
-        <FooterInformative isAdmin={isAdmin} />
-        <FooterContainer visible={isAdmin ? 'hidden' : 'show'}>
-          <ContentFooter>
-            <Footer />
-          </ContentFooter>
-        </FooterContainer>
-      </Container>
-    </AnimatePresence>
+            <FooterInformative isAdmin={isAdmin} />
+            <FooterContainer visible={isAdmin ? 'hidden' : 'show'}>
+              <ContentFooter>
+                <Footer />
+              </ContentFooter>
+            </FooterContainer>
+          </Container>
+        </AnimatePresence>        
+      </CartProvider>
     </ChakraProvider>
   )
 }

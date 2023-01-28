@@ -1,20 +1,13 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import Banner from "../components/Banner";
-import Cards from "../components/Cards";
 import Categories from "../components/Categories";
-import Layout from "../components/Layout";
 import SimpleCard from "../components/SimpleCard";
-import useMediaQuery from "../hooks/useMediaQuery";
 import { getProducts } from "../server/lib/products";
 import { stripe } from "../server/lib/stripe";
 import { Container, GridCards, SectionHighlighted } from "../styles/pages/home";
 
 export default function Home({products}: any) {
-  const matches = useMediaQuery('(min-width: 768px)')
-
   return (
     <>
       <Head>
@@ -37,6 +30,8 @@ export default function Home({products}: any) {
                   imgUrl={product.ImageUrl}
                   price={product.price}
                   title={product.title}
+                  sizes={product.sizes}
+                  variantColors={product.variants}
                 />
               ))
             }
