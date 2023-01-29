@@ -1,7 +1,7 @@
 import  React, {useState, forwardRef} from 'react'
 import { UseFormRegister } from 'react-hook-form/dist/types';
 import { AdminContainer, Container, FormContainer } from "../styles/pages/admin";
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticProps } from 'next';
 import Image from 'next/image';
 import DropMenu from '../components/DropMenu';
 
@@ -136,13 +136,12 @@ export default function Admin({products}: any) {
   }
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const products = await getProducts()
 
   return {
     props: {
       products
     },
-    revalidate: 5
   }
 }

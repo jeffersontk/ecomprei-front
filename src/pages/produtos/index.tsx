@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { ImageUrl, Product, variantProduct } from 'prisma/prisma-client';
@@ -20,7 +21,7 @@ export default function Produtos({products}: any) {
 
         <Slider />
 
-        <Title>Produtos em Destaques</Title>
+        <Text py="2rem" fontWeight={600} color={'orange.500'} fontSize="lg">Produtos em Destaques</Text>
 
         <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}}>
           {

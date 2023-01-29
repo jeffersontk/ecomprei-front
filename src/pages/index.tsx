@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Banner from "../components/Banner";
@@ -6,8 +7,13 @@ import SimpleCard from "../components/SimpleCard";
 import { getProducts } from "../server/lib/products";
 import { stripe } from "../server/lib/stripe";
 import { Container, GridCards, SectionHighlighted } from "../styles/pages/home";
+import { ProductUpdate } from "../utils/types/productsType";
 
-export default function Home({products}: any) {
+interface HomeProps {
+  products: ProductUpdate[]
+}
+
+export default function Home({products}: HomeProps) {
   return (
     <>
       <Head>
@@ -18,22 +24,26 @@ export default function Home({products}: any) {
 
         <SectionHighlighted render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <Categories />
-          <h2>Destaques da semana</h2>
+          <Text py="2rem" fontWeight={600} color={'orange.500'} fontSize="lg">Destaques da semana</Text>
           <GridCards render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
             {
               products &&
-              products.map((product:any) => (
-                <SimpleCard  
-                  key={product.id}
-                  id={product.id}
-                  discount={product.discount}
-                  imgUrl={product.ImageUrl}
-                  price={product.price}
-                  title={product.title}
-                  sizes={product.sizes}
-                  variantColors={product.variants}
-                />
-              ))
+              products.map((product:any) => {
+                if(product.highlighted){
+                 return (
+                    <SimpleCard  
+                      key={product.id}
+                      id={product.id}
+                      discount={product.discount}
+                      imgUrl={product.ImageUrl}
+                      price={product.price}
+                      title={product.title}
+                      sizes={product.sizes}
+                      variantColors={product.variants}
+                    />
+                  )
+                }
+              })
             }
           </GridCards>
         </SectionHighlighted>
@@ -44,8 +54,6 @@ export default function Home({products}: any) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getProducts()
-  const response = await stripe.products.list()
-  
   return {
     props: {
       products

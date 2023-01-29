@@ -23,19 +23,28 @@ type copyPost = {
 export const postCopyProduct = async (data: copyPost) => {
   const {paragraphs, productId} = data;
   try {
-    const copyProduct = await prisma.copyProduct.create({
-      data: {
-        paragraphs: {
-          create: paragraphs
-        },
-        product: {
-          connect: {
-            id: productId
+    const isCopy = await prisma.copyProduct.findFirst({
+      where: {
+        productId
+      }
+    })
+    if(!isCopy){
+      const copyProduct = await prisma.copyProduct.create({
+        data: {
+          paragraphs: {
+            create: paragraphs
+          },
+          product: {
+            connect: {
+              id: productId
+            }
           }
         }
-      }
-    });
-    return copyProduct
+      });
+      return copyProduct
+    } else {
+      throw new Error(`Error creating copyProduct: copy already exists`);
+    }
   } catch (error) {
     throw new Error(`Error creating copyProduct: ${error}`);
   }

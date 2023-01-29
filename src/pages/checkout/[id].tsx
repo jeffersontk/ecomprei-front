@@ -17,9 +17,10 @@ interface CheckoutProps {
 
 export default function Checkout({product, copy}:CheckoutProps) {
   const heroRef = useRef(null);
-  let paragraphs = copy[0].paragraphs.reverse()
+  let paragraphs = copy[0]?.paragraphs.reverse() ?? []
   let copyImagesList = product.variantsImage
   const copyWithTextAndImageLink = alternateArrays(copyImagesList, paragraphs)
+
   if(product){
     return (
       <>
@@ -65,7 +66,7 @@ export const getStaticProps: GetStaticProps<any, {id: string}> = async ({params}
   const paramsId = params?.id
   const product = await getProductById(String(paramsId))
   const copy = await getCopyByProductId(String(paramsId))
-  console.log('copy', copy)
+  
   return {
     props: {
       product,
