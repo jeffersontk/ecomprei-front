@@ -22,9 +22,9 @@ interface CardProps {
 const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title, sizes, variantColors}) => {
   const { addToCart, cartItems } = useContext(CartContext);
   
-  function calcularDesconto(precoTotal: number, porcentagemDesconto: number) {
+  function calcularDesconto(precoTotal: number, porcentagemDesconto: number): number {
     let result = precoTotal - (precoTotal * (porcentagemDesconto / 100))
-    return result.toPrecision(3)
+    return +result
   }
 
   const isProductIncludeInCart = cartItems.find(item => item.id === id)
@@ -62,8 +62,14 @@ const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title, si
           <div>
             {
               discount ?
-              <Price>R$ {calcularDesconto(price, discount)}</Price>
-              : <Price>R$ {price}</Price>
+              <Price>{new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(calcularDesconto(price, discount))}</Price>
+              : <Price>{new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(price)}</Price>
             }
             {
               discount ?

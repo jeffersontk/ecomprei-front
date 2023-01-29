@@ -14,23 +14,38 @@ interface CopyProductProps {
 export default function CopyProduct({closeModal, productId}: CopyProductProps) {
   const [copyParagrapher, setCopyParagrapher] = useState('')
   const [copyParagraphs, setCopyParagraphs] = useState<paragrapher[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const {  handleSubmit } = useForm<copyProduct>();
 
   const onSubmit: SubmitHandler<copyProduct> = async (data, event) => {
     event?.preventDefault()
-    const dataPost = {
-      paragraphs: copyParagraphs,
-      productId
+    setIsLoading(true)
+    if(copyParagraphs.length > 0) {
+      const dataPost = {
+        paragraphs: copyParagraphs,
+        productId
+      }
+      const result = await axios.post('/api/copy', dataPost)
+      .then(response => {
+        setIsLoading(false)
+        closeModal()
+      })
+      .catch(errors => {
+        console.error(errors)
+        setIsLoading(false)
+      })
+    }else {
+      setIsLoading(false)
     }
-    const result = await axios.post('/api/copy', dataPost)
-    .then(response => {})
-    .catch(errors => console.error(errors))
   }
+
+  const isDisabled = copyParagrapher.length === 0 || isLoading;
+
   return (
     <form  onSubmit={handleSubmit(onSubmit)}>
       <div className='contentArraysItems'>
-        <label>Tamanhos</label>
+        <label>Paragrafo do copy</label>
         <Flex gap={2}>
           <Textarea 
             onChange={e=> setCopyParagrapher(e.target.value,)} 
@@ -74,7 +89,8 @@ export default function CopyProduct({closeModal, productId}: CopyProductProps) {
         <Button 
           type='submit' 
           colorScheme="orange" 
-          
+          disabled={isDisabled}
+          isLoading={isLoading}
         >
           Cadastrar
         </Button>

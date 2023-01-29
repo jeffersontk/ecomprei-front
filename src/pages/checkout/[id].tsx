@@ -7,14 +7,19 @@ import { getProductById } from '../../server/lib/products';
 import Head from 'next/head';
 import { getCopyByProductId } from '../../server/lib/copy';
 import { alternateArrays } from '../../utils/alternateArray';
+import { copyProduct, Product } from 'prisma/prisma-client';
+import { ProductUpdate } from '../../utils/types/productsType';
 
-export default function Checkout({product, copy}:any) {
+interface CheckoutProps {
+  product: ProductUpdate
+  copy: any
+}
+
+export default function Checkout({product, copy}:CheckoutProps) {
   const heroRef = useRef(null);
-  let paragraphs = copy[0].paragraphs
+  let paragraphs = copy[0].paragraphs.reverse()
   let copyImagesList = product.variantsImage
-
   const copyWithTextAndImageLink = alternateArrays(copyImagesList, paragraphs)
-
   if(product){
     return (
       <>
@@ -60,7 +65,7 @@ export const getStaticProps: GetStaticProps<any, {id: string}> = async ({params}
   const paramsId = params?.id
   const product = await getProductById(String(paramsId))
   const copy = await getCopyByProductId(String(paramsId))
-  
+  console.log('copy', copy)
   return {
     props: {
       product,
