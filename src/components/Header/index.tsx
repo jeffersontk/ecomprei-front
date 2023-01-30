@@ -8,7 +8,6 @@ import {MdOutlineKeyboardArrowRight, MdClose} from 'react-icons/md'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import logo from '../../assets/logo-ecomprei.svg'
 import { BurgerButton, ButtonCloseSearch, ButtonOpenSearch, CartButton, Container, HeaderSearchAndCart, InputContainer, Navigation, SearchContainer, SuggestionContainer, } from './Header';
-import useMediaQuery from '../../hooks/useMediaQuery';
 import { CartContext } from '../../context/CartContext';
 
 

@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import {BiTrash} from 'react-icons/bi';
 import { CartContainer, CartContent, CartProduct, CartResume } from '../../styles/pages/Cart';
 import { Divider } from '../../styles/pages/checkout';
-import tshirt from '../../assets/tshirt.png'
+
 import Head from 'next/head';
 import { CartContext } from '../../context/CartContext';
-import { Box, Flex, FormLabel, Select, Text } from '@chakra-ui/react';
+import { Box, FormLabel, Select, Text } from '@chakra-ui/react';
 
 export default function Cart () {
   const { cartItems, removeFromCart, getTotalPrice, updateQuantity } = useContext(CartContext);

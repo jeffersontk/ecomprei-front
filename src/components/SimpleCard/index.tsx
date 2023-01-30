@@ -1,11 +1,10 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {BsCartCheck, BsCartPlus} from 'react-icons/bs'
-import tshirt from '../../assets/tshirt.png';
 import { CardContainer, ContentText } from './SimpleCard';
 import { CardDiscount, CartButton, ContentImage, Price, RealPrice } from '../Cards/Cards';
-import discountBanner from '../../assets/discount-banner.png'
+import discountBanner from '../../assets/discount-banner.webp'
 import { CartContext } from '../../context/CartContext';
 import { sizeProduct, variantProduct } from 'prisma/prisma-client';
 

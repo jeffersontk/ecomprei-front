@@ -237,8 +237,10 @@ export const Navigation = styled('nav', {
   ul:{
     display: 'flex',
     gap: '1rem',
+    listStyle: 'none',
 
     li: {
+    listStyle: 'none',
       a:{
         textDecoration: 'none',
         color: '$white',
@@ -286,6 +288,7 @@ export const Navigation = styled('nav', {
         },
         ul: {
           flexDirection: 'column',
+          listStyle: 'none',
           li:{
             listStyle: 'none',
             a: {
@@ -299,6 +302,10 @@ export const Navigation = styled('nav', {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+
+        ul: {
+          listStyle: 'none',
+        }
       }
     },
     visible: {

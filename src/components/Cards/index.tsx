@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Card, CardDiscount, CartButton, ContainerTitle, Content, ContentCard, ContentImage, DescriptionPrice, ImageContainer, Price, PriceContent, RealPrice } from './Cards';
-import tshirt from '../../assets/tshirt.png'
-import discountBanner from '../../assets/discount-banner.png'
+import discountBanner from '../../assets/discount-banner.webp'
 import {BsCartPlus} from 'react-icons/bs'
 import Link from 'next/link';
 import useMediaQuery from '../../hooks/useMediaQuery';
@@ -21,7 +20,7 @@ const Cards: React.FC = () => {
           <BsCartPlus />
         </CartButton>
         <ImageContainer>
-          <Image src={tshirt} alt="" />
+          {/* <Image src={tshirt} alt="" /> */}
         </ImageContainer>
       </ContentImage>
       <PriceContent>

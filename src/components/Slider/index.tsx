@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import Image from 'next/image';
-import image1 from '../../assets/hero/headsetAirProMax.jpg'
-import image2 from '../../assets/hero/baseBeautyCream.png'
-import image3 from '../../assets/hero/kitpinceis.png'
-import image4 from '../../assets/hero/headsetAirProMaxDesktop.jpg'
-import image5 from '../../assets/hero/baseBeautyCreamDesktop.jpg'
-import image6 from '../../assets/hero/kitpinceisDesktop.jpg'
+import image1 from '../../assets/hero/headsetAirProMax.webp'
+import image2 from '../../assets/hero/baseBeautyCream.webp'
+import image3 from '../../assets/hero/kitpinceis.webp'
+import image4 from '../../assets/hero/headsetAirProMaxDesktop.webp'
+import image5 from '../../assets/hero/baseBeautyCreamDesktop.webp'
+import image6 from '../../assets/hero/kitpinceisDesktop.webp'
 
 import { Dots, SliderContainer } from './Slider';
 

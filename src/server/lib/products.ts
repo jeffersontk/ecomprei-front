@@ -6,10 +6,13 @@ const prisma = new PrismaClient()
 
 export const getProducts = async () => {
   const products = await prisma.product.findMany({
-    include: {
-      variantsImage: true,
-      variants: true,
-      sizes: true,
+    select: {
+      id: true,
+      price: true,
+      title: true,
+      discount: true,
+      ImageUrl: true,
+      highlighted: true,
     }
   })
   
@@ -21,10 +24,14 @@ export const getProductsByCategory = async (category: string) => {
     where: {
       category
     },
-    include: {
-      variantsImage: true,
-      variants: true
-     }
+    select: {
+      id: true,
+      price: true,
+      title: true,
+      discount: true,
+      ImageUrl: true,
+      highlighted: true,
+    }
   })
 
   return products
@@ -40,7 +47,7 @@ export const getProductById = async (id: string) => {
       sizes: true,
       variantsImage: true,
       copies: true,
-    }
+    },
   })
 
   return product

@@ -1,10 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import React from 'react';
 import { BannerContainer, BannerContent } from './Banner';
-import hero from '../../assets/hero/hero.png'
-import heroMobile from '../../assets/hero/heroMoble.png'
+import hero from '../../assets/hero/hero.webp'
+import heroMobile from '../../assets/hero/heroMoble.webp'
 import useMediaQuery from '../../hooks/useMediaQuery';
 
 function Banner() {

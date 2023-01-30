@@ -1,16 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
-import { ContentText, CopyCheckoutContainer, Slider, SliderContainer, TextContainer, ThumbnailContainer } from './CopyCheckout';
+import { ContentText, CopyCheckoutContainer, SliderContainer, TextContainer } from './CopyCheckout';
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
-
-import image1 from '../../assets/produtos/1.jpg'
-import image2 from '../../assets/produtos/2.jpg'
-import image3 from '../../assets/produtos/3.jpg'
-import image4 from '../../assets/produtos/4.jpg'
-import image5 from '../../assets/produtos/5.jpg'
-import image6 from '../../assets/produtos/6.jpg'
-import copyImage from '../../assets/produtos/copyImage1.jpg'
 
 interface copyCheckout {
   title: string
