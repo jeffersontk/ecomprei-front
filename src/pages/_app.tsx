@@ -8,7 +8,6 @@ import { globalStyles } from '../styles/global';
 import { Container, ContentFooter, FooterContainer, HeaderContainer, MainContainer } from '../styles/pages/app';
 import { CartProvider } from '../context/CartContext';
 
-
 globalStyles();
 
 export default function App({ Component, pageProps, router }: AppProps) {

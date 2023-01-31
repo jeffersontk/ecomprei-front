@@ -13,10 +13,26 @@ export const getProducts = async () => {
       discount: true,
       ImageUrl: true,
       highlighted: true,
-    }
+      sizes: true,
+      variants: true
+    },
+  
   })
   
   return products
+}
+
+export const getProductsAllInfos = async () => {
+  const product = await prisma.product.findMany({
+    include: {
+      variants: true,
+      sizes: true,
+      variantsImage: true,
+      copies: true,
+    },
+  })
+
+  return product
 }
 
 export const getProductsByCategory = async (category: string) => {

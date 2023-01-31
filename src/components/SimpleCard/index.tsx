@@ -7,6 +7,7 @@ import { CardDiscount, CartButton, ContentImage, Price, RealPrice } from '../Car
 import discountBanner from '../../assets/discount-banner.webp'
 import { CartContext } from '../../context/CartContext';
 import { sizeProduct, variantProduct } from 'prisma/prisma-client';
+import {sortBySize} from '../../utils/sortBySize'
 
 interface CardProps {
   id: string,
@@ -27,6 +28,7 @@ const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title, si
   }
 
   const isProductIncludeInCart = cartItems.find(item => item.id === id)
+  const sizeSort = sortBySize(sizes)
 
   return (
     <CardContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
@@ -42,14 +44,10 @@ const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title, si
           <CartButton 
             title={isProductIncludeInCart ? "já está no carrinho" : "adicionar ao carrinho"}
             onClick={()=> {
-              addToCart({id, title, price, variantColors, sizes, imgUrl, quantity: 1})
+              addToCart({id, title, price, variantColors, sizes: sizeSort, imgUrl, quantity: 1})
             }}
           > 
-            {
-              isProductIncludeInCart 
-              ? <BsCartCheck />
-              : <BsCartPlus />
-            }
+            <BsCartPlus />
           </CartButton>
           <Link href={`/checkout/${id}`} prefetch={false}>
             <Image src={imgUrl} alt="" className='productImage'  width={200} height={200} />

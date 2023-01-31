@@ -1,7 +1,7 @@
 import  React, {useState, forwardRef} from 'react'
 import { UseFormRegister } from 'react-hook-form/dist/types';
 import { AdminContainer, Container, FormContainer } from "../styles/pages/admin";
-import { GetServerSideProps, GetServerSidePropsContext, GetStaticProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import DropMenu from '../components/DropMenu';
 
@@ -16,7 +16,7 @@ import {
   Select as SelectChakra,
 } from '@chakra-ui/react';
 import CreateProduct from '../components/Forms/createProduct';
-import { getProducts } from '../server/lib/products';
+import { getProductsAllInfos } from '../server/lib/products';
 
 export const Select = forwardRef<
 HTMLSelectElement,
@@ -137,7 +137,7 @@ export default function Admin({products}: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const products = await getProducts()
+  const products = await getProductsAllInfos()
 
   return {
     props: {

@@ -7,27 +7,12 @@ import { Divider } from '../../styles/pages/checkout';
 import Head from 'next/head';
 import { CartContext } from '../../context/CartContext';
 import { Box, FormLabel, Select, Text } from '@chakra-ui/react';
+import CartCard from '../../components/molecules/Cards/CartCard';
 
 export default function Cart () {
-  const { cartItems, removeFromCart, getTotalPrice, updateQuantity } = useContext(CartContext);
-  const [quantity, setQuantity] = useState(1)
+  const { cartItems,  getTotalPrice} = useContext(CartContext);
+
   const [total, setTotal] = useState(0)
-
-  const handleDecrement = (itemId: string) => {
-    if (quantity > 1) {
-      setQuantity(prev => {
-        updateQuantity(itemId, prev - 1)
-        return prev - 1
-      });
-    }
-  };
-
-  const handleIncrement = (itemId: string) => {
-    setQuantity(prev => {
-      updateQuantity(itemId, prev + 1)
-      return prev + 1
-    });
-  };
 
   useEffect(()=> {
     let newPriceTotal = getTotalPrice(cartItems)
@@ -49,64 +34,19 @@ export default function Cart () {
                 <Text>Carrinho vazio</Text>
               </Box>
             :
-            cartItems.map(item => (
-              <CartProduct key={item.id}>
-                <Image src={item.imgUrl} alt="" width={90} height={90} />
-                <div className='details-content'>
-                  <div className='details'>
-                    <span className='product-name'>{item.title}</span>
-                    <span>Uni: {new Intl.NumberFormat('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL',
-                      }).format(item.price)}
-                    </span>
-                    <Box display="flex" flexDirection="column" alignItems="flex-start" gap="2">
-                      {
-                        item.sizes.length > 0 &&
-                        <Box display="flex" alignItems="flex-start">
-                          <FormLabel htmlFor="#" margin={0} mr="1">Tamanho:</FormLabel>
-                          <Select height={'6'}>
-                            {item.sizes.map(item=> {
-                              if(item.size) {
-                                return (
-                                  <option key={item.id} value={item.size}>{item.size}</option>
-                                )
-                              }
-                            })}
-                          </Select>
-                        </Box>
-                      }
-                      {
-                        item.variantColors.length > 0 &&
-                        <Box display="flex" alignItems="flex-start">
-                          <FormLabel htmlFor="#" margin={0} mr="1">Cor:</FormLabel>
-                          <Select height={'6'}>
-                            {item.variantColors.map(item=> {
-                              if(item.variant) {
-                                return (
-                                  <option key={item.id} value={item.variant}>{item.variant}</option>
-                                )
-                              }
-                            })}
-                          </Select>
-                        </Box>
-                      }
-                    </Box>
-                  </div>
-                  <div className='total'>
-                    <button onClick={()=> removeFromCart(item.id)}><BiTrash size={24}/></button>
-                    <div className='count'>
-                      <button onClick={()=> {
-                        handleDecrement(item.id)
-                      }}>-</button>
-                      <span>{item.quantity}</span>
-                      <button onClick={()=> {
-                        handleIncrement(item.id)
-                      }}>+</button>
-                    </div>
-                  </div>
-                </div>
-              </CartProduct>
+            cartItems.map((item, index) => (
+              <CartCard
+                key={index}
+                colors={item.variantColors}
+                id={item.id}
+                imgUrl={item.imgUrl}
+                index={index}
+                price={item.price}
+                sizes={item.sizes}
+                title={item.title}
+                colorSelect={item.colorSelect}
+                sizeSelect={item.sizeSelect}
+              />
             ))
           }
         </CartContent>

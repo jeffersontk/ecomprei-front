@@ -1,5 +1,6 @@
 import { sizeProduct, variantProduct } from 'prisma/prisma-client';
 import React, { createContext, useState } from 'react';
+import { sizeType } from '../utils/types/productsType';
 
 interface CartProviderProps  {
   children: React.ReactNode
@@ -10,16 +11,18 @@ interface CartItem {
   title: string;
   price: number;
   imgUrl: string
-  sizes: sizeProduct[]
+  sizes: sizeType[]
   variantColors: variantProduct[]
   quantity: number;
+  colorSelect?: string;
+  sizeSelect?: string;
 }
 
 interface CartContextData {
   cartItems: CartItem[];
   getTotalPrice(cart: CartItem[]): number;
   addToCart(item: CartItem): void;
-  removeFromCart(id: string): void;
+  removeFromCart(index: number): void;
   updateQuantity(id: string, quantity: number): void;
   clearCart(): void;
 }
@@ -38,14 +41,12 @@ const CartProvider = ({ children }: CartProviderProps) => {
   }
 
   const addToCart = (item: CartItem) => {
-    if (!cartItems.find(existingItem => existingItem.id === item.id)) {
     setCartItems([...cartItems, item]);
-    }
   };
 
-  const removeFromCart = (id: string) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
+  const removeFromCart = (index: number) => {
+    setCartItems(cartItems.filter((item, i) => i !== index));
+};
 
   const updateQuantity = (id: string, quantity: number) => {
     setCartItems(
