@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import useSWR from 'swr'
 
 
@@ -12,6 +12,7 @@ import { BsCartPlus } from 'react-icons/bs'
 import { fetcher } from '../../../server/lib/SWR'
 import { ButtonCloseSearch, ButtonOpenContainer, ButtonOpenSearch, InputContainer, SearchContainer, SuggestionContainer } from './searchbar'
 import { Button, Card, CardBody, CardFooter, Heading, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Stack, useDisclosure } from '@chakra-ui/react'
+import { CartContext } from '../../../context/CartContext'
 
 export default function SearchBar() {
   const [openSearch, setOpenSearch] = useState<'show' |'hidden'>('hidden')
@@ -20,6 +21,7 @@ export default function SearchBar() {
   const firstFieldRef = React.useRef(null)
   const { onOpen: onOpenDesktop, onClose: onCloseDesktop, isOpen: isOpenDesktop } = useDisclosure()
   const { onOpen, onClose, isOpen } = useDisclosure()
+  const { addToCart } = useContext(CartContext);
   
 
   const { data: products, error } = useSWR(
@@ -195,10 +197,30 @@ export default function SearchBar() {
                     <Heading size='sm'>{product.title}</Heading>
                   </CardBody>
                   <CardFooter m="0" mt="0" p="0" justifyContent="flex-end" gap="2">
-                    <Button variant='solid' colorScheme='orange'>
-                      Ver detalhes
-                    </Button>
-                    <Button variant='outline' colorScheme='orange' gap="2">
+                    <Link href={`/checkout/${product.id}`} prefetch={false}>
+                      <Button variant='solid' colorScheme='orange' onClick={()=>{
+                        setSearchTerm('')
+                        onClose()
+                      }}>
+                        Ver detalhes
+                      </Button>
+                    </Link>
+                    <Button 
+                      variant='outline' 
+                      colorScheme='orange' 
+                      gap="2"
+                      onClick={()=> {
+                        addToCart({
+                          id: product.id, 
+                          title: product.title,
+                          price: product.price, 
+                          variantColors: product.variants, 
+                          sizes: product.sizes,
+                          imgUrl: product.ImageUrl, 
+                          quantity: 1
+                        })
+                      }}
+                    >
                       <BsCartPlus />
                       Adicionar
                     </Button>
@@ -207,7 +229,6 @@ export default function SearchBar() {
               </Card>
               )) : 
                 <Stack>
-                  <Heading size='xs'>Não encontramos {searchTerm} <br /> aqui algumas sugestões</Heading>
                   {products?.data.map((product: any)=> (
                     <Card
                       direction={{ base: 'row', sm: 'row' }}
@@ -236,9 +257,11 @@ export default function SearchBar() {
                           <Heading size='sm'>{product.title}</Heading>
                         </CardBody>
                         <CardFooter m="0" mt="0" p="0" justifyContent="flex-end" gap="2">
-                          <Button variant='solid' colorScheme='orange'>
-                            Ver detalhes
-                          </Button>
+                          <Link href={`/checkout/${product.id}`} prefetch={false}>
+                            <Button variant='solid' colorScheme='orange'>
+                              Ver detalhes
+                            </Button>
+                          </Link>
                           <Button variant='outline' colorScheme='orange' gap="2">
                             <BsCartPlus />
                             Adicionar

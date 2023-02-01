@@ -40,7 +40,8 @@ export const CartProduct = styled('div', {
 
   img:{
     width: '100px',
-    height: 'auto'
+    height: 'auto',
+    objectFit: 'contain',
   },
   
   '.details-content': {
