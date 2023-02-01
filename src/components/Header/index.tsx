@@ -7,38 +7,26 @@ import {AiOutlineClose} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdClose} from 'react-icons/md'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import logo from '../../assets/logo-ecomprei.svg'
-import { BurgerButton, ButtonCloseSearch, ButtonOpenSearch, CartButton, Container, HeaderSearchAndCart, InputContainer, Navigation, SearchContainer, SuggestionContainer, } from './Header';
+import { BurgerButton,  CartButton, Container, HeaderSearchAndCart,  Navigation } from './Header';
 import { CartContext } from '../../context/CartContext';
+import SearchBar from '../molecules/SearchBar';
 
 
 const Header: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<'show' |'hidden'>('hidden')
-  const [openSearch, setOpenSearch] = useState<'show' |'hidden'>('hidden')
   const { cartItems } = useContext(CartContext);
   
   return (
     <Container render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
       <HeaderSearchAndCart render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-        <div>
-          <BurgerButton visible={{'@initial': 'show', '@bp2': 'hidden'}} onClick={()=> setOpenMenu('show')}><GiHamburgerMenu size={30}/></BurgerButton>
+        <div className='logo-buttonMenu'>
+          <BurgerButton visible={{'@initial': 'show', '@bp2': 'hidden'}} onClick={()=> setOpenMenu('show')}><GiHamburgerMenu size={34}/></BurgerButton>
           <Link href="/" prefetch={false}>
-            <Image src={logo} alt="É Comprei" />
+            <Image src={logo} alt="É Comprei" width={100} height={50}/>
           </Link>
         </div>
-
-        <InputContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}} visible={{"@initial": 'hidden', '@bp2': 'show'}}>
-          <input type="text" placeholder='Encontre aqui'/>
-          <button>
-            <BiSearchAlt/>
-          </button>
-        </InputContainer>
+        <SearchBar />
         <div>
-          <ButtonOpenSearch 
-            onClick={()=> setOpenSearch('show')}
-            visible={{"@initial": 'show', '@bp2': 'hidden'}}
-          >
-            <BiSearchAlt  size={30}/>
-          </ButtonOpenSearch>
             <Link href="/cart">
               <CartButton>
                 <AiOutlineShoppingCart />
@@ -51,22 +39,7 @@ const Header: React.FC = () => {
         </div>
       </HeaderSearchAndCart>
 
-      <SearchContainer visible={openSearch}>
-        <div className='headerSearchContainer'>
-          <InputContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-            <input type="text" placeholder='Encontre aqui'/>
-            <button>
-              <BiSearchAlt />
-            </button>
-          </InputContainer>
-          <ButtonCloseSearch onClick={()=> setOpenSearch('hidden')}>
-            <AiOutlineClose  size={30}/>
-          </ButtonCloseSearch>
-        </div>
-        <SuggestionContainer>
-
-        </SuggestionContainer>
-      </SearchContainer>
+    
       
 
       <Navigation render={{'@initial': 'desktop' }} visible={{'@initial': 'hidden', '@bp2': 'show'}}>

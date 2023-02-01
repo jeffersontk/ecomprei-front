@@ -25,19 +25,29 @@ export const HeaderSearchAndCart = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+
+
 }, {
   variants: {
     render: {
       mobile: {
         justifyContent: 'space-between',
         alignItems: 'center',
-
-        div: {
+        img: {
+          width: '75px',
+          maxWidth: '100px'
+        },
+        '.logo-buttonMenu':{
           display: 'flex',
-        }
+          alignItems: 'center'
+        },
       },
       desktop: {
         justifyContent: 'space-between',
+        img: {
+          width: '120px',
+          maxWidth: '120px'
+        },
       },
     }
   }
@@ -62,121 +72,6 @@ export const BurgerButton = styled('button', {
       }
     }
   }
-})
-
-export const ButtonOpenSearch = styled('button', {
-  border: 'none',
-  background: '$black',
-  color: '$yellow500',
-  marginRight: '0.5rem'
-}, {
-  variants: {
-    visible: {
-      show: {
-        display: 'block',
-      },
-      hidden: {
-        display: 'none',
-      }
-    }
-  }
-})
-export const ButtonCloseSearch = styled('button', {
-  border: 'none',
-  background: '$black',
-  color: '$yellow500',
-})
-
-export const SearchContainer = styled('div', {
-  width: '100%',
-
-},{
-  variants:{
-    visible: {
-      show: {
-        display: 'flex !important',
-        flexDirection: 'column',
-
-        '.headerSearchContainer': {
-          display: 'flex',
-          gap: '0.5rem',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }
-      },
-      hidden: {
-        display: 'none !important',
-      }
-    }
-  }
-})
-
-export const InputContainer = styled('div', {
-  height: '35px',
-  display: 'flex',
-  alignItems: 'center',
-  
-  backgroundColor: '$white',
-  borderWidth: '3px',
-  borderColor: '$yellow500',
-  borderStyle: 'solid',
-  borderRadius: 8,
-
-  input: {
-   backgroundColor: '#f9f9f9',
-    outline: 'none',
-    border: 'none',
-    width: '100%',
-    borderRadius: 8,
-    paddingLeft: '1rem',
-  },
-
-  button :{
-    height: '35px',
-    width: '65px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-    border: 'none',
-    borderTopRightRadius: 4,
-    borderBottomRightRadius: 4,
-    cursor: 'pointer',
-    
-    backgroundColor: '$yellow500',
-    
-    '&:hover':{
-      backgroundColor: '$yellow300',
-    },
-
-    svg:{
-      width: '1.5rem',
-      height: '1.5rem',
-      color: '$white'
-    }
-  }
-},{
-  variants:{
-    render: {
-      mobile: {
-        width: '100%'
-      },
-      desktop: {
-        width: '600px',
-      }
-    },
-    visible: {
-      show: {
-        display: 'flex  !important'
-      },
-      hidden: {
-        display: 'none !important',
-      }
-    }
-  }
-})
-export const SuggestionContainer = styled('div', {
-
 })
 
 export const CartButton = styled('button', {
@@ -209,7 +104,7 @@ export const CartButton = styled('button', {
   }
 })
 
-const goIn = keyframes({
+export const goIn = keyframes({
   '0%': {
     opacity: 0,
     transform: "translateX(-10px)",
@@ -220,7 +115,7 @@ const goIn = keyframes({
   },
 });
 
-const goOut = keyframes({
+export const goOut = keyframes({
   '0%': {
     opacity: 1,
     transform: "translateX(0px)",
