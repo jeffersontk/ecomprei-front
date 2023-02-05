@@ -40,8 +40,8 @@ export default function Produtos({products}: any) {
         <title>É Comprei - {title}</title>
       </Head>
       <Container>
-        <Categories />
         <Slider />
+        <Categories />
 
         <FilterSection render={{'@initial': 'mobile', '@bp2': 'desktop'}} id="productsGrid">
           <h2>{formatTitle(String(title))} {query.filtro && `/ ${String(subtitle).toUpperCase()}`}</h2>

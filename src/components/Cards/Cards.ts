@@ -157,7 +157,7 @@ export const Price = styled('strong', {
 export const RealPrice = styled('span', {
   display: 'flex',
   textDecoration: 'line-through',
-  color: '$gray300',
+  color: '$red300',
   fontWeight: 600,
 
   span: {

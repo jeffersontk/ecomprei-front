@@ -87,11 +87,35 @@ export default function SearchBar() {
                 <CardBody>
                   <Heading size='md'>{product.title}</Heading>
                 </CardBody>
-                <CardFooter>
-                  <Button variant='solid' colorScheme='blue'>
-                    comprar
-                  </Button>
-                </CardFooter>
+                <CardFooter m="0" mt="0" pb="2" pr="2" p="0" justifyContent="flex-end" gap="2">
+                    <Link href={`/checkout/${product.id}`} prefetch={false}>
+                      <Button variant='solid' colorScheme='orange' onClick={()=>{
+                        setSearchTerm('')
+                        onClose()
+                      }}>
+                        Ver detalhes
+                      </Button>
+                    </Link>
+                    <Button 
+                      variant='outline' 
+                      colorScheme='orange' 
+                      gap="2"
+                      onClick={()=> {
+                        addToCart({
+                          id: product.id, 
+                          title: product.title,
+                          price: product.price, 
+                          variantColors: product.variants, 
+                          sizes: product.sizes,
+                          imgUrl: product.ImageUrl, 
+                          quantity: 1
+                        })
+                      }}
+                    >
+                      <BsCartPlus />
+                      Adicionar
+                    </Button>
+                  </CardFooter>
               </Stack>
             </Card>
             )) : 
@@ -196,7 +220,7 @@ export default function SearchBar() {
                    <CardBody py="1" px="2">
                     <Heading size='sm'>{product.title}</Heading>
                   </CardBody>
-                  <CardFooter m="0" mt="0" p="0" justifyContent="flex-end" gap="2">
+                  <CardFooter m="0" mt="0" p="0"  pb="2" pr="2" justifyContent="flex-end" gap="2">
                     <Link href={`/checkout/${product.id}`} prefetch={false}>
                       <Button variant='solid' colorScheme='orange' onClick={()=>{
                         setSearchTerm('')

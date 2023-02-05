@@ -46,7 +46,7 @@ export const MainContainer = styled('main', {
         marginTop: 'calc(77px + 1rem)',
       },
       desktop: {
-        marginTop: 'calc(150px + 2rem)',
+        marginTop: 'calc(150px + 1rem)',
       }
     }
   }

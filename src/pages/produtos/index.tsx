@@ -17,9 +17,9 @@ export default function Produtos({products}: any) {
         <title>É comprei - Explorar</title>
       </Head>
       <Container>
-        <Categories />
-
         <Slider />
+
+        <Categories />
 
         <Text py="2rem" fontWeight={600} color={'orange.500'} fontSize="lg">Produtos em Destaques</Text>
 

@@ -7,7 +7,7 @@ export const ButtonDropMenu = styled('button', {
 
 export const MenuListDropdown = styled('div', {
   padding: '0.5rem',
- backgroundColor: '#f9f9f9',
+  backgroundColor: '#fff',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   borderRadius: '8px',
   display: 'flex',
@@ -18,7 +18,7 @@ export const MenuListDropdown = styled('div', {
     display: 'flex',
     gap: '0.5rem',
     border: 'none',
-   backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff',
     padding: '5px',
 
     fontWeight: 600,

@@ -3,6 +3,7 @@ import { styled } from "../../styles";
 export const CategoriesList = styled('ul', {
   background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
   width: '100%',
+  marginTop: '1rem',
 
   li:{
     listStyle: 'none',

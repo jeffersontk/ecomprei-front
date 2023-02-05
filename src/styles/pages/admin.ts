@@ -7,12 +7,12 @@ export const Container = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginTop: 'calc(-157px)',
+  marginTop: 'calc(-167px)',
   background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
 })
 
 export const FormContainer = styled('form', {
-  height: '100px',
+  height: '150px',
   width: '200px',
   display: 'flex',
   flexDirection: 'column',
@@ -38,6 +38,7 @@ export const FormContainer = styled('form', {
 })
 
 export const AdminContainer = styled('div', {
+  minWidth: '1200px',
   width: '100%',
   height: '100%',
   display: 'flex',

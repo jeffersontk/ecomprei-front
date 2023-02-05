@@ -1,10 +1,9 @@
-import { Box, Button, Flex, ModalFooter, Tag, TagCloseButton, TagLabel, Textarea, VStack } from '@chakra-ui/react'
+import { Button, Flex, ModalFooter, Tag, TagCloseButton, TagLabel, Textarea, VStack } from '@chakra-ui/react'
 import axios from 'axios'
 import { copyProduct, paragrapher } from 'prisma/prisma-client'
 import React, {useState} from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { spreadFunction } from '../../pages/admin'
-import { postCopyProduct } from '../../server/lib/copy'
 
 interface CopyProductProps {
   productId: string

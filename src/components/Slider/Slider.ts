@@ -1,7 +1,7 @@
 import { styled } from "../../styles";
 
 export const SliderContainer = styled('div', {
-  marginTop: '1rem',
+  marginBottom: '1rem',
   position: 'relative',
 
   img:{
