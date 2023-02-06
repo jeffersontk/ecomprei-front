@@ -44,16 +44,13 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
 
   const handleCheckoutSession = async () => {
     try {
-      console.log('priceDefaultId', priceDefaultId)
       if(priceDefaultId){
         const response = await axios.post('/api/checkout', {
           line_item: {
             price: priceDefaultId,
             quantity: quantity,
           },
-          discount: {
-            coupon: discount
-          },
+          discount,
           productId: id
         })
   

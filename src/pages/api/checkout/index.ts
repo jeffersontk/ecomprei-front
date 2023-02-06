@@ -1,67 +1,51 @@
 import { NextApiResponse, NextApiRequest } from 'next';
-import { stripe } from '../../../server/lib/stripe';
+import { createCheckoutSession, createCoupon } from '../../../server/lib/checkout';
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse) {
-  const {line_item, discount, productId, listItemByCart, totalDiscountInPercentage} = req.body
-  console.log('check line_item', line_item)
-  console.log('check discount', discount)
-  console.log('check productId', productId)
-  console.log('check listItemByCart', listItemByCart)
-  console.log('check totalDiscountInPercentage', totalDiscountInPercentage)
+  const {line_item, discount, productId, listItemByCart, totalDiscountInPercentage} = req.body;
   
   if(line_item && discount) {
-   try {
-    const successURL = `${process.env.NEXT_URL}/success`
-    const cancelURL = `${process.env.NEXT_URL}/checkout/${productId}`
-
-    const coupon = await stripe.coupons.create({
-      percent_off: discount,
-      name: `OFF${discount}`
-    });
-
-    const checkoutSession = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      payment_method_types: ['card'],
-      success_url: successURL,
-      cancel_url: cancelURL,
-      line_items:  [
-        line_item
-      ],  
-      discounts: [{
-        coupon: coupon.id
-      }]
-    })
-    return res.status(201).json({
-      checkoutUrl: checkoutSession.url
-    })
-   } catch (error) {
-    console.error(error)
-   }
-  }else if (listItemByCart && totalDiscountInPercentage) {
     try {
-      const successURL = `${process.env.NEXT_URL}/success`
-      const cancelURL = `${process.env.NEXT_URL}/cart`
+      const successURL = `${process.env.NEXT_URL}/success`;
+      const cancelURL = `${process.env.NEXT_URL}/checkout/${productId}`;
   
-      const coupon = await stripe.coupons.create({
-        percent_off: +totalDiscountInPercentage.toFixed(2),
-        name: `OFF${totalDiscountInPercentage.toFixed(2)}`
-      });
+      const coupon = await createCoupon(+discount);
   
-      const checkoutSession = await stripe.checkout.sessions.create({
+      const checkoutSession = await createCheckoutSession({
         mode: 'payment',
         success_url: successURL,
         cancel_url: cancelURL,
-        line_items:  listItemByCart,
-        discounts: [{
-          coupon: coupon.id
-        }]
+        line_items: [ line_item ],
+        discounts: [{ coupon: coupon.id }]
+      })
+
+      return res.status(201).json({
+        checkoutUrl: checkoutSession.url
+      });
+     } catch (error) {
+      console.error(error);
+     }
+  }else if (listItemByCart && totalDiscountInPercentage) {
+    try {
+      const successURL = `${process.env.NEXT_URL}/success`;
+      const cancelURL = `${process.env.NEXT_URL}/cart`;
+  
+      const coupon = await createCoupon(+totalDiscountInPercentage);
+  
+      const checkoutSession = await createCheckoutSession({
+        mode: 'payment',
+        success_url: successURL,
+        cancel_url: cancelURL,
+        line_items: listItemByCart,
+        discounts: [{ coupon: coupon.id }]
       })
       return res.status(201).json({
         checkoutUrl: checkoutSession.url
-      })
+      });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
+  }else {
+    return res.status(400).json({error: 'Missing required parameters'})
   }
-
 }

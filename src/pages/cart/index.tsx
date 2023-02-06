@@ -40,7 +40,10 @@ export default function Cart () {
           }
         })
   
-        const response = await axios.post('/api/checkout', {listItemByCart, totalDiscountInPercentage})
+        const response = await axios.post('/api/checkout', {
+          listItemByCart, 
+          totalDiscountInPercentage: totalDiscountInPercentage.toFixed(2)
+        })
   
         const {checkoutUrl} = response.data
   
