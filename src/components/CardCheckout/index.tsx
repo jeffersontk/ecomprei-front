@@ -52,7 +52,7 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
             quantity: quantity,
           },
           discount: {
-            coupon: findMyDiscount(discount)
+            coupon: discount
           },
           productId: id
         })
