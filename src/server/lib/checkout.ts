@@ -27,7 +27,13 @@ interface CreateCheckoutSessionParams {
 
 export const createCheckoutSession = async (params: CreateCheckoutSessionParams) => {
   try {
-    return await stripe.checkout.sessions.create(params)
+    return await stripe.checkout.sessions.create({
+      ...params, 
+      shipping_address_collection: {allowed_countries: ['BR']},
+      phone_number_collection: {
+        enabled: true,
+      },
+     })
   } catch (error) {
     console.error(error)
     throw error
