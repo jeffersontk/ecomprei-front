@@ -1,4 +1,4 @@
-import { Box, FormLabel, Select } from '@chakra-ui/react'
+import { Box, FormLabel, Select, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 import { variantProduct } from 'prisma/prisma-client';
 import React, { useContext, useState } from 'react';
@@ -12,6 +12,7 @@ interface CartCardProps {
   imgUrl: string
   title: string
   price: number
+  discount: number
   sizes: sizeType[]
   sizeSelect?: string
   colors: variantProduct[]
@@ -23,6 +24,7 @@ export default function CartCard({
   imgUrl,
   title,
   price,
+  discount,
   sizes,
   colors,
   id,
@@ -51,16 +53,28 @@ export default function CartCard({
     });
   };
 
+  function calcularDesconto(precoTotal: number, porcentagemDesconto: number): number {
+    let result = precoTotal - (precoTotal * (porcentagemDesconto / 100))
+    return +result
+  }
+
   return (
     <CartProduct>
       <Image src={imgUrl} alt="" width={90} height={90} />
       <div className='details-content'>
         <div className='details'>
           <span className='product-name'>{title}</span>
-          <span>Uni: {new Intl.NumberFormat('pt-BR', {
+          <span className='product-price'>Uni: {new Intl.NumberFormat('pt-BR', {
               style: 'currency',
               currency: 'BRL',
-            }).format(price)}
+            }).format(calcularDesconto(price, discount))}~
+            <span className='discount'>
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(price)}
+            </span>
+            <span className='quantityDiscount'>OFF{discount}</span>
           </span>
           <Box display="flex" flexDirection="column" alignItems="flex-start" gap="2">
             {

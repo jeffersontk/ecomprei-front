@@ -60,8 +60,22 @@ export const CartProduct = styled('div', {
         fontSize: '1rem',
         fontWeight: 600,
 
+        
       },
-
+      '.product-price': {
+        fontWeight: 600,
+        
+        '.discount':{
+          color: '$red300'
+        },
+        '.quantityDiscount': {
+          marginLeft: '1rem',
+          background: '$white',
+          color: '$orange500',
+          borderRadius: '4px',
+          padding: '4px'
+        }
+      }
      
     },
 

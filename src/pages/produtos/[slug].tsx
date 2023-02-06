@@ -76,6 +76,7 @@ export default function Produtos({products}: any) {
               title={product.title}
               sizes={product.sizes}
               variantColors={product.variants}
+              priceDefaultId={product.default_price?.id}
               />
               ))
             }

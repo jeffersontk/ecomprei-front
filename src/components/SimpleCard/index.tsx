@@ -13,13 +13,14 @@ interface CardProps {
   id: string,
   price: number
   title: string
-  discount: number | null,
+  discount: number,
   imgUrl: string,
   sizes: sizeProduct[]
   variantColors: variantProduct[]
+  priceDefaultId: string
 }
 
-const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title, sizes, variantColors}) => {
+const SimpleCard: React.FC<CardProps> = ({id, discount = 0, imgUrl, price, title, sizes, variantColors, priceDefaultId}) => {
   const { addToCart, cartItems } = useContext(CartContext);
   
   function calcularDesconto(precoTotal: number, porcentagemDesconto: number): number {
@@ -44,13 +45,19 @@ const SimpleCard: React.FC<CardProps> = ({id, discount, imgUrl, price, title, si
           <CartButton 
             title={isProductIncludeInCart ? "já está no carrinho" : "adicionar ao carrinho"}
             onClick={()=> {
-              addToCart({id, title, price, variantColors, sizes: sizeSort, imgUrl, quantity: 1})
+              addToCart({id, title, price, variantColors, sizes: sizeSort, imgUrl, quantity: 1, priceDefaultId, discount})
             }}
           > 
             <BsCartPlus />
           </CartButton>
           <Link href={`/checkout/${id}`} prefetch={false}>
-            <Image src={imgUrl} alt="" className='productImage'  width={200} height={200} />
+            <Image 
+              src={imgUrl} 
+              alt={title} 
+              className='productImage' 
+              width={256} 
+              height={256}
+            />
           </Link>
         </ContentImage>
         <Link href={`/checkout/${id}`} prefetch={false}>

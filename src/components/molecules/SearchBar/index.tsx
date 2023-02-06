@@ -63,31 +63,41 @@ export default function SearchBar() {
         <PopoverContent
           width={600}
           maxH={400}
-          overflow="auto"
+          minWidth="390"
+          scrollBehavior="smooth"
+          overflowY="scroll"
         >
           <PopoverCloseButton />
-          <PopoverHeader color="orange.500">Procurando por {searchTerm}</PopoverHeader>
+          <PopoverHeader width="100%" color="orange.500">Procurando por {searchTerm}</PopoverHeader>
           <PopoverBody>
           {
             productFilter?.length > 0 ? 
             productFilter?.map((product: any) => (
             <Card
-              direction={{ base: 'column', sm: 'row' }}
-              overflow='hidden'
+              direction={{ base: 'row', sm: 'row' }}
               variant='outline'
+              p="2"
+              mb="2"
               key={product.id}
+              sx={{
+                img: {
+                  maxHeight: 'auto',
+                  objectFit: 'cover',
+                  maxWidth: '100px'
+                }
+              }}
             >
               <Image 
                 src={product.ImageUrl}
                 alt={product.title}
-                width={70}
+                width={90}
                 height={50}
               />
-              <Stack>
-                <CardBody>
+              <Stack w="100%">
+                <CardBody py="1" px="2">
                   <Heading size='md'>{product.title}</Heading>
                 </CardBody>
-                <CardFooter m="0" mt="0" pb="2" pr="2" p="0" justifyContent="flex-end" gap="2">
+                <CardFooter m="0" mt="0" p="0"  pb="2" pr="2" justifyContent="flex-end" gap="2">
                     <Link href={`/checkout/${product.id}`} prefetch={false}>
                       <Button variant='solid' colorScheme='orange' onClick={()=>{
                         setSearchTerm('')
@@ -108,7 +118,9 @@ export default function SearchBar() {
                           variantColors: product.variants, 
                           sizes: product.sizes,
                           imgUrl: product.ImageUrl, 
-                          quantity: 1
+                          quantity: 1,
+                          discount: product.discount,
+                          priceDefaultId: product.default_price?.id
                         })
                       }}
                     >
@@ -121,26 +133,60 @@ export default function SearchBar() {
             )) : 
             products?.data.map((product: any)=> (
               <Card
-              direction={{ base: 'column', sm: 'row' }}
-              overflow='hidden'
-              variant='outline'
-              key={product.id}
-            >
+                direction={{ base: 'row', sm: 'row' }}
+                variant='outline'
+                p="2"
+                mb="2"
+                key={product.id}
+                sx={{
+                  img: {
+                    maxHeight: 'auto',
+                    objectFit: 'cover',
+                    maxWidth: '100px'
+                  }
+                }}
+              >
               <Image 
                 src={product.ImageUrl}
                 alt={product.title}
-                width={70}
+                width={75}
                 height={50}
               />
-              <Stack>
-                <CardBody>
+              <Stack w="100%">
+                <CardBody  py="1" >
                   <Heading size='md'>{product.title}</Heading>
                 </CardBody>
-                <CardFooter>
-                  <Button variant='solid' colorScheme='blue'>
-                    comprar
-                  </Button>
-                </CardFooter>
+                <CardFooter m="0" mt="0" p="0"  pb="2" pr="2" justifyContent="flex-end" gap="2">
+                    <Link href={`/checkout/${product.id}`} prefetch={false}>
+                      <Button variant='solid' colorScheme='orange' onClick={()=>{
+                        setSearchTerm('')
+                        onClose()
+                      }}>
+                        Ver detalhes
+                      </Button>
+                    </Link>
+                    <Button 
+                      variant='outline' 
+                      colorScheme='orange' 
+                      gap="2"
+                      onClick={()=> {
+                        addToCart({
+                          id: product.id, 
+                          title: product.title,
+                          price: product.price, 
+                          variantColors: product.variants, 
+                          sizes: product.sizes,
+                          imgUrl: product.ImageUrl, 
+                          quantity: 1,
+                          discount: product.discount,
+                          priceDefaultId: product.default_price?.id
+                        })
+                      }}
+                    >
+                      <BsCartPlus />
+                      Adicionar
+                    </Button>
+                  </CardFooter>
               </Stack>
             </Card>
             ))
@@ -241,7 +287,9 @@ export default function SearchBar() {
                           variantColors: product.variants, 
                           sizes: product.sizes,
                           imgUrl: product.ImageUrl, 
-                          quantity: 1
+                          quantity: 1,
+                          discount: product.discount,
+                          priceDefaultId: product.default_price?.id
                         })
                       }}
                     >
@@ -286,7 +334,24 @@ export default function SearchBar() {
                               Ver detalhes
                             </Button>
                           </Link>
-                          <Button variant='outline' colorScheme='orange' gap="2">
+                          <Button 
+                            variant='outline' 
+                            colorScheme='orange' 
+                            gap="2"
+                            onClick={()=> {
+                              addToCart({
+                                id: product.id, 
+                                title: product.title,
+                                price: product.price, 
+                                variantColors: product.variants, 
+                                sizes: product.sizes,
+                                imgUrl: product.ImageUrl, 
+                                quantity: 1,
+                                discount: product.discount,
+                                priceDefaultId: product.default_price?.id
+                              })
+                            }}
+                          >
                             <BsCartPlus />
                             Adicionar
                           </Button>

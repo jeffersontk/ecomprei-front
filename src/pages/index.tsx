@@ -40,6 +40,7 @@ export default function Home({products}: HomeProps) {
                       title={product.title}
                       sizes={product.sizes}
                       variantColors={product.variants}
+                      priceDefaultId={product.default_price?.id}
                     />
                   )
                 }
@@ -54,6 +55,7 @@ export default function Home({products}: HomeProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getProducts()
+ 
   return {
     props: {
       products

@@ -1,5 +1,5 @@
 import { sizeProduct, variantProduct } from 'prisma/prisma-client';
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { sizeType } from '../utils/types/productsType';
 
 interface CartProviderProps  {
@@ -16,11 +16,13 @@ interface CartItem {
   quantity: number;
   colorSelect?: string;
   sizeSelect?: string;
+  priceDefaultId: string;
+  discount: number
 }
 
 interface CartContextData {
   cartItems: CartItem[];
-  getTotalPrice(cart: CartItem[]): number;
+  getTotalPrice(cart: CartItem[]): {totalPrice: number, totalDiscount: number, totalDiscountInPercentage: number, totalToPay: number};
   addToCart(item: CartItem): void;
   removeFromCart(index: number): void;
   updateQuantity(id: string, quantity: number): void;
@@ -31,17 +33,35 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+/*   const [cartItems, setCartItems] = useState<CartItem[]>(  
+    typeof window !== 'undefined'
+  ? JSON.parse(localStorage.getItem('cartItems') || '[]')
+  : []
+  ); */
 
-  const getTotalPrice = (cart: CartItem[]): number => {
-    let total = 0;
-    cart.forEach(item => {
-      total += item.price * item.quantity;
-    });
-    return total;
+  useEffect(() => {
+    setCartItems(JSON.parse(localStorage.getItem('cartItems') || '[]'));
+  }, []);
+
+  const getTotalPrice = (cart: CartItem[]): {totalPrice: number, totalDiscount: number, totalDiscountInPercentage: number, totalToPay: number} => {
+    const totalPrice = cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
+    const totalDiscount = cart.reduce((sum, product) => sum + (product.price * product.quantity * product.discount / 100), 0);
+    const totalDiscountInPercentage = (totalDiscount / totalPrice) * 100;
+    const totalToPay = totalPrice - totalDiscount;
+
+    return {
+      totalPrice,
+      totalDiscount,
+      totalDiscountInPercentage,
+      totalToPay,
+    };
   }
 
   const addToCart = (item: CartItem) => {
-    setCartItems([...cartItems, item]);
+    if (typeof window !== 'undefined') {
+      setCartItems([...cartItems, item]);
+      localStorage.setItem('cartItems', JSON.stringify([...cartItems, item]));
+    }
   };
 
   const removeFromCart = (index: number) => {

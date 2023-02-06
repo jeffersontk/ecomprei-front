@@ -1,23 +1,58 @@
-import Image from 'next/image';
 import React, { useContext, useEffect, useState } from 'react';
-import {BiTrash} from 'react-icons/bi';
-import { CartContainer, CartContent, CartProduct, CartResume } from '../../styles/pages/Cart';
+import { CartContainer, CartContent, CartResume } from '../../styles/pages/Cart';
 import { Divider } from '../../styles/pages/checkout';
 
 import Head from 'next/head';
 import { CartContext } from '../../context/CartContext';
-import { Box, FormLabel, Select, Text } from '@chakra-ui/react';
+import { Box, Text, useToast } from '@chakra-ui/react';
 import CartCard from '../../components/molecules/Cards/CartCard';
+import axios from 'axios';
+import { findMyDiscount } from '../../utils/findDiscount';
+import { stripe } from '../../server/lib/stripe';
 
 export default function Cart () {
   const { cartItems,  getTotalPrice} = useContext(CartContext);
+  const toast = useToast()
 
-  const [total, setTotal] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalDiscount, setTotalDiscount] = useState(0)
+  const [totalDiscountInPercentage, setTotalDiscountInPercentage] = useState(0)
+  const [totalToPay, setTotalToPay] = useState(0)
+
 
   useEffect(()=> {
-    let newPriceTotal = getTotalPrice(cartItems)
-    setTotal(newPriceTotal)
+    const {totalPrice,totalDiscount, totalToPay, totalDiscountInPercentage } = getTotalPrice(cartItems)
+
+    setTotalPrice(totalPrice)
+    setTotalDiscount(totalDiscount)
+    setTotalDiscountInPercentage(totalDiscountInPercentage)
+    setTotalToPay(totalToPay)
+
   }, [cartItems, getTotalPrice])
+
+  const handleCheckoutSession = async () => {
+    try {
+      const listItemByCart = cartItems.map(item => {
+        return {
+          price: item.priceDefaultId,
+          quantity: item.quantity,
+        }
+      })
+
+      const response = await axios.post('/api/checkout', {listItemByCart, totalDiscountInPercentage})
+
+      const {checkoutUrl} = response.data
+
+      window.location.href = checkoutUrl
+    } catch (error) {
+      toast({
+        title: 'Error inesperado',
+        description: "Produto não encontrado no provedor de pagamento",
+        status: 'error',
+        duration: 5000,
+      })
+    }
+  }
 
   return (
     <>
@@ -42,6 +77,7 @@ export default function Cart () {
                 imgUrl={item.imgUrl}
                 index={index}
                 price={item.price}
+                discount={item.discount}
                 sizes={item.sizes}
                 title={item.title}
                 colorSelect={item.colorSelect}
@@ -60,7 +96,14 @@ export default function Cart () {
               <strong>{new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
-              }).format(total)}</strong>
+              }).format(totalPrice)}</strong>
+            </div>
+            <div className='textContent'>
+              <span>Desconto</span>
+              <strong>{new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(totalDiscount)}</strong>
             </div>
             <div className='textContent'>
               <span>Frete</span>
@@ -72,9 +115,9 @@ export default function Cart () {
               <strong>{new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
-              }).format(total)}</strong>
+              }).format(totalToPay)}</strong>
             </div>
-            <button>Pagar agora</button>
+            <button onClick={handleCheckoutSession}>Pagar agora</button>
           </CartResume>
         }
       </CartContainer>

@@ -28,7 +28,7 @@ export const ContainerSectionCheckout = styled('section', {
 
 export const CardCheckoutContainer = styled('div', {
   width: '100%',
-  maxHeight: '680px',
+  maxHeight: '700px',
   padding: '1rem',
   borderRadius: '8px',
   background: '#f9f9f9',
@@ -86,8 +86,8 @@ export const DetailProduct = styled('div', {
 
 export const ContentSelects = styled('div', {
   display: 'flex',
+  flexDirection: 'column',
   gap: '1rem',
-  alignItems: 'center',
 
   div:{
     display: 'flex',

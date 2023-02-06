@@ -1,4 +1,5 @@
 import React from 'react';
+import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import Image from 'next/image';
 import image1 from '../../assets/hero/headsetAirProMax.webp'
@@ -12,11 +13,46 @@ import { SliderContainer } from './Slider';
 import Link from 'next/link';
 
 const Slider: React.FC = () => {
-
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+    {
+      loop: true,
+    },
+    [
+      (slider) => {
+        let timeout: ReturnType<typeof setTimeout>
+        let mouseOver = false
+        function clearNextTimeout() {
+          clearTimeout(timeout)
+        }
+        function nextTimeout() {
+          clearTimeout(timeout)
+          if (mouseOver) return
+          timeout = setTimeout(() => {
+            slider.next()
+          }, 2000)
+        }
+        slider.on("created", () => {
+          slider.container.addEventListener("mouseover", () => {
+            mouseOver = true
+            clearNextTimeout()
+          })
+          slider.container.addEventListener("mouseout", () => {
+            mouseOver = false
+            nextTimeout()
+          })
+          nextTimeout()
+        })
+        slider.on("dragStarted", clearNextTimeout)
+        slider.on("animationEnded", nextTimeout)
+        slider.on("updated", nextTimeout)
+      },
+    ]
+  )
 
   return (
     <>
-      <SliderContainer
+      <SliderContainer 
+        ref={sliderRef} 
         className="keen-slider"
         render={{"@initial": 'mobile', "@bp2": 'desktop'}}
         visible={{"@initial": 'show', "@bp2": 'hidden'}}
@@ -40,7 +76,8 @@ const Slider: React.FC = () => {
           <Image src={image3} alt="base beauty cream + esponja" />
         </div>
       </SliderContainer>
-      <SliderContainer
+      <SliderContainer 
+        ref={sliderRef} 
         className="keen-slider"
         render={{"@initial": 'mobile', "@bp2": 'desktop'}}
         visible={{"@initial": 'hidden', "@bp2": 'show'}}

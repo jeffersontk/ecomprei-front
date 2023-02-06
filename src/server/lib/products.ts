@@ -1,6 +1,7 @@
 import {PrismaClient} from 'prisma/prisma-client'
 import { ProductDto, ProductUpdate } from '../../utils/types/productsType'
 import { updateVariantImages } from './functionsUtes/util'
+import { stripe } from './stripe'
 
 const prisma = new PrismaClient()
 
@@ -14,12 +15,27 @@ export const getProducts = async () => {
       ImageUrl: true,
       highlighted: true,
       sizes: true,
-      variants: true
+      variants: true,
+      stripeProductId: true
     },
-  
   })
+
+  const ProductsInStripe = await stripe.products.list({
+    expand: ['data.default_price']
+  })
+
+  const productsWithDefaultPrice = products.map(product => {
+    const matchingStripeProduct = ProductsInStripe.data.find(stripeProduct => {
+      return stripeProduct.id === product.stripeProductId;
+    });
   
-  return products
+    return {
+      ...product,
+      default_price: matchingStripeProduct ? matchingStripeProduct.default_price : null,
+    };
+  });
+
+  return productsWithDefaultPrice
 }
 
 export const getProductsAllInfos = async () => {
@@ -223,7 +239,6 @@ export const putProduct = async (data: ProductUpdate) => {
 
   return product
 }
-
 
 export const deleteProduct = async (id: string) => {
   const delProduct = await prisma.product.delete({

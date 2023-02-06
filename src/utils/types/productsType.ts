@@ -31,6 +31,7 @@ export interface ProductUpdate {
   status: boolean,
   highlighted?: boolean,
   stripeProductId?: string
+  defaultPriceId: string
   itemRemoved?: imageUrlType[]
 }
 

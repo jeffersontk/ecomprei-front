@@ -7,8 +7,9 @@ import { getProductById } from '../../server/lib/products';
 import Head from 'next/head';
 import { getCopyByProductId } from '../../server/lib/copy';
 import { alternateArrays } from '../../utils/alternateArray';
-import { copyProduct, Product } from 'prisma/prisma-client';
 import { ProductUpdate } from '../../utils/types/productsType';
+import { stripe } from '../../server/lib/stripe';
+import Stripe from 'stripe';
 
 interface CheckoutProps {
   product: ProductUpdate
@@ -41,6 +42,7 @@ export default function Checkout({product, copy}:CheckoutProps) {
             sizes={product.sizes}
             title={product.title}
             productImage={product.ImageUrl}
+            priceDefaultId={product.defaultPriceId}
           />
         </ContainerSectionCheckout>
       </>
@@ -52,11 +54,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   
   return {
     paths: [
-      { 
-        params: {
-          id: '340fc891-ed78-4998-83b9-ee6b3dfdc6a4',
-        }
-      },
       { 
         params: {
           id: '8b72a599-f7f7-41fa-9108-b87381187858'
@@ -82,9 +79,19 @@ export const getStaticProps: GetStaticProps<any, {id: string}> = async ({params}
   const product = await getProductById(String(paramsId))
   const copy = await getCopyByProductId(String(paramsId))
   
+  const productInStripe = await stripe.products.list({
+    ids: [String(product?.stripeProductId)],
+    expand: ['data.default_price']
+  })
+
+  const priceInStripe = productInStripe.data[0]?.default_price as Stripe.Price
+
   return {
     props: {
-      product,
+      product: {
+        ...product,
+        defaultPriceId: priceInStripe?.id || null
+      },
       copy
     },
     revalidate: 60 * 60 * 1
