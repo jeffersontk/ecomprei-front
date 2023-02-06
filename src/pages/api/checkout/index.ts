@@ -2,26 +2,32 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import { createCheckoutSession, createCoupon } from '../../../server/lib/checkout';
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse) {
+  console.log('req.body', req.body)
   const {line_item, discount, productId, listItemByCart, totalDiscountInPercentage} = req.body;
   
-  if(line_item && discount) {
+  if(line_item) {
     try {
       const successURL = `${process.env.NEXT_URL}/success`;
       const cancelURL = `${process.env.NEXT_URL}/checkout/${productId}`;
-  
-      const coupon = await createCoupon(+discount);
-  
-      const checkoutSession = await createCheckoutSession({
-        mode: 'payment',
-        success_url: successURL,
-        cancel_url: cancelURL,
-        line_items: [ line_item ],
-        discounts: [{ coupon: coupon.id }]
-      })
-
-      return res.status(201).json({
-        checkoutUrl: checkoutSession.url
-      });
+      
+      const checkoutSession = discount > 0
+        ? await createCheckoutSession({
+          mode: 'payment',
+          success_url: successURL,
+          cancel_url: cancelURL,
+          line_items: [ line_item ],
+          discounts: [{ coupon: (await createCoupon(+discount)).id }]
+        })
+        : await createCheckoutSession({
+          mode: 'payment',
+          success_url: successURL,
+          cancel_url: cancelURL,
+          line_items: [ line_item ]
+        });
+          
+        return res.status(201).json({
+          checkoutUrl: checkoutSession.url
+        });
      } catch (error) {
       console.error(error);
      }
@@ -29,16 +35,22 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
     try {
       const successURL = `${process.env.NEXT_URL}/success`;
       const cancelURL = `${process.env.NEXT_URL}/cart`;
-  
-      const coupon = await createCoupon(+totalDiscountInPercentage);
-  
-      const checkoutSession = await createCheckoutSession({
+
+      const checkoutSession = totalDiscountInPercentage > 0
+      ? await createCheckoutSession({
         mode: 'payment',
         success_url: successURL,
         cancel_url: cancelURL,
         line_items: listItemByCart,
-        discounts: [{ coupon: coupon.id }]
+        discounts: [{ coupon: (await createCoupon(+totalDiscountInPercentage)).id }]
       })
+      : await createCheckoutSession({
+        mode: 'payment',
+        success_url: successURL,
+        cancel_url: cancelURL,
+        line_items: listItemByCart,
+      });
+
       return res.status(201).json({
         checkoutUrl: checkoutSession.url
       });

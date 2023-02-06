@@ -10,7 +10,7 @@ interface LineItem {
 }
 
 interface Discount {
-  coupon: string;
+  coupon?: string;
 }
 
 interface CartItem extends LineItem {
@@ -22,7 +22,7 @@ interface CreateCheckoutSessionParams {
   success_url: string;
   cancel_url: string;
   line_items: LineItem[];
-  discounts: Discount[];
+  discounts?: Discount[];
 }
 
 export const createCheckoutSession = async (params: CreateCheckoutSessionParams) => {

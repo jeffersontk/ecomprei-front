@@ -33,12 +33,7 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-/*   const [cartItems, setCartItems] = useState<CartItem[]>(  
-    typeof window !== 'undefined'
-  ? JSON.parse(localStorage.getItem('cartItems') || '[]')
-  : []
-  ); */
-
+  
   useEffect(() => {
     setCartItems(JSON.parse(localStorage.getItem('cartItems') || '[]'));
   }, []);
@@ -66,7 +61,8 @@ const CartProvider = ({ children }: CartProviderProps) => {
 
   const removeFromCart = (index: number) => {
     setCartItems(cartItems.filter((item, i) => i !== index));
-};
+    localStorage.setItem('cartItems', JSON.stringify(cartItems.filter((item, i) => i !== index)));
+  };
 
   const updateQuantity = (id: string, quantity: number) => {
     setCartItems(
