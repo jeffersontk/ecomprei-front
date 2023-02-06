@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import { sizeProduct, variantProduct } from 'prisma/prisma-client';
 import React, { createContext, useState, useEffect } from 'react';
 import { sizeType } from '../utils/types/productsType';
@@ -33,7 +34,9 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  
+  const toast = useToast()
+
+
   useEffect(() => {
     setCartItems(JSON.parse(localStorage.getItem('cartItems') || '[]'));
   }, []);
@@ -56,6 +59,12 @@ const CartProvider = ({ children }: CartProviderProps) => {
     if (typeof window !== 'undefined') {
       setCartItems([...cartItems, item]);
       localStorage.setItem('cartItems', JSON.stringify([...cartItems, item]));
+      toast({
+        title: '',
+        description: "Produto adicionado ao carrinho",
+        status: 'success',
+        duration: 2000,
+      })
     }
   };
 

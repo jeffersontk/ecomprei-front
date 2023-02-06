@@ -4,7 +4,7 @@ import { Divider } from '../../styles/pages/checkout';
 
 import Head from 'next/head';
 import { CartContext } from '../../context/CartContext';
-import { Box, Text, useToast } from '@chakra-ui/react';
+import { Box, Button, Text, useToast } from '@chakra-ui/react';
 import CartCard from '../../components/molecules/Cards/CartCard';
 import axios from 'axios';
 import { findMyDiscount } from '../../utils/findDiscount';
@@ -13,7 +13,8 @@ import { stripe } from '../../server/lib/stripe';
 export default function Cart () {
   const { cartItems,  getTotalPrice} = useContext(CartContext);
   const toast = useToast()
-
+  
+  const [isLoading, setIsLoading] = useState(false)
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalDiscount, setTotalDiscount] = useState(0)
   const [totalDiscountInPercentage, setTotalDiscountInPercentage] = useState(0)
@@ -31,6 +32,7 @@ export default function Cart () {
   }, [cartItems, getTotalPrice])
 
   const handleCheckoutSession = async () => {
+    setIsLoading(true)
     try {
       if(cartItems.length > 0 ){
         const listItemByCart = cartItems.map(item => {
@@ -44,13 +46,14 @@ export default function Cart () {
           listItemByCart, 
           totalDiscountInPercentage: totalDiscountInPercentage.toFixed(2)
         })
-  
+        
+        setIsLoading(false)
         const {checkoutUrl} = response.data
-  
         window.location.href = checkoutUrl
       }
     } catch (error) {
       console.error('error', error)
+      setIsLoading(false)
       toast({
         title: 'Error inesperado',
         description: "Produto não encontrado no provedor de pagamento",
@@ -123,7 +126,15 @@ export default function Cart () {
                 currency: 'BRL',
               }).format(totalToPay)}</strong>
             </div>
-            <button onClick={handleCheckoutSession}>Pagar agora</button>
+            <Button 
+              w="100%" 
+              colorScheme="orange" 
+              onClick={handleCheckoutSession}
+              isLoading={isLoading}
+              isDisabled={isLoading}
+            >
+              Pagar agora
+            </Button>
           </CartResume>
         }
       </CartContainer>

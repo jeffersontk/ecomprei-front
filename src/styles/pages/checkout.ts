@@ -28,7 +28,7 @@ export const ContainerSectionCheckout = styled('section', {
 
 export const CardCheckoutContainer = styled('div', {
   width: '100%',
-  maxHeight: '700px',
+  maxHeight: '100%',
   padding: '1rem',
   borderRadius: '8px',
   background: '#f9f9f9',

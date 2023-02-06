@@ -38,11 +38,13 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
   const [colorSelect, setColorSelect] = useState(colors[0]?.variant ?? '')
   const [sizeSelect, setSizeSelect] = useState(sizes[0]?.size ?? '')
   const [quantity, setQuantity] = useState(1)
+  const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
   
   const sortSizes = sortBySize(sizes)
 
   const handleCheckoutSession = async () => {
+    setIsLoading(true)
     try {
       if(priceDefaultId){
         const response = await axios.post('/api/checkout', {
@@ -54,14 +56,15 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
           productId: id
         })
   
+        setIsLoading(false)
         const {checkoutUrl} = response.data
-  
         window.location.href = checkoutUrl
       } else {
         throw new Error("id de produto não encontrado");
       }
     } catch (error) {
       console.error(error)
+      setIsLoading(false)
       toast({
         title: 'Error inesperado',
         description: "Produto não encontrado no provedor de pagamento",
@@ -156,9 +159,15 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
           }).format((price - calculateDiscount(price, discount)) * quantity)}</strong>
       </TotalPrice>
       
-      <ButtonCheckout onClick={handleCheckoutSession}>
+      <Button 
+        w="100%" 
+        colorScheme="orange" 
+        onClick={handleCheckoutSession}
+        isLoading={isLoading}
+        isDisabled={isLoading}
+      >
         Comprar
-      </ButtonCheckout>
+      </Button>
       <ButtonAddToCart 
         onClick={()=> {
           addToCart({id, title, price, variantColors: colors, 
