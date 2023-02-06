@@ -44,21 +44,27 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
 
   const handleCheckoutSession = async () => {
     try {
-      const response = await axios.post('/api/checkout', {
-        line_item: {
-          price: priceDefaultId,
-          quantity: quantity,
-        },
-        discount: {
-          coupon: findMyDiscount(discount)
-        },
-        productId: id
-      })
-
-      const {checkoutUrl} = response.data
-
-      window.location.href = checkoutUrl
+      console.log('priceDefaultId', priceDefaultId)
+      if(priceDefaultId){
+        const response = await axios.post('/api/checkout', {
+          line_item: {
+            price: priceDefaultId,
+            quantity: quantity,
+          },
+          discount: {
+            coupon: findMyDiscount(discount)
+          },
+          productId: id
+        })
+  
+        const {checkoutUrl} = response.data
+  
+        window.location.href = checkoutUrl
+      } else {
+        throw new Error("id de produto não encontrado");
+      }
     } catch (error) {
+      console.error(error)
       toast({
         title: 'Error inesperado',
         description: "Produto não encontrado no provedor de pagamento",

@@ -32,19 +32,22 @@ export default function Cart () {
 
   const handleCheckoutSession = async () => {
     try {
-      const listItemByCart = cartItems.map(item => {
-        return {
-          price: item.priceDefaultId,
-          quantity: item.quantity,
-        }
-      })
-
-      const response = await axios.post('/api/checkout', {listItemByCart, totalDiscountInPercentage})
-
-      const {checkoutUrl} = response.data
-
-      window.location.href = checkoutUrl
+      if(cartItems.length > 0 ){
+        const listItemByCart = cartItems.map(item => {
+          return {
+            price: item.priceDefaultId,
+            quantity: item.quantity,
+          }
+        })
+  
+        const response = await axios.post('/api/checkout', {listItemByCart, totalDiscountInPercentage})
+  
+        const {checkoutUrl} = response.data
+  
+        window.location.href = checkoutUrl
+      }
     } catch (error) {
+      console.error('error', error)
       toast({
         title: 'Error inesperado',
         description: "Produto não encontrado no provedor de pagamento",

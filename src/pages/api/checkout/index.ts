@@ -13,6 +13,12 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
    try {
     const successURL = `${process.env.NEXT_URL}/success`
     const cancelURL = `${process.env.NEXT_URL}/checkout/${productId}`
+
+    const coupon = await stripe.coupons.create({
+      percent_off: discount,
+      name: `OFF${discount}`
+    });
+
     const checkoutSession = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
@@ -22,7 +28,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
         line_item
       ],  
       discounts: [{
-        coupon: discount.coupon
+        coupon: coupon.id
       }]
     })
     return res.status(201).json({
