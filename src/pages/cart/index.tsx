@@ -4,7 +4,7 @@ import { Divider } from '../../styles/pages/checkout';
 
 import Head from 'next/head';
 import { CartContext } from '../../context/CartContext';
-import { Box, Button, Text, useToast } from '@chakra-ui/react';
+import { Box, Button, Flex, Text, useToast } from '@chakra-ui/react';
 import CartCard from '../../components/molecules/Cards/CartCard';
 import axios from 'axios';
 import { findMyDiscount } from '../../utils/findDiscount';
@@ -72,28 +72,36 @@ export default function Cart () {
         <CartContent>
           <h2>Meu carrinho</h2>
           <Divider />
-          {
-            cartItems.length === 0 ?
-              <Box>
-                <Text>Carrinho vazio</Text>
-              </Box>
-            :
-            cartItems.map((item, index) => (
-              <CartCard
-                key={index}
-                colors={item.variantColors}
-                id={item.id}
-                imgUrl={item.imgUrl}
-                index={index}
-                price={item.price}
-                discount={item.discount}
-                sizes={item.sizes}
-                title={item.title}
-                colorSelect={item.colorSelect}
-                sizeSelect={item.sizeSelect}
-              />
-            ))
-          }
+          <Flex 
+            maxW={{ base: '100%', sm: '370px', lg: '100%' }}
+            gap="1"
+            flexDirection={{base: 'row', sm: 'row',  md: 'row', lg: 'column'}}
+            overflowX={{base: 'scroll', sm: 'scroll', lg: 'hidden'}}
+            whiteSpace="nowrap"
+          >
+            {
+              cartItems.length === 0 ?
+                <Box>
+                  <Text>Carrinho vazio</Text>
+                </Box>
+              :
+              cartItems.map((item, index) => (
+                <CartCard
+                  key={index}
+                  colors={item.variantColors}
+                  id={item.id}
+                  imgUrl={item.imgUrl}
+                  index={index}
+                  price={item.price}
+                  discount={item.discount}
+                  sizes={item.sizes}
+                  title={item.title}
+                  colorSelect={item.colorSelect}
+                  sizeSelect={item.sizeSelect}
+                />
+              ))
+            }
+          </Flex>
         </CartContent>
         {
            cartItems.length !== 0 &&

@@ -1,10 +1,11 @@
-import { Box, FormLabel, Select, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, FormLabel, Heading, IconButton, Select, Stack, Text, Image as ImageChakra, Flex, Divider, CardFooter } from '@chakra-ui/react'
 import Image from 'next/image'
 import { variantProduct } from 'prisma/prisma-client';
 import React, { useContext, useState } from 'react';
-import { BiTrash } from 'react-icons/bi'
+import { BiMinus, BiTrash } from 'react-icons/bi'
+import { BsPlusLg } from 'react-icons/bs';
 import { CartContext } from '../../../../context/CartContext';
-import { CartProduct } from '../../../../styles/pages/Cart'
+import { BoxImage, CartProduct } from '../../../../styles/pages/Cart'
 import { sizeType, } from '../../../../utils/types/productsType'
 
 interface CartCardProps {
@@ -59,71 +60,105 @@ export default function CartCard({
   }
 
   return (
-    <CartProduct>
-      <Image src={imgUrl} alt="" width={90} height={90} />
-      <div className='details-content'>
-        <div className='details'>
-          <span className='product-name'>{title}</span>
-          <span className='product-price'>Uni: {new Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            }).format(calcularDesconto(price, discount))}~
-            <span className='discount'>
+    <Card 
+      minW={300} 
+      mb="2" 
+      ml="1" 
+      mr="1"  
+      direction={{ base: 'column', sm: 'column',  md: 'column', lg: 'row' }}
+      overflow='hidden'
+      variant='outline'
+    >
+      <BoxImage render={{'@initial': 'mobile', "@bp2": 'desktop'}}>
+        <Image src={imgUrl} alt={title} width={300} height={70} />
+      </BoxImage>
+      <Stack w="100%">
+      <CardBody justifyContent="center" p="2">
+        <Stack mt='2' spacing='3'>
+          <Heading color='gray.700' size='sm' maxW={300} textOverflow="ellipsis" overflow="hidden">{title}</Heading>
+          <Flex alignItems="center">
+            <Text color='gray.700' fontSize='xl'>
               {new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
-              }).format(price)}
-            </span>
-            <span className='quantityDiscount'>OFF{discount}</span>
-          </span>
-          <Box display="flex" flexDirection="column" alignItems="flex-start" gap="2">
-            {
-              sizes && 
-              sizes.length > 0 &&
-              <Box display="flex" alignItems="flex-start">
-                <FormLabel htmlFor="#" margin={0} mr="1">Tamanho:</FormLabel>
-                <Select height={'6'} value={newSizeSelect.length === 0 ? sizeSelect : newSizeSelect} onChange={(e)=> setNewSizeSelect(e.target.value)}>
-                  {sizes.map(item=> {
-                    if(item.size) {
-                      return (
-                        <option key={item.id} value={item.size}>{item.size}</option>
+              }).format(calcularDesconto(price, discount))}
+              ~ 
+              </Text>
+              <Text as='del' color='red.500' textDecoration="">
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                }).format(price)}
+            </Text>
+          </Flex>
+        </Stack>
+      </CardBody>
+      <Divider color="gray.300"/>
+      <CardFooter p="2" gap="2" minH="66px" alignItems="flex-end" justifyContent="space-between">
+        <Box display="flex" alignItems="flex-start" gap="2">
+          {
+            colors &&
+            colors.length > 0 &&
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <FormLabel htmlFor="#" margin={0} mr="1">Cor</FormLabel>
+              <Select height={'6'} value={newColorSelect.length === 0 ? colorSelect : newColorSelect} onChange={(e)=> setNewColorSelect(e.target.value)}>
+                {colors.map(item=> {
+                  if(item.variant) {
+                    return (
+                      <option key={item.id} value={item.variant}>{item.variant}</option>
                       )
                     }
                   })}
-                </Select>
-              </Box>
-            }
-            {
-              colors &&
-              colors.length > 0 &&
-              <Box display="flex" alignItems="flex-start">
-                <FormLabel htmlFor="#" margin={0} mr="1">Cor:</FormLabel>
-                <Select height={'6'} value={newColorSelect.length === 0 ? colorSelect : newColorSelect} onChange={(e)=> setNewColorSelect(e.target.value)}>
-                  {colors.map(item=> {
-                    if(item.variant) {
-                      return (
-                        <option key={item.id} value={item.variant}>{item.variant}</option>
+              </Select>
+            </Box>
+          }
+          {
+            sizes && 
+            sizes.length > 0 &&
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <FormLabel htmlFor="#" margin={0} mr="1">Tamanho</FormLabel>
+              <Select height={'6'} value={newSizeSelect.length === 0 ? sizeSelect : newSizeSelect} onChange={(e)=> setNewSizeSelect(e.target.value)}>
+                {sizes.map(item=> {
+                  if(item.size) {
+                    return (
+                      <option key={item.id} value={item.size}>{item.size}</option>
                       )
                     }
                   })}
-                </Select>
-              </Box>
-            }
-          </Box>
-        </div>
-        <div className='total'>
-          <button onClick={()=> removeFromCart(index)}><BiTrash size={24}/></button>
-          <div className='count'>
-            <button onClick={()=> {
-              handleDecrement(id)
-            }}>-</button>
-            <span>{quantity}</span>
-            <button onClick={()=> {
+              </Select>
+            </Box>
+          }
+        </Box>
+        <Box display="flex" alignItems="center" gap="2">
+          <IconButton
+            isRound
+            size="sm"
+            aria-label=''
+            icon={quantity > 1 ? <BiMinus size={14} /> : <BiTrash size={14} /> }
+            color={quantity > 1 ? 'gray.700' : 'red.500'}
+            onClick={()=> {
+              if(quantity > 1) {
+                handleDecrement(id)
+              }else {
+                removeFromCart(index)
+              }
+            }}
+          />
+          <Text fontSize="2xl">{quantity}</Text>
+          <IconButton
+            isRound
+            size="sm"
+            aria-label=''
+            color="gray.700"
+            icon={<BsPlusLg size={12}/>}
+            onClick={()=> {
               handleIncrement(id)
-            }}>+</button>
-          </div>
-        </div>
-      </div>
-    </CartProduct>
+            }}
+            >
+          </IconButton>
+        </Box>
+      </CardFooter>
+      </Stack>
+    </Card>
   )
 }

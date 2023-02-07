@@ -21,10 +21,31 @@ export const CartContainer = styled('section', {
   }
 })
 
+export const BoxImage = styled('div', {
+  padding: '0.5rem',
+}, {
+  variants: {
+    render: {
+      desktop: {
+        img:{
+          width: '200px',
+          borderRadius: '8px'
+        }
+      },
+      mobile: {
+        img: {
+          borderRadius: '8px'
+        }
+      }
+    }
+  }
+})
+
 export const CartContent = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+  padding: '1rem',
 
   h2: {
     color: '$graphite',
@@ -39,7 +60,7 @@ export const CartProduct = styled('div', {
   borderRadius: '4px',
 
   img:{
-    width: '100px',
+    width: '70px',
     height: 'auto',
     objectFit: 'contain',
   },
@@ -47,6 +68,7 @@ export const CartProduct = styled('div', {
   '.details-content': {
     width: '100%',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
 
@@ -57,10 +79,12 @@ export const CartProduct = styled('div', {
       color: '$graphite',
       
       '.product-name': {
+        maxWidth: '250px',
         fontSize: '1rem',
         fontWeight: 600,
-
-        
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',  
       },
       '.product-price': {
         fontWeight: 600,
@@ -88,15 +112,13 @@ export const CartProduct = styled('div', {
       gap: '0.5rem',
 
       svg: {
-        color: '$red300',
-       
         '&:hover':{
           opacity: '0.8',
           cursor: 'pointer'
         }
       },
 
-      '.count': {
+     /*  '.count': {
         display: 'flex',
         alignItems: 'center',
         gap: '0.5rem',
@@ -114,7 +136,7 @@ export const CartProduct = styled('div', {
             cursor: 'pointer'
           }
         }
-      }
+      } */
     }
   }
 })
