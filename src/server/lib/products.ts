@@ -28,7 +28,7 @@ export const getProducts = async () => {
     const matchingStripeProduct = ProductsInStripe.data.find(stripeProduct => {
       return stripeProduct.id === product.stripeProductId;
     });
-  
+
     return {
       ...product,
       default_price: matchingStripeProduct ? matchingStripeProduct.default_price : null,

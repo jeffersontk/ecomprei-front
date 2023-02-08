@@ -52,6 +52,9 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
             price: priceDefaultId,
             quantity: quantity,
           },
+          metadata: {
+            description: `cor: ${colorSelect} - tamanho: ${sizeSelect}`
+          },
           discount: discount,
           productId: id
         })
@@ -60,6 +63,7 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
         const {checkoutUrl} = response.data
         window.location.href = checkoutUrl
       } else {
+        setIsLoading(false)
         throw new Error("id de produto não encontrado");
       }
     } catch (error) {

@@ -23,6 +23,7 @@ interface CreateCheckoutSessionParams {
   cancel_url: string;
   line_items: LineItem[];
   discounts?: Discount[];
+  metadata?: any
 }
 
 export const createCheckoutSession = async (params: CreateCheckoutSessionParams) => {
@@ -33,6 +34,7 @@ export const createCheckoutSession = async (params: CreateCheckoutSessionParams)
       phone_number_collection: {
         enabled: true,
       },
+      /* payment_method_types: ['card', 'pix', 'boleto'] */
      })
   } catch (error) {
     console.error(error)

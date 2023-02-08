@@ -2,8 +2,7 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import { createCheckoutSession, createCoupon } from '../../../server/lib/checkout';
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse) {
-  console.log('req.body', req.body)
-  const {line_item, discount, productId, listItemByCart, totalDiscountInPercentage} = req.body;
+  const {line_item, discount, productId, listItemByCart, totalDiscountInPercentage, metadata} = req.body;
   
   if(line_item) {
     try {
@@ -16,15 +15,17 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
           success_url: successURL,
           cancel_url: cancelURL,
           line_items: [ line_item ],
-          discounts: [{ coupon: (await createCoupon(+discount)).id }]
+          discounts: [{ coupon: (await createCoupon(+discount)).id }],
+          metadata
         })
         : await createCheckoutSession({
           mode: 'payment',
           success_url: successURL,
           cancel_url: cancelURL,
-          line_items: [ line_item ]
+          line_items: [ line_item ],
+          metadata
         });
-          
+        
         return res.status(201).json({
           checkoutUrl: checkoutSession.url
         });
