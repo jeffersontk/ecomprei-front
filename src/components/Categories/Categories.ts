@@ -40,8 +40,11 @@ export const CategoriesList = styled('ul', {
         gap: '1.5rem',
         padding: '1rem',
         maxWidth: '390px',
-        overflow: 'scroll',
-
+        overflowY: 'scroll',
+        scrollbarWidth: 'none',
+        '&::-webkit-scrollbar': {
+          display: 'none'
+        },
         li:{
           a: {
             fontSize: '0.875rem',
