@@ -52,6 +52,7 @@ export const ContentText = styled('div', {
     display: 'flex',
     gap: '1rem',
     alignItems: 'flex-end',
+    justifyContent: 'space-between'
   }
 }, {
   variants: {

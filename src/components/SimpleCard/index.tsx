@@ -63,7 +63,7 @@ const SimpleCard: React.FC<CardProps> = ({id, discount = 0, imgUrl, price, title
         <Link href={`/checkout/${id}`} prefetch={false}>
         <ContentText render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <h4>{title}</h4>
-          <div>
+          <div className='prices'>
             {
               discount ?
               <Price>{new Intl.NumberFormat('pt-BR', {
@@ -77,7 +77,10 @@ const SimpleCard: React.FC<CardProps> = ({id, discount = 0, imgUrl, price, title
             }
             {
               discount ?
-              <RealPrice>R$ {price}</RealPrice>
+              <RealPrice>{new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(price)}</RealPrice>
               : <div />
             }
           </div>

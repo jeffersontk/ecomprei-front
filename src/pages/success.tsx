@@ -7,6 +7,7 @@ import { SuccessContainer, StatusCheckout, ProductCheckout, StatusBar } from '..
 import "keen-slider/keen-slider.min.css"
 import { GetServerSideProps } from 'next'
 import { stripe } from '../server/lib/stripe'
+import Head from 'next/head'
 
 type product = {
   name: string;
@@ -29,6 +30,11 @@ export default function Success({customerName, products}: SuccessProp) {
   })
 
   return (
+    <>
+    <Head>
+      <title>Compra efetuada | É comprei</title>
+      <meta name='robots' content='noindex' />
+    </Head>
     <SuccessContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
       <StatusCheckout render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
         <div className='headerText'>
@@ -87,6 +93,7 @@ export default function Success({customerName, products}: SuccessProp) {
         </div>
       </ProductCheckout>
     </SuccessContainer>
+    </>
   )
 }
 

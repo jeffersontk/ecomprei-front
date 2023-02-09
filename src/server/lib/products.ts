@@ -63,6 +63,8 @@ export const getProductsByCategory = async (category: string) => {
       discount: true,
       ImageUrl: true,
       highlighted: true,
+      subCategory: true,
+      category: true,
     }
   })
 

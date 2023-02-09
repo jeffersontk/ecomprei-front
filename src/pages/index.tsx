@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Banner from "../components/Banner";
@@ -24,6 +24,7 @@ export default function Home({products}: HomeProps) {
 
         <SectionHighlighted render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <Categories />
+          <Box px="1rem">
           <Text py="2rem" fontWeight={600} color={'orange.500'} fontSize="lg">Destaques da semana</Text>
           <GridCards render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
             {
@@ -47,6 +48,7 @@ export default function Home({products}: HomeProps) {
               })
             }
           </GridCards>
+          </Box>
         </SectionHighlighted>
       </Container>
      </> 

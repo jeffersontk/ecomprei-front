@@ -2,25 +2,21 @@ import Link from 'next/link';
 import React, {useEffect, useState} from 'react';
 import Categories from '../../components/Categories';
 import { GridCards } from '../../styles/pages/home';
-import { Container, FilterSection, Product, ProductSlider } from '../../styles/pages/produtos';
+import { Container, FilterSection } from '../../styles/pages/produtos';
 import { useRouter } from "next/router"
 import SimpleCard from '../../components/SimpleCard';
 import Slider from '../../components/Slider';
 import { getProductsByCategory } from '../../server/lib/products';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
+import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
+import notFound from '../../assets/notFound.svg'
+import Image from 'next/image';
 
 export default function Produtos({products}: any) {
   const { query } = useRouter()
+  const [filterProducts, setFilterProducts] = useState([])
   const title = query.slug || 'Moda'
-  const subtitle = query.filtro || 'Feminina'
-
-  const isActive = (find: string) => {
-    if(subtitle.includes(find)){
-      return 'active'
-    }
-    return ''
-  }
 
   const formatTitle = (title:string) => {
     let format = title
@@ -34,6 +30,15 @@ export default function Produtos({products}: any) {
     }
   }
 
+  const handleFilterProducts = (param: string) => {
+    const filter = products.filter((product: any) => {
+      if(product.subCategory === param){
+        return product
+      }
+    })
+    setFilterProducts(filter)
+  }
+
   return (
     <>
       <Head>
@@ -43,44 +48,130 @@ export default function Produtos({products}: any) {
         <Slider />
         <Categories />
 
+        <Tabs colorScheme="orange">
         <FilterSection render={{'@initial': 'mobile', '@bp2': 'desktop'}} id="productsGrid">
-          <h2>{formatTitle(String(title))} {query.filtro && `/ ${String(subtitle).toUpperCase()}`}</h2>
-          {/* {
-            title === 'moda' &&
-            <ul>
-            <li className={isActive('todos')}>
-            <Link href="/produtos/moda?filtro=todos">Todos</Link>
-            </li>
-            <li className={isActive('feminina')}>
-            <Link href="/produtos/moda?filtro=feminina">Feminina</Link>
-            </li>
-            <li className={isActive('masculino')}>
-            <Link href="/produtos/moda?filtro=masculino">Masculina</Link>
-            </li>
-            <li className={isActive('infantil')}>
-            <Link href="/produtos/moda?filtro=infantil">Infantil</Link>
-            </li>
-            </ul>
-          } */}
-        </FilterSection>
-        <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
+          <h2>{formatTitle(String(title))}</h2>
           {
-            products &&
-            products.map((product:any) => (
-              <SimpleCard  
-              key={product.id} 
-              id={product.id}
-              discount={product.discount}
-              imgUrl={product.ImageUrl}
-              price={product.price}
-              title={product.title}
-              sizes={product.sizes}
-              variantColors={product.variants}
-              priceDefaultId={product.default_price?.id}
-              />
-              ))
+            title === 'moda' &&
+            <TabList>
+              <Tab>Todos</Tab>
+              <Tab onClick={()=> handleFilterProducts('feminina')}>Feminina</Tab>
+              <Tab onClick={()=> handleFilterProducts('masculina')}>Masculina</Tab>
+              <Tab onClick={()=> handleFilterProducts('infantil')}>Infantil</Tab>
+            </TabList>
+          }
+        </FilterSection>
+        <TabPanels p="0">
+          <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
+            {
+              products.length > 0 ?
+              <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
+                { 
+                  products.map((product:any) => (
+                    <SimpleCard  
+                    key={product.id} 
+                    id={product.id}
+                    discount={product.discount}
+                    imgUrl={product.ImageUrl}
+                    price={product.price}
+                    title={product.title}
+                    sizes={product.sizes}
+                    variantColors={product.variants}
+                    priceDefaultId={product.default_price?.id}
+                    />
+                  )) 
+                }
+              </GridCards>
+              :
+              <Flex w="100%" justifyContent="center" alignItems="center" flexDirection="column">
+                <Image src={notFound} alt="not Found" width={300} height={200}/>
+                <Text fontWeight="semibold" color="gray.500">Não encontramos esse tipo de produto</Text>
+              </Flex>
             }
-        </GridCards>
+          </TabPanel>
+          <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
+            {
+              filterProducts.length > 0 ?
+              <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
+                { 
+                  filterProducts.map((product:any) => (
+                    <SimpleCard  
+                    key={product.id} 
+                    id={product.id}
+                    discount={product.discount}
+                    imgUrl={product.ImageUrl}
+                    price={product.price}
+                    title={product.title}
+                    sizes={product.sizes}
+                    variantColors={product.variants}
+                    priceDefaultId={product.default_price?.id}
+                    />
+                  )) 
+                }
+              </GridCards>
+              :
+              <Flex w="100%" justifyContent="center" alignItems="center" flexDirection="column">
+                <Image src={notFound} alt="not Found" width={300} height={200}/>
+                <Text fontWeight="semibold" color="gray.500">Não encontramos esse tipo de produto</Text>
+              </Flex>
+            }
+          </TabPanel>
+          <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
+            {
+              filterProducts.length > 0 ?
+              <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
+                { 
+                  filterProducts.map((product:any) => (
+                    <SimpleCard  
+                    key={product.id} 
+                    id={product.id}
+                    discount={product.discount}
+                    imgUrl={product.ImageUrl}
+                    price={product.price}
+                    title={product.title}
+                    sizes={product.sizes}
+                    variantColors={product.variants}
+                    priceDefaultId={product.default_price?.id}
+                    />
+                  )) 
+                }
+              </GridCards>
+              :
+              <Flex w="100%" justifyContent="center" alignItems="center" flexDirection="column">
+                <Image src={notFound} alt="not Found" width={300} height={200}/>
+                <Text fontWeight="semibold" color="gray.500">Não encontramos esse tipo de produto</Text>
+              </Flex>
+            }
+          </TabPanel>
+          <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
+            {
+              filterProducts.length > 0 ?
+              <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
+                { 
+                  filterProducts.map((product:any) => (
+                    <SimpleCard  
+                    key={product.id} 
+                    id={product.id}
+                    discount={product.discount}
+                    imgUrl={product.ImageUrl}
+                    price={product.price}
+                    title={product.title}
+                    sizes={product.sizes}
+                    variantColors={product.variants}
+                    priceDefaultId={product.default_price?.id}
+                    />
+                  )) 
+                }
+              </GridCards>
+              :
+              <Flex w="100%" justifyContent="center" alignItems="center" flexDirection="column">
+                <Image src={notFound} alt="not Found" width={300} height={200}/>
+                <Text fontWeight="semibold" color="gray.500">Não encontramos esse tipo de produto</Text>
+              </Flex>
+            }
+          </TabPanel>
+        </TabPanels>
+        </Tabs>
       </Container>
     </>
   );

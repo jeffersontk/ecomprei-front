@@ -46,7 +46,7 @@ export const GridCards = styled('div', {
   variants: {
     render: {
       mobile: {
-        gridTemplateColumns: 'repeat(2, minmax(185px, 100%))',
+        gridTemplateColumns: 'repeat(2, minmax(170px, 100%))',
         justifyItems: 'center',
         alignItems: 'center',
         width: '100%',

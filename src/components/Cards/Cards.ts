@@ -146,7 +146,7 @@ export const Content = styled('div', {
 
 export const Price = styled('strong', {
   display: 'flex',
-  fontSize: '1.25rem',
+  fontSize: '1rem',
   color: '$black',
 
   span: {
