@@ -43,13 +43,15 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
         success_url: successURL,
         cancel_url: cancelURL,
         line_items: listItemByCart,
-        discounts: [{ coupon: (await createCoupon(+totalDiscountInPercentage)).id }]
+        discounts: [{ coupon: (await createCoupon(+totalDiscountInPercentage)).id }],
+        metadata
       })
       : await createCheckoutSession({
         mode: 'payment',
         success_url: successURL,
         cancel_url: cancelURL,
         line_items: listItemByCart,
+        metadata
       });
 
       return res.status(201).json({

@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import { Analytics } from '@vercel/analytics/react';
 import { ChakraProvider } from '@chakra-ui/react'
 import { AnimatePresence } from 'framer-motion'
 import Footer from '../components/Footer';
@@ -32,6 +33,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
               </ContentFooter>
             </FooterContainer>
           </Container>
+          <Analytics />
         </AnimatePresence>        
       </CartProvider>
     </ChakraProvider>
