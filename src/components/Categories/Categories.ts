@@ -38,7 +38,7 @@ export const CategoriesList = styled('ul', {
         display: 'flex',
         alignItems: 'center',
         gap: '1.5rem',
-        padding: '1rem',
+        padding: '1rem 0',
         maxWidth: '390px',
         overflowY: 'scroll',
         scrollbarWidth: 'none',

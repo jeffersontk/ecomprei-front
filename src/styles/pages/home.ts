@@ -26,6 +26,8 @@ export const SectionHighlighted = styled('section', {
       mobile:{
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
 
         h2:{
           marginLeft: '1rem',
