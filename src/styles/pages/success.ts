@@ -11,7 +11,8 @@ export const SuccessContainer = styled('section', {
   variants: {
     render: {
       desktop: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        height: '400px',
       },
       mobile: {
         flexDirection: 'column',
@@ -25,6 +26,7 @@ export const StatusCheckout = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '2rem',
+  
 
   '.headerText': {
     h2: {
@@ -34,13 +36,19 @@ export const StatusCheckout = styled('div', {
     },
     span:{
       fontSize: '1.25rem',
+      marginTop: '1rem',
     }
+  },
+
+  '.contact-text': {
+    color: '#2D3748',
+    fontWeight: 500,
   }
 }, {
   variants: {
     render: {
       desktop: {
-        width: '70%',
+        width: '75%',
       },
       mobile: {
         width: '90%'
@@ -102,7 +110,10 @@ export const StatusBar = styled('div', {
 }, {
   variants: {
     render: {
-      desktop: {},
+      desktop: {
+        maxWidth: '100%',
+        overflow: 'hidden'
+      },
       mobile: {
         maxWidth: '370px',
         overflow: 'scroll',
@@ -121,13 +132,18 @@ export const ProductCheckout = styled('div', {
   alignItems: 'center',
   gap: '1rem',
 
+  '.box':{
+    minWidth: '200px !important',
+  },
   img: {
     borderRadius: '4px',
+    width: '200px !important',
+    height: '200px',
+    objectFit: 'contain',
   },
   
   h3: {
     maxWidth: '200px',
-    textAlign: 'center',
     color: '#2D3748',
     fontSize: '1rem',
     fontWeight: 600,

@@ -7,8 +7,8 @@ import { CartContext } from '../../context/CartContext';
 import { Box, Button, Flex, Text, useToast } from '@chakra-ui/react';
 import CartCard from '../../components/molecules/Cards/CartCard';
 import axios from 'axios';
-import { findMyDiscount } from '../../utils/findDiscount';
-import { stripe } from '../../server/lib/stripe';
+import emptyCart from '../../assets/emptyCart.svg'
+import Image from 'next/image';
 
 export default function Cart () {
   const { cartItems,  getTotalPrice} = useContext(CartContext);
@@ -19,7 +19,6 @@ export default function Cart () {
   const [totalDiscount, setTotalDiscount] = useState(0)
   const [totalDiscountInPercentage, setTotalDiscountInPercentage] = useState(0)
   const [totalToPay, setTotalToPay] = useState(0)
-
 
   useEffect(()=> {
     const {totalPrice,totalDiscount, totalToPay, totalDiscountInPercentage } = getTotalPrice(cartItems)
@@ -41,7 +40,7 @@ export default function Cart () {
             quantity: item.quantity,
           }
         })
-  
+        console.log('')
         const response = await axios.post('/api/checkout', {
           listItemByCart, 
           totalDiscountInPercentage: totalDiscountInPercentage.toFixed(2)
@@ -70,7 +69,7 @@ export default function Cart () {
       </Head>
       <CartContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
         <CartContent>
-          <h2>Meu carrinho</h2>
+          <Text fontSize="2xl" color="gray.400">Meu carrinho</Text>
           <Divider />
           <Flex 
             maxW={{ base: '100%', sm: '370px', lg: '100%' }}
@@ -81,9 +80,10 @@ export default function Cart () {
           >
             {
               cartItems.length === 0 ?
-                <Box>
-                  <Text>Carrinho vazio</Text>
-                </Box>
+                <Flex w="100%" h="300px" justifyContent="center" alignItems="center" flexDirection="column">
+                  <Image src={emptyCart} alt="" width={300} height={300}/>
+                  <Text fontSize="3xl" color="gray.400">Seu carrinho esta vazio</Text>
+                </Flex>
               :
               cartItems.map((item, index) => (
                 <CartCard

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.shopify.com", "ik.imagekit.io"],
+    domains: ["cdn.shopify.com", "ik.imagekit.io", "files.stripe.com"],
     formats: ["image/webp"],
     remotePatterns: [
       {
@@ -10,6 +10,10 @@ const nextConfig = {
         hostname: 'ik.imagekit.io',
         pathname: '/wk5c55kzi/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'files.stripe.com',
+      }
     ],
   }
 }

@@ -6,7 +6,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
   
   if(line_item) {
     try {
-      const successURL = `${process.env.NEXT_URL}/success`;
+      const successURL = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`;
       const cancelURL = `${process.env.NEXT_URL}/checkout/${productId}`;
       
       const checkoutSession = discount > 0
@@ -25,7 +25,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
           line_items: [ line_item ],
           metadata
         });
-        
+
         return res.status(201).json({
           checkoutUrl: checkoutSession.url
         });
@@ -34,7 +34,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
      }
   }else if (listItemByCart && totalDiscountInPercentage) {
     try {
-      const successURL = `${process.env.NEXT_URL}/success`;
+      const successURL = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`;
       const cancelURL = `${process.env.NEXT_URL}/cart`;
 
       const checkoutSession = totalDiscountInPercentage > 0
