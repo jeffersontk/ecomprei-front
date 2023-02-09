@@ -1,9 +1,7 @@
 import { styled } from "../../styles";
 
 export const CategoriesList = styled('ul', {
-  background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
   width: '100%',
-  marginTop: '1rem',
 
   li:{
     listStyle: 'none',
@@ -11,10 +9,18 @@ export const CategoriesList = styled('ul', {
     fontWeight: 600,
     transition: 'transform 0.5s',
     
+    svg: {
+      border: ' 2px solid $orange500',
+      borderRadius: '50%',
+      height: '60px',
+      width: '60px',
+      padding: '0.5rem',
+    },
+
     a:{
       cursor: 'pointer',
       textDecoration: 'none',
-      color: '$white',
+      color: '$orange500',
 
       display: 'flex',
       alignItems: 'center',
@@ -29,22 +35,25 @@ export const CategoriesList = styled('ul', {
   variants: {
     render: {
       mobile: {
-        display: 'grid',
-        gridTemplateColumns: 'minmax(100px, 150px) minmax(100px, 150px)',
+        display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        gap: '0.75rem',
-        height: '100%',
-        padding: '1rem 0',
+        gap: '1.5rem',
+        padding: '1rem',
+        maxWidth: '390px',
+        overflow: 'scroll',
 
         li:{
           a: {
-            fontSize: '0.875rem'
+            fontSize: '0.875rem',
+            display: 'flex',
+            flexDirection: 'column'
           }
         }
       },
       desktop: {
-        height: '50px',
+        height: 'auto',
+        maxWidth: '100%',
+        overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',

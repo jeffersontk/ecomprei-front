@@ -21,7 +21,6 @@ const Categories: React.FC = () => {
       </li>
       <li>
         <Link href="/produtos/utilidades"><ImSpoonKnife size={25}/> Utilidades</Link>
-     
       </li>
       <li>
         <Link href="/produtos/acessorios"><IoWatchSharp size={25}/> Acessórios</Link>

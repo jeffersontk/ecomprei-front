@@ -25,7 +25,7 @@ export default function Home({products}: HomeProps) {
         <SectionHighlighted render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
           <Categories />
           <Box px="1rem">
-          <Text py="2rem" fontWeight={600} color={'orange.500'} fontSize="lg">Destaques da semana</Text>
+          <Text pb="2rem"  pt="1rem" fontWeight={600} color={'orange.500'} fontSize="lg">Destaques da semana</Text>
           <GridCards render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
             {
               products &&
