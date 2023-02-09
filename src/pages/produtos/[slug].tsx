@@ -64,6 +64,7 @@ export default function Produtos({products}: any) {
         <TabPanels p="0">
           <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
             {
+              products &&
               products.length > 0 ?
               <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
                 { 
