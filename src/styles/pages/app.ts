@@ -44,6 +44,7 @@ export const MainContainer = styled('main', {
     render: {
       mobile: {
         marginTop: 'calc(77px + 1rem)',
+        padding: '0 1rem',
       },
       desktop: {
         marginTop: 'calc(150px + 1rem)',

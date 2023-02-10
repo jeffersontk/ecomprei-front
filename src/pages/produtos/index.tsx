@@ -21,7 +21,7 @@ export default function Produtos({products}: any) {
 
         <Categories />
 
-        <Box px="1rem">
+        <Box>
         <Text py="2rem" fontWeight={600} color={'orange.500'} fontSize="lg">Produtos em Destaques</Text>
         <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}}>
           {
