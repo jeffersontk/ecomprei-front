@@ -62,7 +62,7 @@ export default function Produtos({products}: any) {
           }
         </FilterSection>
         <TabPanels p="0">
-          <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
+          <TabPanel p="0">
             {
               products &&
               products.length > 0 ?

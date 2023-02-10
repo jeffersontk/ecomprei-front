@@ -166,7 +166,6 @@ export const FilterSection = styled('div', {
     render: {
       mobile: {
         flexDirection: 'column',
-        padding: '0 1rem',
         h2 :{
           fontSize: '1.2rem'
         }

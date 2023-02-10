@@ -85,6 +85,7 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
       });
     }
   }
+  
   const handleIncrement = () => {
     setQuantity(prev => {
       return prev + 1

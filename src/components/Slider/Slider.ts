@@ -15,9 +15,9 @@ export const SliderContainer = styled('div', {
       mobile: {
         button: {
           position: 'absolute',
-          bottom: '5rem',
+          bottom: '2rem',
           right: '2rem',
-          width: '200px',
+          width: '160px',
           height: '40px',
           border: 'none',
           borderRadius: '4px',
