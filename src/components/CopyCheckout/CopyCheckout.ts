@@ -7,7 +7,7 @@ export const CopyCheckoutContainer = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
 
-  button: {
+  a: {
     textDecoration: 'none',
     textAlign: 'center',
     border: 'none',

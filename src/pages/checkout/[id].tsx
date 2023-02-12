@@ -20,7 +20,8 @@ export default function Checkout({product, copy}:CheckoutProps) {
   const heroRef = useRef(null);
   let paragraphs = copy[0]?.paragraphs.reverse() ?? []
   let copyImagesList = product.variantsImage
-  const copyWithTextAndImageLink = alternateArrays(copyImagesList, paragraphs)
+  const copyWithTextAndImageLink = product.videoUrl ? alternateArrays(paragraphs, copyImagesList) 
+  : alternateArrays(copyImagesList, paragraphs)
 
   if(product){
     return (
@@ -32,6 +33,8 @@ export default function Checkout({product, copy}:CheckoutProps) {
           <CopyCheckout 
             title={product.title}
             copyTextWithImage={copyWithTextAndImageLink}
+            videoUrl={product.videoUrl}
+            thumbnailUrl={product.thumbnailUrl}
           />
           <CardCheckout 
             colors={product.variants}
@@ -67,6 +70,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { 
         params: {
           id: 'd7c0d782-86c6-4620-a8f3-3143cc16e59d',
+        }
+      },
+      { 
+        params: {
+          id: 'c02d9f9e-3ca0-4d3d-ab9d-d69a5aefbc27',
         }
       }
     ],

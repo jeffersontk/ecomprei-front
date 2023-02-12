@@ -74,11 +74,11 @@ export default function SearchBar() {
             productFilter?.length > 0 ? 
             productFilter?.map((product: any) => (
             <Card
+              key={product.id}
               direction={{ base: 'row', sm: 'row' }}
               variant='outline'
               p="2"
               mb="2"
-              key={product.id}
               sx={{
                 img: {
                   maxHeight: 'auto',

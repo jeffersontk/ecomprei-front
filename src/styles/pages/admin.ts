@@ -219,9 +219,12 @@ export const FormNewProduct = styled('form', {
     },
     '.itemsList': {
       marginTop: '0.5rem',
-     backgroundColor: '#f9f9f9',
+      backgroundColor: '#f9f9f9',
       borderRadius: '4px',
       padding: '0.875rem 0.5rem',
+
+      maxHeight: '150px',
+      overflowY: 'scroll',
 
       display: 'grid',
       gridTemplateColumns: 'repeat(3, minMax(50px, 1fr))',
@@ -259,11 +262,14 @@ export const FormNewProduct = styled('form', {
     },
     '.itemsListImage': {
       marginTop: '0.5rem',
-     backgroundColor: '#f9f9f9',
+      backgroundColor: '#f9f9f9',
       padding: '0.875rem 0.5rem',
       borderRadius: '4px',
       minHeight: '20px',
       height: 'auto',
+
+      maxHeight: '150px',
+      overflowY: 'scroll',
 
       display: 'grid',
       gridTemplateColumns: '1fr',

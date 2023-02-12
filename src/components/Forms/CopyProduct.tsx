@@ -58,10 +58,10 @@ export default function CopyProduct({closeModal, productId}: CopyProductProps) {
         <VStack gap={1} mt={4}>
           {
             copyParagraphs.length > 0 &&
-            copyParagraphs.map((item, index) => {
+            copyParagraphs.map((item) => {
               return (
                 <Tag
-                  key={index}
+                  key={item.id}
                   size="sm"
                   borderRadius='full'
                   variant='solid'

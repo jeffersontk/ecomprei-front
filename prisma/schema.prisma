@@ -56,6 +56,8 @@ model Product {
   subCategory     String?
   shopUrl         String
   ImageUrl        String
+  videoUrl        String?
+  thumbnailUrl    String?
   variantsImage   ImageUrl[]
   status          Boolean
   highlighted     Boolean?

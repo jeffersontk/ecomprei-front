@@ -101,23 +101,6 @@ const Slider: React.FC = () => {
           <Image src={image6} alt="base beauty cream + esponja" priority/>
         </div>
       </SliderContainer>
-      {/* {loaded && instanceRef.current && (
-        <Dots className="dots">
-          {[
-            ...Array(instanceRef.current.track.details.slides.length).keys(),
-          ].map((idx) => {
-            return (
-              <button
-                key={idx}
-                onClick={() => {
-                  instanceRef.current?.moveToIdx(idx)
-                }}
-                className={"dot" + (currentSlide === idx ? " active" : "")}
-              ></button>
-            )
-          })}
-        </Dots>
-      )} */}
     </>
   );
 }

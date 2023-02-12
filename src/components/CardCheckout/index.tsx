@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ButtonAddToCart, ButtonCheckout, CardCheckoutContainer, ContentSelects, DetailPrice, DetailProduct, Divider, ImageContainer, TotalPrice } from '../../styles/pages/checkout';
 
 import { BsCartPlus} from 'react-icons/bs'
@@ -35,12 +35,21 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
   priceDefaultId
 }) => {
   const { addToCart } = useContext(CartContext);
-  const [colorSelect, setColorSelect] = useState(colors[0]?.variant ?? '')
-  const [sizeSelect, setSizeSelect] = useState(sizes[0]?.size ?? '')
+  const [colorSelect, setColorSelect] = useState('')
+  const [sizeSelect, setSizeSelect] = useState('')
   const [quantity, setQuantity] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
   
+  useEffect(()=> {
+    if(colors && colors.length > 0) {
+      setColorSelect(colors[0].variant)
+    }
+    if(sizes && sizes.length > 0) {
+      setSizeSelect(sizes[0].size)
+    }
+  }, [colors, sizes])
+
   const sortSizes = sortBySize(sizes)
 
   const handleCheckoutSession = async () => {
@@ -102,6 +111,7 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
         <ContentSelects>
           <Box>
             {
+              sortSizes &&
               sortSizes.length > 0 &&
               <Box display="flex" alignItems="center">
                 <FormLabel htmlFor="#">Tamanho:</FormLabel>
@@ -113,6 +123,7 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
               </Box>
             }
             {
+              colors && 
               colors.length > 0 && 
               <Box display="flex" alignItems="center">
                 <FormLabel htmlFor="#">Cor:</FormLabel>

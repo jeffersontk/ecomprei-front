@@ -46,6 +46,8 @@ export default function CreateProduct({closeModal}: CreateProductProps) {
       discount: +data.discount,
       category: data.category,
       ImageUrl: data.ImageUrl,
+      videoUrl: data.videoUrl,
+      thumbnailUrl: data.thumbnailUrl,
       shopUrl: data.shopUrl,
       subCategory: data.subCategory,
       status,
@@ -94,6 +96,10 @@ export default function CreateProduct({closeModal}: CreateProductProps) {
             <label>Link da Imagem principal</label>
             <Input  {...register("ImageUrl", { required: true})} />
             {errors.ImageUrl?.type === 'required' && <p role="alert" className='error'>Link de image obrigatório</p>}
+            <label>Link de video</label>
+            <Input  {...register("videoUrl") } />
+            <label>Link de thumbnail</label>
+            <Input  {...register("thumbnailUrl") } />
             <label>Id do produto na stripe</label>
             <Input  {...register("stripeProductId")} />
           </div>
@@ -112,7 +118,7 @@ export default function CreateProduct({closeModal}: CreateProductProps) {
                   sizeList.length > 0 &&
                   sizeList.map((item, index) => (
                     <Tag
-                      key={index}
+                      key={`${item.size}${index}`}
                       size="sm"
                       borderRadius='full'
                       variant='solid'
@@ -142,7 +148,7 @@ export default function CreateProduct({closeModal}: CreateProductProps) {
                 {
                   colorList.length > 0 &&
                   colorList.map((item, index) => (
-                    <span key={index}>
+                    <span key={`${item.variant}${index}`}>
                       <>
                         {item.variant}
                         <button 
@@ -173,7 +179,7 @@ export default function CreateProduct({closeModal}: CreateProductProps) {
                 {
                   linksImageList.length > 0 &&
                   linksImageList.map((item, index) => (
-                    <span key={index}>
+                    <span key={`${item.url}${index}`}>
                       <>
                         <button 
                           type='button'

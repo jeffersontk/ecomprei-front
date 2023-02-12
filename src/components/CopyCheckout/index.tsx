@@ -3,17 +3,22 @@ import React from 'react';
 import { ContentText, CopyCheckoutContainer, SliderContainer, TextContainer } from './CopyCheckout';
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
+import {Video} from '../molecules/Video';
 
 interface copyCheckout {
   title: string
   copyTextWithImage: any
+  videoUrl?: string
+  thumbnailUrl?: string
 }
 
 export function CopyCheckout ({
   title,
-  copyTextWithImage
+  copyTextWithImage,
+  videoUrl,
+  thumbnailUrl
 }: copyCheckout) {
-    const {alternated, rest} = copyTextWithImage
+  const {alternated, rest} = copyTextWithImage
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
     loop: true,
@@ -59,13 +64,16 @@ export function CopyCheckout ({
             <span className='title'>{title}</span>
           </ContentText>
       </TextContainer>
-
+      {
+        videoUrl && thumbnailUrl &&
+        <Video src={videoUrl} thumbnailUrl={thumbnailUrl}/>
+      }
       {
         alternated.map((item: any, index: number) => {
             const direction = (index % 2 === 1) ? "left" : "right";
             if (item.message) {
                 return (
-                    <TextContainer direction={direction} key={index}>
+                    <TextContainer direction={direction} key={item.id}>
                         <ContentText direction={direction} render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
                             <span>{item.message}</span>
                         </ContentText>
@@ -73,7 +81,7 @@ export function CopyCheckout ({
                 )
             } else {
                 return (
-                    <Image src={item.url} alt="" key={index} width={450} height={450}/>
+                    <Image src={item.url} alt="" key={item.id} width={450} height={450}/>
                 )
             }
         })
@@ -93,7 +101,7 @@ export function CopyCheckout ({
               ))}
             </SliderContainer>
         }
-      <button>Comprar agora</button> 
+      <a href='#checkout'>Comprar agora</a> 
     </CopyCheckoutContainer>
   );
 }

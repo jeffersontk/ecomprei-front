@@ -1,7 +1,7 @@
-import { ImageUrl, PrismaClient } from "prisma/prisma-client";
+import { ImageUrl } from "prisma/prisma-client";
 import { imageUrlType } from "../../../utils/types/productsType";
 
-const prisma = new PrismaClient()
+import { prisma } from '../../../../prisma/client';
 
 export async function updateVariantImages(
   productId: string,

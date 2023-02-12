@@ -1,5 +1,4 @@
-import {PrismaClient} from 'prisma/prisma-client'
-const prisma = new PrismaClient()
+import { prisma } from '../../../prisma/client';
 
 export const getCopyByProductId = async (productId: string) => {
   const copy = await prisma.copyProduct.findMany({

@@ -31,6 +31,8 @@ export default function EditProduct({closeModal, product}: CreateProductProps) {
       discount: product.discount,
       highlighted: product.highlighted,
       ImageUrl: product.ImageUrl,
+      videoUrl: product.videoUrl,
+      thumbnailUrl: product.thumbnailUrl,
       price: product.price,
       shopUrl: product.shopUrl,
       stripeProductId: product.stripeProductId,
@@ -61,6 +63,8 @@ export default function EditProduct({closeModal, product}: CreateProductProps) {
       discount: +data.discount,
       category: data.category,
       ImageUrl: data.ImageUrl,
+      videoUrl: data.videoUrl,
+      thumbnailUrl: data.thumbnailUrl,
       shopUrl: data.shopUrl,
       subCategory: data.subCategory,
       status,
@@ -112,6 +116,10 @@ export default function EditProduct({closeModal, product}: CreateProductProps) {
                 <label>Link da Imagem principal</label>
                 <Input  {...register("ImageUrl", { required: true})} />
                 {errors.ImageUrl?.type === 'required' && <p role="alert" className='error'>Link de image obrigatório</p>}
+                <label>Link de video</label>
+                 <Input  {...register("videoUrl") } />
+                <label>Link de thumbnail</label>
+                 <Input  {...register("thumbnailUrl") } />
                 <label>Id do produto na stripe</label>
                 <Input  {...register("stripeProductId")} />
               </div>

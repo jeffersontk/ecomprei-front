@@ -87,7 +87,7 @@ export default function Cart () {
               :
               cartItems.map((item, index) => (
                 <CartCard
-                  key={index}
+                  key={item.id}
                   colors={item.variantColors}
                   id={item.id}
                   imgUrl={item.imgUrl}

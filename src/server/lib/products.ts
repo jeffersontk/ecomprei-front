@@ -1,9 +1,7 @@
-import {PrismaClient} from 'prisma/prisma-client'
 import { ProductDto, ProductUpdate } from '../../utils/types/productsType'
 import { updateVariantImages } from './functionsUtes/util'
 import { stripe } from './stripe'
-
-const prisma = new PrismaClient()
+import { prisma } from '../../../prisma/client';
 
 export const getProducts = async () => {
   const products = await prisma.product.findMany({
@@ -98,6 +96,8 @@ export const postProducts = async (data: ProductDto) => {
       category,
       subCategory,
       ImageUrl,
+      videoUrl,
+      thumbnailUrl,
       shopUrl,
       status,
       variantsImage,
@@ -120,6 +120,8 @@ export const postProducts = async (data: ProductDto) => {
         category,
         subCategory,
         ImageUrl,
+        videoUrl,
+        thumbnailUrl,
         shopUrl,
         status,
         variantsImage: {
@@ -145,6 +147,8 @@ export const putProduct = async (data: ProductUpdate) => {
     category,
     subCategory,
     ImageUrl,
+    videoUrl,
+    thumbnailUrl,
     shopUrl,
     status,
     variantsImage,
@@ -165,6 +169,8 @@ export const putProduct = async (data: ProductUpdate) => {
       category,
       subCategory,
       ImageUrl,
+      videoUrl,
+      thumbnailUrl,
       shopUrl,
       status,
       highlighted,
