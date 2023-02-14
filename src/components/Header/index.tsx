@@ -50,6 +50,9 @@ const Header: React.FC = () => {
           <li>
             <Link href="/produtos" prefetch={false}>Explorar</Link>
           </li>
+          <li>
+            <Link href="/rastreio" prefetch={false}>Rastrear Produto</Link>
+          </li>
         </ul>
       </Navigation>
       
