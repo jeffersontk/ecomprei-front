@@ -69,20 +69,14 @@ const Header: React.FC = () => {
           <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/produtos" prefetch={false}>Explorar</Link>
           </li>
+          <li onClick={()=> setOpenMenu('hidden')}>
+            <Link href="/rastreio" prefetch={false}>Rastrear Produto</Link>
+          </li>
         </ul>
-        <Link href="/produtos" prefetch={false}><h4>Categorias Populares <MdOutlineKeyboardArrowRight size={24}/></h4></Link>
+        <h4>Categorias Populares <MdOutlineKeyboardArrowRight size={24}/></h4>
         <ul>
           <li onClick={()=> setOpenMenu('hidden')}>
             <Link href="/produtos/moda?filtro=feminina" prefetch={false}>Roupas femininos</Link>
-          </li>
-          <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/acessorio?filtro=relogios" prefetch={false}>Relógios</Link>
-          </li>
-          <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/moda?filtro=masculinas" prefetch={false}>Roupas masculinas</Link>
-          </li>
-          <li onClick={()=> setOpenMenu('hidden')}>
-            <Link href="/produtos/beleza?filtro=maquiagem" prefetch={false}>Maquiagem</Link>
           </li>
         </ul>
       </Navigation>

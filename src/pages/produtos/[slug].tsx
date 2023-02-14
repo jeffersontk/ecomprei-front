@@ -17,6 +17,7 @@ export default function Produtos({products}: any) {
   const { query } = useRouter()
   const [filterProducts, setFilterProducts] = useState([])
   const title = query.slug || 'Moda'
+  const [tabIndex, setTabIndex] = useState(0)
 
   const formatTitle = (title:string) => {
     let format = title
@@ -39,6 +40,17 @@ export default function Produtos({products}: any) {
     setFilterProducts(filter)
   }
 
+  useEffect(()=> {
+    if(query.filtro === 'feminina') {
+      setTabIndex(1)
+      handleFilterProducts('feminina')
+    }
+  }, [query])
+
+  const handleTabsChange = (index: any) => {
+    setTabIndex(index)
+  }
+
   return (
     <>
       <Head>
@@ -48,7 +60,7 @@ export default function Produtos({products}: any) {
         <Slider />
         <Categories />
 
-        <Tabs colorScheme="orange">
+        <Tabs colorScheme="orange" index={tabIndex} onChange={handleTabsChange}>
         <FilterSection render={{'@initial': 'mobile', '@bp2': 'desktop'}} id="productsGrid">
           <h2>{formatTitle(String(title))}</h2>
           {
@@ -90,7 +102,7 @@ export default function Produtos({products}: any) {
               </Flex>
             }
           </TabPanel>
-          <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
+          <TabPanel p="0">
             {
               filterProducts.length > 0 ?
               <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
@@ -117,7 +129,7 @@ export default function Produtos({products}: any) {
               </Flex>
             }
           </TabPanel>
-          <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
+          <TabPanel p="0">
             {
               filterProducts.length > 0 ?
               <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >
@@ -144,7 +156,7 @@ export default function Produtos({products}: any) {
               </Flex>
             }
           </TabPanel>
-          <TabPanel py="0" px={{base: '1rem', sm: '1rem', lg: '0'}}>
+          <TabPanel p="0">
             {
               filterProducts.length > 0 ?
               <GridCards render={{"@initial": 'mobile', "@bp2": 'desktop'}} >

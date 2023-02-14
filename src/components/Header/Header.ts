@@ -128,7 +128,14 @@ export const goOut = keyframes({
 
 export const Navigation = styled('nav', {
   position: 'relative',
-  
+  h4: {
+    color: '$graphite',  
+    fontWeight: 600,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
   ul:{
     display: 'flex',
     gap: '1rem',
@@ -153,10 +160,10 @@ export const Navigation = styled('nav', {
       mobile: {
         position: 'absolute',
         top: 0,
-        left: -600,
-       backgroundColor: '#f9f9f9',
+        left: -700,
+        backgroundColor: '#f9f9f9',
         height: '100vh',
-        width: '50%',
+        width: '70%',
         padding: '0 1rem',
         paddingTop: '2rem',
         display: 'flex',
@@ -178,7 +185,9 @@ export const Navigation = styled('nav', {
           h4: {
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            color: '$graphite',  
+            fontWeight: 600,
           }
         },
         ul: {
