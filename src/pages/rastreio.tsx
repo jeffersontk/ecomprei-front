@@ -1,5 +1,6 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Flex, FormLabel, Heading, Input, Skeleton, Stack, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios'
+import Link from 'next/link'
 import React, {useState} from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { FaShippingFast } from 'react-icons/fa'
@@ -13,13 +14,18 @@ export default function Rastreio() {
   const [tracking, setTracking] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
+  const baseURL = process.env.NEXT_TRACKING_API
+  const userAPI = process.env.NEXT_TRACKING_API_USER
+  const tokenAPI = process.env.NEXT_TRACKING_API_TOKEN
 
   const onSubmit: SubmitHandler<CodeInput> = async data => {
     const {code} = data
     setIsLoading(true)
+    const url = `${baseURL}/track/json?user=${userAPI}&token=${tokenAPI}&codigo=`
+    console.log('url', url)
     try {
       if(code.length > 10 ) {
-        const resp = await axios.get(`https://api.linketrack.com/track/json?user=teste&token=1abcd00b2731640e886fb41a8a9671ad1434c599dbaa0a0de9a5aa619f29a83f&codigo=${code}`)
+        const resp = await axios.get(`${url}${code}`)
         setTracking(resp.data.eventos)
       }else {
         toast({
@@ -60,6 +66,14 @@ export default function Rastreio() {
               <Skeleton height='20px' />
               <Skeleton height='20px' />
               <Skeleton height='20px' />
+              <Link href="https://linketrack.com" target="_blank">
+                <Flex w="100%"  gap="2"  alignItems="center"justifyContent="center" mt="5">
+                  <Text>API BY </Text> 
+                  <Text fontWeight="bold" color="#009688"> LINK </Text> 
+                  <Text fontWeight="bold" color="#ffa500"> & </Text> 
+                  <Text fontWeight="bold" color="#009688">TRACK</Text>
+                </Flex>
+              </Link>
             </Stack>
             :
             tracking.length > 0 && 
