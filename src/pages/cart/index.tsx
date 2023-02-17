@@ -40,7 +40,6 @@ export default function Cart () {
             quantity: item.quantity,
           }
         })
-        console.log('')
         const response = await axios.post('/api/checkout', {
           listItemByCart, 
           totalDiscountInPercentage: totalDiscountInPercentage.toFixed(2)

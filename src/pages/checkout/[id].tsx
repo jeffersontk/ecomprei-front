@@ -47,6 +47,7 @@ export default function Checkout({product, copy}:CheckoutProps) {
             productImage={product.ImageUrl}
             priceDefaultId={product.defaultPriceId}
           />
+          
         </ContainerSectionCheckout>
       </>
     )

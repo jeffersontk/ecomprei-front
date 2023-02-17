@@ -67,10 +67,10 @@ const CardCheckout: React.FC<CardCheckoutProps> = ({
           discount: discount,
           productId: id
         })
-  
+
         setIsLoading(false)
-        const {checkoutUrl} = response.data
-        window.location.href = checkoutUrl
+        const {url} = response.data
+        window.location.href = url
       } else {
         setIsLoading(false)
         throw new Error("id de produto não encontrado");

@@ -26,9 +26,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
           metadata
         });
 
-        return res.status(201).json({
-          checkoutUrl: checkoutSession.url
-        });
+        return res.status(201).json(checkoutSession);
      } catch (error) {
       console.error(error);
      }
@@ -54,9 +52,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
         metadata
       });
 
-      return res.status(201).json({
-        checkoutUrl: checkoutSession.url
-      });
+      return res.status(201).json(checkoutSession);
     } catch (error) {
       console.error(error);
     }

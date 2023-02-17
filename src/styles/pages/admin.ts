@@ -45,8 +45,9 @@ export const AdminContainer = styled('div', {
   gap: '2rem',
 
   header: {
+    width: '100%',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     borderRadius: '4px',

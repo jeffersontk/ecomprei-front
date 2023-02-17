@@ -63,4 +63,47 @@ model Product {
   highlighted     Boolean?
   stripeProductId String?
   copies          copyProduct[]
+  comments        Comment[]
+}
+
+model Comment {
+  id         String   @id @default(uuid())
+  authorName String
+  createdAt  DateTime @default(now())
+  comment    String   @db.LongText()
+  Product    Product? @relation(fields: [productId], references: [id])
+  productId  String?
+  starRating Float
+}
+
+model CheckoutSession {
+  id                      String               @id @default(uuid())
+  stripeCheckoutSessionId String
+  clientName              String
+  clientEmail             String
+  clientPhone             String
+  clientAddress           ClientAddress        @relation(fields: [clientAddressId], references: [id])
+  clientAddressId         String
+  productComplement       String
+  productsInCheckout      ProductsInCheckout[]
+  status                  String
+}
+
+model ClientAddress {
+  id              String            @id @default(uuid())
+  city            String
+  country         String
+  line1           String
+  line2           String?
+  postal_code     String
+  state           String
+  CheckoutSession CheckoutSession[]
+}
+
+model ProductsInCheckout {
+  id                String           @id @default(uuid())
+  name              String
+  imageUrl          String
+  CheckoutSession   CheckoutSession? @relation(fields: [checkoutSessionId], references: [id])
+  checkoutSessionId String?
 }

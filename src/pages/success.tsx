@@ -8,6 +8,8 @@ import "keen-slider/keen-slider.min.css"
 import { GetServerSideProps } from 'next'
 import { stripe } from '../server/lib/stripe'
 import Head from 'next/head'
+import axios from 'axios'
+import { prisma } from '../../prisma/client'
 
 type product = {
   name: string;
@@ -112,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async ({query}) => {
   const session = await stripe.checkout.sessions.retrieve(sessionId, {
     expand: ['line_items', 'line_items.data.price.product']
   })
-
+  
   const customerName = session.customer_details?.name
   const lineItems = session.line_items?.data
   
@@ -120,9 +122,29 @@ export const getServerSideProps: GetServerSideProps = async ({query}) => {
     if(items.price.product) {
       return ({
         name: items.price.product.name,
-        imageUrl:items.price.product.images[0]
+        imageUrl: items.price.product.images[0]
       })
     }
+  })
+
+  const checkoutPostSave = {
+    clientEmail: session.customer_details?.email,
+    clientName: customerName,
+    clientPhone: session.customer_details?.phone,
+    clientAddress: session.customer_details?.address,
+    productComplement: session.metadata?.description,
+    status: session.status,
+    stripeCheckoutSessionId: session.id,
+    productsInCheckout: products,
+  }
+
+  await axios.post('http://localhost:3000/api/savecheckout', checkoutPostSave).then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
   })
 
   return {
