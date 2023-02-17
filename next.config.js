@@ -22,7 +22,7 @@ const nextConfig = {
     NEXT_TRACKING_API_TOKEN:'820f460506c5da59fb52c9e626105dfe54c8b73b26f19882ae9d903b5ffb10c6',
     NEXT_SMTP_USER:"contato@ecomprei.shop",
     NEXT_SMTP_PASSWORD:"Diana08012023",
-    NEXT_URL:"http://localhost:3000"
+    NEXT_URL:"https://ecomprei.shop/"
   }
 }
 
