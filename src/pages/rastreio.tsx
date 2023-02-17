@@ -1,5 +1,6 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Flex, FormLabel, Heading, Input, Skeleton, Stack, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios'
+import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, {useState, useEffect} from 'react'
@@ -84,6 +85,10 @@ export default function Rastreio() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Rastreio | É comprei</title>
+    </Head>
     <Stack w="100%" minHeight="400px" gap="2">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex alignItems="flex-end" justifyContent="center" gap="2">
@@ -148,5 +153,6 @@ export default function Rastreio() {
         </Accordion>
       </Stack>
     </Stack>
+    </>
   )
 }

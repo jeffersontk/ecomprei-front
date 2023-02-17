@@ -1,8 +1,13 @@
+import Head from 'next/head';
 import React from 'react';
 import { FaqSection } from '../styles/pages/Faq';
 
 export default function Faq(){
   return (
+    <>
+     <Head>
+      <title>Faq | É comprei</title>
+    </Head>
     <FaqSection>
       <h1>Perguntas frequentes</h1>
       
@@ -46,6 +51,7 @@ export default function Faq(){
           </p>
         </details>
     </FaqSection>
+    </>
   );
 }
 

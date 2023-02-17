@@ -45,6 +45,7 @@ import axios from 'axios';
 import { getCheckout } from '../server/lib/checkout';
 import { Portal } from '@radix-ui/react-dialog';
 import { ButtonWithPopover } from '../components/molecules/Buttons/buttonWithPopover';
+import Head from 'next/head';
 
 export const Select = forwardRef<
 HTMLSelectElement,
@@ -163,6 +164,9 @@ export default function Admin({products, checkoutList}: any) {
   }else {
     return (
       <>
+      <Head>
+        <title>Admin | É Comprei</title>
+      </Head>
         <AdminContainer>
           <Tabs variant='enclosed' colorScheme='orange'>
             <TabList>
