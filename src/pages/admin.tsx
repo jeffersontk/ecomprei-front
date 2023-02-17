@@ -141,7 +141,7 @@ export default function Admin({products, checkoutList}: any) {
     })
   }
 
-  if(codeAccess) {
+  if(!codeAccess) {
     return(
       <Container>
         <FormContainer autoComplete="off" onSubmit={handleSubmit(onSubmit)}>

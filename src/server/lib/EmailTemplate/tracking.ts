@@ -4,7 +4,6 @@ interface trackingHTMLEmailProps {
 }
 
 const baseUrl = process.env.NEXT_URL
-console.log('baseUrl', baseUrl)
 
 export const trackingHTMLEmail = ({name, code}: trackingHTMLEmailProps) => {
   return `
@@ -165,7 +164,7 @@ export const trackingHTMLEmail = ({name, code}: trackingHTMLEmailProps) => {
 <tr>
 <td class="pad">
 <div align="center" class="alignment">
-<!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${baseUrl}/rastreio?code=${code}" style="height:46px;width:169px;v-text-anchor:middle;" arcsize="33%" stroke="false" fillcolor="#fc7318"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Tahoma, Verdana, sans-serif; font-size:18px"><![endif]--><a href="#" style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#fc7318;border-radius:15px;width:auto;border-top:0px solid transparent;font-weight:undefined;border-right:0px solid transparent;border-bottom:0px solid transparent;border-left:0px solid transparent;padding-top:5px;padding-bottom:5px;font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;font-size:18px;text-align:center;mso-border-alt:none;word-break:keep-all;" target="_blank"><span style="padding-left:20px;padding-right:20px;font-size:18px;display:inline-block;letter-spacing:normal;"><span dir="ltr" style="word-break: break-word;"><span data-mce-style="" dir="ltr" style="line-height: 36px;"><strong>${code}</strong></span></span></span></a>
+<!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${baseUrl}/rastreio?code=${code}" style="height:46px;width:169px;v-text-anchor:middle;" arcsize="33%" stroke="false" fillcolor="#fc7318"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Tahoma, Verdana, sans-serif; font-size:18px"><![endif]--><a href="${baseUrl}/rastreio?code=${code}" style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#fc7318;border-radius:15px;width:auto;border-top:0px solid transparent;font-weight:undefined;border-right:0px solid transparent;border-bottom:0px solid transparent;border-left:0px solid transparent;padding-top:5px;padding-bottom:5px;font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;font-size:18px;text-align:center;mso-border-alt:none;word-break:keep-all;" target="_blank"><span style="padding-left:20px;padding-right:20px;font-size:18px;display:inline-block;letter-spacing:normal;"><span dir="ltr" style="word-break: break-word;"><span data-mce-style="" dir="ltr" style="line-height: 36px;"><strong>${code}</strong></span></span></span></a>
 <!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
 </div>
 </td>
@@ -174,7 +173,7 @@ export const trackingHTMLEmail = ({name, code}: trackingHTMLEmailProps) => {
 <table border="0" cellpadding="0" cellspacing="0" class="html_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td class="pad">
-<div align="center" style="font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;text-align:center;"><a href="${baseUrl}/rastreio?code=${code}" style="text-decoration: none; color: #f07301">Conferir rastreio do codigo</a></div>
+<div align="center" style="font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;text-align:center;"><a href="${baseUrl}rastreio?code=${code}" style="text-decoration: none; color: #f07301">Conferir rastreio do codigo</a></div>
 </td>
 </tr>
 </table>
