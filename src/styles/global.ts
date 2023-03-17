@@ -1,21 +1,21 @@
-import { globalCss, styled } from ".";
+import { globalCss } from '.'
 
 export const globalStyles = globalCss({
-  '*':{
+  '*': {
     margin: 0,
     padding: 0,
   },
-  body:{
+  body: {
     backgroundColor: '#f9f9f9',
     '-webkit-font-smoothing': 'antialiased',
     color: '$black',
   },
-  html:{
-    scrollBehavior: 'smooth'
+  html: {
+    scrollBehavior: 'smooth',
   },
   'body, input, textarea, button': {
     fontFamily: 'Open Sans',
     fontWeight: 400,
     color: '$black',
-  }
+  },
 })

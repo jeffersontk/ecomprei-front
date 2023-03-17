@@ -1,33 +1,28 @@
-import {
-  Root,
-  Trigger,
-  Portal,
-  Overlay,
-  Content,
-  Title,
-  Close,
-} from '@radix-ui/react-dialog';
-import { StyledContent, StyledOverlay } from '../Dialog';
+import { Root, Trigger, Portal, Title, Close } from '@radix-ui/react-dialog'
+import { StyledContent, StyledOverlay } from '../Dialog'
 
-export const Modal = ({ isOpen = false, children, onOpenChange, disabled }: any) => (
+export const Modal = ({
+  isOpen = false,
+  children,
+  onOpenChange,
+  disabled,
+}: any) => (
   <Root open={isOpen} onOpenChange={disabled ? undefined : onOpenChange}>
     {children}
   </Root>
-);
+)
 
-export const ModalTrigger = Trigger;
+export const ModalTrigger = Trigger
 
 export const ModalContent = (props: any) => {
   return (
     <Portal>
       <StyledOverlay />
-      <StyledContent
-        {...props}
-      />
+      <StyledContent {...props} />
     </Portal>
-  );
-};
+  )
+}
 
-export const ModalTitle = Title;
+export const ModalTitle = Title
 
-export const ModalClose = Close;
+export const ModalClose = Close

@@ -1,16 +1,29 @@
-import Image from 'next/image';
-import React from 'react';
-import { Card, CardDiscount, CartButton, ContainerTitle, Content, ContentCard, ContentImage, DescriptionPrice, ImageContainer, Price, PriceContent, RealPrice } from './Cards';
+import Image from 'next/image'
+import React from 'react'
+import {
+  Card,
+  CardDiscount,
+  CartButton,
+  ContainerTitle,
+  Content,
+  ContentCard,
+  ContentImage,
+  DescriptionPrice,
+  ImageContainer,
+  Price,
+  PriceContent,
+  RealPrice,
+} from './Cards'
 import discountBanner from '../../assets/discount-banner.webp'
-import {BsCartPlus} from 'react-icons/bs'
-import Link from 'next/link';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import { BsCartPlus } from 'react-icons/bs'
+import Link from 'next/link'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 const Cards: React.FC = () => {
   const matches = useMediaQuery('(min-width: 768px)')
-  
+
   return (
-    <Card render={matches ? "desktop" : "mobile"}>
+    <Card render={matches ? 'desktop' : 'mobile'}>
       <ContentImage>
         <CardDiscount>
           <Image src={discountBanner} alt="" />
@@ -19,9 +32,7 @@ const Cards: React.FC = () => {
         <CartButton title="adicionar ao carrinho">
           <BsCartPlus />
         </CartButton>
-        <ImageContainer>
-          {/* <Image src={tshirt} alt="" /> */}
-        </ImageContainer>
+        <ImageContainer>{/* <Image src={tshirt} alt="" /> */}</ImageContainer>
       </ContentImage>
       <PriceContent>
         <ContainerTitle>
@@ -30,20 +41,24 @@ const Cards: React.FC = () => {
         <ContentCard>
           <Content>
             <div>
-              <Price>R$ 192<span>.49</span></Price>
-              <RealPrice>R$ 249<span>.99</span></RealPrice>
+              <Price>
+                R$ 192<span>.49</span>
+              </Price>
+              <RealPrice>
+                R$ 249<span>.99</span>
+              </RealPrice>
             </div>
             <DescriptionPrice>
               Economize agora R$ 57<span>.49</span>
             </DescriptionPrice>
           </Content>
-          <div className='action'>
+          <div className="action">
             <Link href="/checkout/12322sac">Comprar</Link>
           </div>
         </ContentCard>
       </PriceContent>
     </Card>
-  );
+  )
 }
 
-export default Cards;
+export default Cards

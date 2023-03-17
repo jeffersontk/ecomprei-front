@@ -1,70 +1,32 @@
-import  React, {useState, useEffect, forwardRef} from 'react'
-import { SubmitHandler, UseFormRegister } from 'react-hook-form/dist/types';
-import { AdminContainer, Container, FormContainer } from "../styles/pages/admin";
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import Image from 'next/image';
-import DropMenu from '../components/DropMenu';
+import React, { forwardRef } from "react"
+import { UseFormRegister } from "react-hook-form/dist/types"
 
-import {
-  useDisclosure, 
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  Button,
-  Select as SelectChakra,
-  useToast,
-  Table,
-  Thead,
-  Tbody,
-  Th,
-  Tr,
-  Td,
-  TableContainer,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  Flex,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  Box,
-  AccordionPanel,
-  Text,
-  Stack,
-  Input,
-} from '@chakra-ui/react';
-import CreateProduct from '../components/Forms/createProduct';
-import { getProductsAllInfos } from '../server/lib/products';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { getCheckout } from '../server/lib/checkout';
-import { Portal } from '@radix-ui/react-dialog';
-import { ButtonWithPopover } from '../components/molecules/Buttons/buttonWithPopover';
-import Head from 'next/head';
+import { GetServerSideProps } from "next"
+
+import { Select as SelectChakra } from "@chakra-ui/react"
+import { getProductsAllInfos } from "../../server/lib/products"
+import { getCheckout } from "../../server/lib/checkout"
+
+import Head from "next/head"
+import { checkSession } from "../../server/lib/auth"
 
 export const Select = forwardRef<
-HTMLSelectElement,
-{ label: string,
-  options: string[]
-} & ReturnType<UseFormRegister<any>>
+  HTMLSelectElement,
+  { label: string; options: string[] } & ReturnType<UseFormRegister<any>>
 >(function SelectComponent({ onChange, onBlur, name, label, options }, ref) {
   return (
     <>
-    <label>{label}</label>
-    <SelectChakra name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-      <option value="">Sem {label}</option>
-      {options.map(option => (
-        <option key={option} value={option}>{option}</option>
-      ))}
-    </SelectChakra>
-  </>
+      <SelectChakra name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
+        <option value="">Sem {label}</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </SelectChakra>
+    </>
   )
-});
+})
 
 export type SizeListType = {
   size: string
@@ -78,96 +40,37 @@ export type ImageListType = {
   url: string
 }
 
-type codeAccess = {
-  code: string
-}
-
-export const spreadFunction = (setFunction: any, params: any, value: any, productId?: string) => {
-  setFunction((prev:any) => [...prev, {
-    [params]: value,
-    productId
-  }])
-}
-
-export default function Admin({products, checkoutList}: any) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [codeAccess, setCodeAccess] = useState(false)
-  const {  handleSubmit, register } = useForm<codeAccess>();
-  const [isLoading, setIsLoading] = useState(false)
-  const [ trackCode, setTrackCode ] = useState('')
+export default function Admin({ products, checkoutList }: any) {
+  /*   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [trackCode, setTrackCode] = useState('')
   const [isSendEmailTrackCode, setIsSendEmailTrackCode] = useState(false)
-  const toast = useToast()
 
-  const onSubmit: SubmitHandler<codeAccess> = async (data, event) =>  {
-    event?.preventDefault()
-    setIsLoading(true)
-    try {
-      const response = await axios.post('/api/auth', data).then(res => res.data)
-      if(response.data){
-        toast({
-          title: 'Código Verificado',
-          description: "Autorizado",
-          status: 'success',
-          duration: 2000,
-        })
-        setIsLoading(false)
-        setCodeAccess(response.data)
-      }else {
-        toast({
-          title: 'Código Verificado',
-          description: "Negado",
-          status: 'error',
-          duration: 2000,
-        })
-        setIsLoading(false)
-        setCodeAccess(false)
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const sendTrackingEmail = async ({name, email, code}: any) => {
+  const sendTrackingEmail = async ({ name, email, code }: any) => {
     setIsSendEmailTrackCode(true)
-    await axios.post('/api/trackingcode', {
-      code,
-      email,
-      name
-    }).then((resp) => {
-      setTrackCode('')
-    }).catch((error) => {
-      console.error(error)
-    }).finally(()=> {
-      setIsSendEmailTrackCode(false)
-    })
-  }
+    await axios
+      .post('/api/trackingcode', {
+        code,
+        email,
+        name,
+      })
+      .then((resp) => {
+        setTrackCode('')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+      .finally(() => {
+        setIsSendEmailTrackCode(false)
+      })
+  } */
 
-  if(!codeAccess) {
-    return(
-      <Container>
-        <FormContainer autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="codeAccess">Código de acesso</label>
-          <input type="text" id="codeAccess" {...register("code")}/>
-          <Button 
-            type='submit'
-            isLoading={isLoading}
-            loadingText='Verificando'
-            _hover={{
-              opacity: '0.9'
-            }}
-          >
-            Entrar
-          </Button>
-        </FormContainer>
-      </Container>
-    )
-  }else {
-    return (
-      <>
+  return (
+    <>
       <Head>
         <title>Admin | É Comprei</title>
       </Head>
-        <AdminContainer>
+      <div></div>
+      {/*  <AdminContainer>
           <Tabs variant='enclosed' colorScheme='orange'>
             <TabList>
               <Tab>Produtos</Tab>
@@ -176,7 +79,7 @@ export default function Admin({products, checkoutList}: any) {
             <TabPanels w="100%">
               <TabPanel w="100%" p="0" py="2">
                 <Flex as="header" minW="100%" alignItems="flex-end" justifyItems="flex-end"> 
-                  <Button isLoading={isLoading} onClick={onOpen}>Adicionar Produto</Button>
+                  <Button onClick={onOpen}>Adicionar Produto</Button>
                 </Flex>
                 <TableContainer mt="2" maxH={500} overflowY="scroll">
                   <Table>
@@ -307,29 +210,48 @@ export default function Admin({products, checkoutList}: any) {
             <ModalCloseButton />
             <CreateProduct closeModal={onClose}/>
           </ModalContent>
-        </Modal>
-      </>
-    )    
-  }
+        </Modal> */}
+    </>
+  )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  if (!query.sessionId) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    }
+  }
+
+  const refreshSessionId = await checkSession(String(query.sessionId))
+
+  if (!refreshSessionId) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    }
+  }
+
   try {
     const [products, checkoutList] = await Promise.all([
       getProductsAllInfos(),
       getCheckout(),
-    ]);
+    ])
 
     return {
       props: {
         products,
         checkoutList,
       },
-    };
+    }
   } catch (error) {
-    console.error(error);
+    console.error(error)
     return {
       notFound: true,
-    };
+    }
   }
 }

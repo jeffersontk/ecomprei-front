@@ -3,8 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
-import { SuccessContainer, StatusCheckout, ProductCheckout, StatusBar } from '../styles/pages/success'
-import "keen-slider/keen-slider.min.css"
+import {
+  SuccessContainer,
+  StatusCheckout,
+  ProductCheckout,
+  StatusBar,
+} from '../styles/pages/success'
+import 'keen-slider/keen-slider.min.css'
 import { GetServerSideProps } from 'next'
 import { stripe } from '../server/lib/stripe'
 import Head from 'next/head'
@@ -12,7 +17,7 @@ import axios from 'axios'
 import { prisma } from '../../prisma/client'
 
 type product = {
-  name: string;
+  name: string
   imageUrl: string
 }
 
@@ -21,11 +26,11 @@ interface SuccessProp {
   products: product[]
 }
 
-export default function Success({customerName, products}: SuccessProp) {
+export default function Success({ customerName, products }: SuccessProp) {
   const [ref] = useKeenSlider<HTMLDivElement>({
-     mode: "free-snap",
+    mode: 'free-snap',
     slides: {
-      origin: "center",
+      origin: 'center',
       perView: 2,
       spacing: 15,
     },
@@ -33,98 +38,101 @@ export default function Success({customerName, products}: SuccessProp) {
 
   return (
     <>
-    <Head>
-      <title>Compra efetuada | É comprei</title>
-      <meta name='robots' content='noindex' />
-    </Head>
-    <SuccessContainer render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-      <StatusCheckout render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-        <div className='headerText'>
-          <h2>Compra efetuada!</h2>
-          <span>Parabéns! <strong>{customerName}</strong> seu pedido foi realizado com sucesso. Aqui está o status da sua compra</span>
-        </div>
-        <StatusBar render={{'@initial': 'mobile', '@bp2': 'desktop'}}>
-          <div className='status-item'>
-            <div className='status-check'>
-              <BsCheckCircleFill />
-              <div className='bar check'/>
-            </div>
-            <span>Seleção dos produtos</span>
+      <Head>
+        <title>Compra efetuada | É comprei</title>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <SuccessContainer render={{ '@initial': 'mobile', '@bp2': 'desktop' }}>
+        <StatusCheckout render={{ '@initial': 'mobile', '@bp2': 'desktop' }}>
+          <div className="headerText">
+            <h2>Compra efetuada!</h2>
+            <span>
+              Parabéns! <strong>{customerName}</strong> seu pedido foi realizado
+              com sucesso. Aqui está o status da sua compra
+            </span>
           </div>
-          <div className='status-item'>
-            <div className='status-check'>
-              <BsCheckCircleFill />
-              <div className='bar check'/>
+          <StatusBar render={{ '@initial': 'mobile', '@bp2': 'desktop' }}>
+            <div className="status-item">
+              <div className="status-check">
+                <BsCheckCircleFill />
+                <div className="bar check" />
+              </div>
+              <span>Seleção dos produtos</span>
             </div>
-            <span>Confirmação do carrinho</span>
-          </div>
-          <div className='status-item'>
-            <div className='status-check'>
-              <BsCheckCircleFill />
-              <div className='bar progress'/>
+            <div className="status-item">
+              <div className="status-check">
+                <BsCheckCircleFill />
+                <div className="bar check" />
+              </div>
+              <span>Confirmação do carrinho</span>
             </div>
-            <span>Informações de envio</span>
-          </div>
-          <div className='status-item'>
-            <div className='status-progress'>
-              <BsCheckCircleFill />
+            <div className="status-item">
+              <div className="status-check">
+                <BsCheckCircleFill />
+                <div className="bar progress" />
+              </div>
+              <span>Informações de envio</span>
             </div>
-            <span>Confirmação do pagamento</span>
-          </div>
-        </StatusBar>
-        <span className='contact-text'>Entraremos em contato para disponibilizar o código de rastreio</span>
-      </StatusCheckout>
-      <ProductCheckout>
-        <div ref={ref} className="keen-slider">
-          {
-            products.map((product, index) => (
-            <div className="keen-slider__slide number-slide1 box" key={index}>
-              <Image 
-                src={product.imageUrl} 
-                alt={product.name}
-                width={200}
-                height={200}
+            <div className="status-item">
+              <div className="status-progress">
+                <BsCheckCircleFill />
+              </div>
+              <span>Confirmação do pagamento</span>
+            </div>
+          </StatusBar>
+          <span className="contact-text">
+            Entraremos em contato para disponibilizar o código de rastreio
+          </span>
+        </StatusCheckout>
+        <ProductCheckout>
+          <div ref={ref} className="keen-slider">
+            {products.map((product, index) => (
+              <div className="keen-slider__slide number-slide1 box" key={index}>
+                <Image
+                  src={product.imageUrl}
+                  alt={product.name}
+                  width={200}
+                  height={200}
                 />
-              <h3>{product.name}</h3>
-            </div>
-            ))
-          }
-        </div>
-        <div>
-          <Link href="/produtos">Voltar ao catalogo</Link>
-        </div>
-      </ProductCheckout>
-    </SuccessContainer>
+                <h3>{product.name}</h3>
+              </div>
+            ))}
+          </div>
+          <div>
+            <Link href="/produtos">Voltar ao catalogo</Link>
+          </div>
+        </ProductCheckout>
+      </SuccessContainer>
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({query}) => {
-  
-  if(!query.session_id) {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  if (!query.session_id) {
     return {
       redirect: {
         destination: '/',
         permanent: false,
-      }
+      },
     }
   }
   const sessionId = String(query.session_id)
 
   const session = await stripe.checkout.sessions.retrieve(sessionId, {
-    expand: ['line_items', 'line_items.data.price.product']
+    expand: ['line_items', 'line_items.data.price.product'],
   })
-  
+
   const customerName = session.customer_details?.name
   const lineItems = session.line_items?.data
-  
+
   const products = lineItems?.map((items: any) => {
-    if(items.price.product) {
-      return ({
+    if (items.price.product) {
+      return {
         name: items.price.product.name,
-        imageUrl: items.price.product.images[0]
-      })
+        imageUrl: items.price.product.images[0],
+      }
     }
+    return {}
   })
 
   const checkoutPostSave = {
@@ -138,19 +146,21 @@ export const getServerSideProps: GetServerSideProps = async ({query}) => {
     productsInCheckout: products,
   }
 
-  await axios.post('http://localhost:3000/api/savecheckout', checkoutPostSave).then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+  await axios
+    .post(`/api/savecheckout`, checkoutPostSave)
+    .then(async () => {
+      await prisma.$disconnect()
+    })
+    .catch(async (e) => {
+      console.error(e)
+      await prisma.$disconnect()
+      process.exit(1)
+    })
 
   return {
     props: {
       customerName,
-      products
-    }
+      products,
+    },
   }
 }

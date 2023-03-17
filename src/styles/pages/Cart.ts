@@ -1,45 +1,52 @@
-import { styled } from '..';
-export const CartContainer = styled('section', {
-  width: '100%',
-  display: 'grid',    
-
-}, {
-  variants: {
-    render: {
-      mobile: {
-        gridTemplateColumns: '390px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '2rem',
+import { styled } from '..'
+export const CartContainer = styled(
+  'section',
+  {
+    width: '100%',
+    display: 'grid',
+  },
+  {
+    variants: {
+      render: {
+        mobile: {
+          gridTemplateColumns: '390px',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '2rem',
+        },
+        desktop: {
+          alignItems: 'flex-start',
+          gridTemplateColumns: 'minmax(100px, 758px) 350px',
+          gap: '2rem',
+        },
       },
-      desktop: {
-        alignItems: 'flex-start',
-        gridTemplateColumns: 'minmax(100px, 758px) 350px',
-        gap: '2rem',
-      }
-    }
-  }
-})
+    },
+  },
+)
 
-export const BoxImage = styled('div', {
-  padding: '0.5rem',
-}, {
-  variants: {
-    render: {
-      desktop: {
-        img:{
-          width: '200px',
-          borderRadius: '8px'
-        }
+export const BoxImage = styled(
+  'div',
+  {
+    padding: '0.5rem',
+  },
+  {
+    variants: {
+      render: {
+        desktop: {
+          img: {
+            width: '200px',
+            borderRadius: '8px',
+          },
+        },
+        mobile: {
+          img: {
+            borderRadius: '8px',
+          },
+        },
       },
-      mobile: {
-        img: {
-          borderRadius: '8px'
-        }
-      }
-    }
-  }
-})
+    },
+  },
+)
 
 export const CartContent = styled('div', {
   display: 'flex',
@@ -49,7 +56,7 @@ export const CartContent = styled('div', {
 
   h2: {
     color: '$graphite',
-  }
+  },
 })
 
 export const CartProduct = styled('div', {
@@ -59,12 +66,12 @@ export const CartProduct = styled('div', {
   padding: '1rem',
   borderRadius: '4px',
 
-  img:{
+  img: {
     width: '70px',
     height: 'auto',
     objectFit: 'contain',
   },
-  
+
   '.details-content': {
     width: '100%',
     display: 'flex',
@@ -77,30 +84,29 @@ export const CartProduct = styled('div', {
       flexDirection: 'column',
       gap: '0.35rem',
       color: '$graphite',
-      
+
       '.product-name': {
         maxWidth: '250px',
         fontSize: '1rem',
         fontWeight: 600,
         whiteSpace: 'nowrap',
         textOverflow: 'ellipsis',
-        overflow: 'hidden',  
+        overflow: 'hidden',
       },
       '.product-price': {
         fontWeight: 600,
-        
-        '.discount':{
-          color: '$red300'
+
+        '.discount': {
+          color: '$red300',
         },
         '.quantityDiscount': {
           marginLeft: '1rem',
           background: '$white',
           color: '$orange500',
           borderRadius: '4px',
-          padding: '4px'
-        }
-      }
-     
+          padding: '4px',
+        },
+      },
     },
 
     '.total': {
@@ -112,13 +118,13 @@ export const CartProduct = styled('div', {
       gap: '0.5rem',
 
       svg: {
-        '&:hover':{
+        '&:hover': {
           opacity: '0.8',
-          cursor: 'pointer'
-        }
+          cursor: 'pointer',
+        },
       },
 
-     /*  '.count': {
+      /*  '.count': {
         display: 'flex',
         alignItems: 'center',
         gap: '0.5rem',
@@ -137,8 +143,8 @@ export const CartProduct = styled('div', {
           }
         }
       } */
-    }
-  }
+    },
+  },
 })
 
 export const CartResume = styled('div', {
@@ -164,9 +170,9 @@ export const CartResume = styled('div', {
     height: '40px',
     borderRadius: '4px',
 
-    '&:hover':{
+    '&:hover': {
       opacity: '0.9',
-      cursor: 'pointer'
-    }
-  }
+      cursor: 'pointer',
+    },
+  },
 })

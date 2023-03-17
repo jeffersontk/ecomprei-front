@@ -1,24 +1,27 @@
-import { styled } from "../../styles";
+import { styled } from '../../styles'
 
-export const Card = styled('div', {
-  height: '100%',
-  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-  borderRadius: '8px',
-  position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-}, {
-  variants: {
-    render: {
-      mobile: {
-        width: '350px',
+export const Card = styled(
+  'div',
+  {
+    height: '100%',
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    borderRadius: '8px',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  {
+    variants: {
+      render: {
+        mobile: {
+          width: '350px',
+        },
+        desktop: {},
       },
-      desktop: {}
-    }
-  }
-})
-
+    },
+  },
+)
 
 export const ImageContainer = styled('div', {
   marginTop: '1rem',
@@ -31,11 +34,11 @@ export const ContentImage = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
 
-  position: 'relative'
+  position: 'relative',
 })
 
 export const CardDiscount = styled('div', {
-  img:{
+  img: {
     position: 'absolute',
     top: 0,
     left: -1,
@@ -49,7 +52,7 @@ export const CardDiscount = styled('div', {
     fontWeight: 600,
     color: '$white',
     transform: 'rotate(-47deg)',
-  }
+  },
 })
 
 export const CartButton = styled('button', {
@@ -60,29 +63,28 @@ export const CartButton = styled('button', {
 
   width: '35px',
   height: '35px',
- backgroundColor: '#f9f9f9',
+  backgroundColor: '#f9f9f9',
   borderRadius: '50%',
   border: 'none',
   boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   cursor: 'pointer',
-  
+
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
 
-  '&:hover':{
-    transform: 'scale(1.1)'
+  '&:hover': {
+    transform: 'scale(1.1)',
   },
-  
+
   svg: {
     width: '20px',
     height: '20px',
     color: '$graphite',
-  }
+  },
 })
 
-export const PriceContent = styled('div', {
-})
+export const PriceContent = styled('div', {})
 
 export const ContainerTitle = styled('div', {
   background: 'linear-gradient(135deg, #FEA800 0%, #F07301 100%)',
@@ -105,31 +107,30 @@ export const ContentCard = styled('div', {
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
-    
+
     a: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      
+
       width: '100%',
       height: '40px',
-  
+
       border: 'none',
       background: '$orange500',
       borderRadius: '4px',
-  
+
       color: '$white',
       fontWeight: 600,
       cursor: 'pointer',
-  
+
       textDecoration: 'none',
-  
-      '&:hover':{
+
+      '&:hover': {
         background: '$yellow300',
-      }
-    }
+      },
+    },
   },
-    
 })
 
 export const Content = styled('div', {
@@ -137,11 +138,11 @@ export const Content = styled('div', {
   flexDirection: 'column',
   justifyContent: 'flex-start',
 
-  div:{
+  div: {
     display: 'flex',
     width: '100%',
-    gap: '1rem'
-  }
+    gap: '1rem',
+  },
 })
 
 export const Price = styled('strong', {
@@ -150,8 +151,8 @@ export const Price = styled('strong', {
   color: '$black',
 
   span: {
-    fontSize: '1rem'
-  }
+    fontSize: '1rem',
+  },
 })
 
 export const RealPrice = styled('span', {
@@ -162,17 +163,17 @@ export const RealPrice = styled('span', {
 
   span: {
     textDecoration: 'line-through',
-    fontSize: '0.75rem'
-  }
+    fontSize: '0.75rem',
+  },
 })
 
 export const DescriptionPrice = styled('span', {
   display: 'flex',
   fontSize: '0.85rem',
-  color: '$red300',  
+  color: '$red300',
   fontWeight: 500,
 
   span: {
-    fontSize: '0.55rem'
-  }
+    fontSize: '0.55rem',
+  },
 })

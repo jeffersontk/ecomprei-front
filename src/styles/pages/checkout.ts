@@ -1,53 +1,58 @@
-import { styled } from "..";
+import { styled } from '..'
 
-export const ContainerSectionCheckout = styled('section', {
- 
-}, {
-  variants: {
-    render: {
-      mobile: {
-        width: '100%',
-        display: 'grid',
-        gridTemplateColumns: '390px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '2rem',
-        gridTemplateAreas: '"checkout" "copy"',
+export const ContainerSectionCheckout = styled(
+  'section',
+  {},
+  {
+    variants: {
+      render: {
+        mobile: {
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: '390px',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '2rem',
+          gridTemplateAreas: '"checkout" "copy"',
+        },
+        desktop: {
+          width: '100%',
+          display: 'grid',
+          alignItems: 'flex-start',
+          gridTemplateColumns: 'minmax(100px, 758px) 350px',
+          gap: '2rem',
+          gridTemplateAreas: '"copy checkout"',
+        },
       },
-      desktop: {
-        width: '100%',
-        display: 'grid',    
-        alignItems: 'flex-start',
-        gridTemplateColumns: 'minmax(100px, 758px) 350px',
-        gap: '2rem',
-        gridTemplateAreas: '"copy checkout"',
-      }
-    }
-  }
-})
+    },
+  },
+)
 
-export const CardCheckoutContainer = styled('div', {
-  width: '100%',
-  maxHeight: '100%',
-  padding: '1rem',
-  borderRadius: '8px',
-  background: '#f9f9f9',
-
-}, {
-  variants: {
-    render: {
-      mobile: {
-        gridArea: 'checkout',
-        marginLeft: '0.25rem',
-        boxShadow: 'none',
+export const CardCheckoutContainer = styled(
+  'div',
+  {
+    width: '100%',
+    maxHeight: '100%',
+    padding: '1rem',
+    borderRadius: '8px',
+    background: '#f9f9f9',
+  },
+  {
+    variants: {
+      render: {
+        mobile: {
+          gridArea: 'checkout',
+          marginLeft: '0.25rem',
+          boxShadow: 'none',
+        },
+        desktop: {
+          gridArea: 'checkout',
+          boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        },
       },
-      desktop: {
-        gridArea: 'checkout',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      }
-    }
-  }
-})
+    },
+  },
+)
 
 export const ImageContainer = styled('div', {
   background: 'transparent',
@@ -62,8 +67,8 @@ export const ImageContainer = styled('div', {
   img: {
     width: 'auto',
     height: 'auto',
-    objectFit: 'cover'
-  }
+    objectFit: 'cover',
+  },
 })
 
 export const Divider = styled('div', {
@@ -79,9 +84,9 @@ export const DetailProduct = styled('div', {
   flexDirection: 'column',
   gap: '1rem',
 
-  h2:{
-    color: '$graphite'
-  }
+  h2: {
+    color: '$graphite',
+  },
 })
 
 export const ContentSelects = styled('div', {
@@ -89,38 +94,37 @@ export const ContentSelects = styled('div', {
   flexDirection: 'column',
   gap: '1rem',
 
-  div:{
+  div: {
     display: 'flex',
-    
+
     label: {
-      margin:0
+      margin: 0,
     },
 
     select: {
       border: 'none',
       background: 'transparent',
 
-      outline: 'none'
-    }
-  }
+      outline: 'none',
+    },
+  },
 })
 
 export const PriceInfo = styled('div', {
   display: 'flex',
   gap: '1rem',
-  alignItems: 'flex-end'
+  alignItems: 'flex-end',
 })
 
 export const OldPrice = styled('span', {
   textDecoration: 'line-through',
   color: '$red300',
   fontWeight: 600,
-  
 })
 export const NewPrice = styled('span', {
   fontSize: '1.35rem',
   fontWeight: 600,
-  color: '$graphite'
+  color: '$graphite',
 })
 
 export const DetailPrice = styled('div', {
@@ -128,7 +132,7 @@ export const DetailPrice = styled('div', {
   flexDirection: 'column',
   gap: '0.75rem',
 
-  div:{
+  div: {
     display: 'flex',
     justifyContent: 'space-between',
 
@@ -136,8 +140,7 @@ export const DetailPrice = styled('div', {
       fontWeight: 600,
       color: '$graphite',
     },
-
-  }
+  },
 })
 
 export const TotalPrice = styled('div', {
@@ -151,7 +154,7 @@ export const TotalPrice = styled('div', {
 
   strong: {
     color: '$graphite',
-  }
+  },
 })
 
 export const ButtonCheckout = styled('button', {
@@ -167,21 +170,21 @@ export const ButtonCheckout = styled('button', {
   '&:hover': {
     opacity: '0.9',
     cursor: 'pointer',
-  }
+  },
 })
 
 export const ButtonAddToCart = styled('button', {
   marginTop: '1rem',
   width: '100%',
   height: '35px',
-  
+
   borderRadius: '4px',
   border: 'none',
   borderWidth: '1px',
   borderStyle: 'solid',
   borderColor: '$orange500',
 
- backgroundColor: '#f9f9f9',
+  backgroundColor: '#f9f9f9',
 
   fontWeight: 600,
   color: '$orange500',

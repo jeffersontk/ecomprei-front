@@ -1,11 +1,11 @@
 interface trackingHTMLEmailProps {
-  name: string,
-  code: string,
+  name: string
+  code: string
 }
 
 const baseUrl = process.env.NEXT_URL
 
-export const trackingHTMLEmail = ({name, code}: trackingHTMLEmailProps) => {
+export const trackingHTMLEmail = ({ name, code }: trackingHTMLEmailProps) => {
   return `
   <!DOCTYPE html>
 
@@ -105,7 +105,7 @@ export const trackingHTMLEmail = ({name, code}: trackingHTMLEmailProps) => {
 <tbody>
 <tr>
 <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-<div class="spacer_block" style="height:30px;line-height:30px;font-size:1px;"> </div>
+<div class="spacer_block" style="height:30px;line-height:30px;font-size:1px;"></div>
 </td>
 </tr>
 </tbody>
@@ -220,7 +220,7 @@ export const trackingHTMLEmail = ({name, code}: trackingHTMLEmailProps) => {
 <div style="font-family: sans-serif">
 <div class="" style="font-size: 12px; font-family: Lato, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 18px; color: #787878; line-height: 1.5;">
 <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 27px;"><span style="font-size:18px;">pelo nosso e-mail: contato@ecomprei.shop</span></p>
-<p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 27px;"><span style="font-size:18px;">ou por telefone / whatszap: <span style="color:#2190e3;font-size:18px;">(<strong>21</strong>)</span> <span style="color:#2190e3;"><strong>972662427</strong></span></span></p>
+<p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 27px;"><span style="font-size:18px;">ou por telefone / whatszap: <span style="color:#2190e3;font-size:18px;">(<strong>21</strong>)</span><span style="color:#2190e3;"><strong>972662427</strong></span></span></p>
 </div>
 </div>
 </td>
@@ -242,7 +242,7 @@ export const trackingHTMLEmail = ({name, code}: trackingHTMLEmailProps) => {
 <tbody>
 <tr>
 <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 0px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-<div class="spacer_block" style="height:20px;line-height:20px;font-size:1px;"> </div>
+<div class="spacer_block" style="height:20px;line-height:20px;font-size:1px;"></div>
 </td>
 </tr>
 </tbody>

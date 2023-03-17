@@ -1,4 +1,4 @@
-import { styled } from '..';
+import { styled } from '..'
 
 export const Container = styled('div', {
   height: '100vh',
@@ -18,12 +18,12 @@ export const FormContainer = styled('form', {
   justifyContent: 'center',
   gap: '1rem',
   padding: '1rem',
- backgroundColor: '#f9f9f9',
+  backgroundColor: '#f9f9f9',
   borderRadius: '4px',
 
   input: {
     border: 'none',
-   backgroundColor: '#f9f9f9',
+    backgroundColor: '#f9f9f9',
     borderBottom: '1px solid $gray300',
     outline: 'none',
   },
@@ -33,7 +33,7 @@ export const FormContainer = styled('form', {
     height: '40px',
     border: 'none',
     color: '$white',
-  }
+  },
 })
 
 export const AdminContainer = styled('div', {
@@ -59,7 +59,7 @@ export const AdminContainer = styled('div', {
     },
 
     '.open-dialog': {
-     backgroundColor: '#f9f9f9',
+      backgroundColor: '#f9f9f9',
       padding: '0.5rem 1rem',
       border: 'none',
       color: '$orange500',
@@ -68,8 +68,8 @@ export const AdminContainer = styled('div', {
 
       '&:hover': {
         cursor: 'pointer',
-      }
-    }
+      },
+    },
   },
 
   table: {
@@ -105,7 +105,7 @@ export const AdminContainer = styled('div', {
           borderBottom: '1px solid $gray100',
           paddingTop: '1rem',
           paddingBottom: '1rem',
-        }
+        },
       },
     },
     tbody: {
@@ -125,7 +125,7 @@ export const AdminContainer = styled('div', {
               width: '20px',
               height: '20px',
               borderRadius: '50%',
-            }
+            },
           },
           '&.disable': {
             '.dot': {
@@ -133,12 +133,12 @@ export const AdminContainer = styled('div', {
               width: '20px',
               height: '20px',
               borderRadius: '50%',
-            }
-          }
-        }
-      }
-    }
-  }
+            },
+          },
+        },
+      },
+    },
+  },
 })
 
 export const FormNewProduct = styled('form', {
@@ -147,7 +147,7 @@ export const FormNewProduct = styled('form', {
   justifyContent: 'center',
   gap: '1rem',
 
-  '.boxContainer' :{
+  '.boxContainer': {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gap: '0.875rem',
@@ -160,8 +160,8 @@ export const FormNewProduct = styled('form', {
 
     '.error': {
       fontSize: '0.875rem',
-      color: '$red300'
-    }
+      color: '$red300',
+    },
   },
 
   /* input: {
@@ -178,7 +178,7 @@ export const FormNewProduct = styled('form', {
     borderRadius: '4px',
     outline: 'none',
   },
-  
+
   button: {
     height: '40px',
     border: 'none',
@@ -189,7 +189,7 @@ export const FormNewProduct = styled('form', {
     '&:hover': {
       opacity: '0.95',
       cursor: 'pointer',
-    }
+    },
   },
 
   '.contentArraysItems': {
@@ -214,9 +214,9 @@ export const FormNewProduct = styled('form', {
         marginLeft: '0.25rem',
 
         '&:hover': {
-          cursor: 'pointer'
-        }
-      }
+          cursor: 'pointer',
+        },
+      },
     },
     '.itemsList': {
       marginTop: '0.5rem',
@@ -257,9 +257,9 @@ export const FormNewProduct = styled('form', {
 
           svg: {
             color: '#fff',
-          }
-        }
-      }
+          },
+        },
+      },
     },
     '.itemsListImage': {
       marginTop: '0.5rem',
@@ -285,7 +285,7 @@ export const FormNewProduct = styled('form', {
 
         display: 'flex',
         justifyContent: 'space-between',
-        
+
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
@@ -298,22 +298,22 @@ export const FormNewProduct = styled('form', {
           height: '20px',
           minWidth: '20px',
           borderRadius: '100px',
-          marginRight: '10px'
-        }
-      }
-    }
+          marginRight: '10px',
+        },
+      },
+    },
   },
 
   '.switch-container': {
     display: 'flex',
     alignItems: 'center',
     gap: '1rem',
-    
+
     '.switch': {
       display: 'flex',
       flexDirection: 'column',
       gap: '1rem',
-  
+
       '.SwitchRoot': {
         width: '42px',
         height: '25px',
@@ -323,18 +323,18 @@ export const FormNewProduct = styled('form', {
         position: 'relative',
         boxShadow: '0 2px 10px $graphite',
         '-webkit-tap-highlight-color': 'rgba(0, 0, 0, 0)',
-        outline: 'none'
+        outline: 'none',
       },
-     '.SwitchRoot:focus': {
+      '.SwitchRoot:focus': {
         boxShadow: '0 0 0 2px $graphite',
-        outline: 'none'
+        outline: 'none',
       },
-  
+
       '.SwitchRoot[data-state="checked"]': {
         backgroundColor: '$orange500',
-        outline: 'none'
+        outline: 'none',
       },
-      
+
       '.SwitchThumb': {
         display: 'block',
         width: '21px',
@@ -345,14 +345,66 @@ export const FormNewProduct = styled('form', {
         transition: 'transform 100ms',
         transform: 'translateX(2px)',
         willChange: 'transform',
-        outline: 'none'
+        outline: 'none',
       },
-  
+
       '.SwitchThumb[data-state="checked"]': {
         transform: 'translateX(19px)',
         outline: 'none',
         backgroundColor: '$white',
-      }
-    }
-  }
+      },
+    },
+  },
+})
+
+export const AuthContainer = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '2fr 1fr',
+  backgroundColor: '$graphite',
+
+  '.image-container': {
+    img: {
+      height: '100vh',
+      width: 'auto',
+      objectFit: 'fill',
+    },
+  },
+  '.form-container': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '2rem',
+
+    h1: {
+      fontSize: '2rem',
+      maxWidth: '350px',
+      color: '$white',
+    },
+
+    form: {
+      backgroundColor: '$white',
+      padding: '1.5rem',
+      borderRadius: '8px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1rem',
+
+      label: {
+        color: '#4F4F4F',
+      },
+      '.error': {
+        fontSize: '0.75rem',
+        color: '$red300',
+      },
+      button: {
+        background: '$orange500',
+        width: '100%',
+        height: '40px',
+        border: 'none',
+        color: '$white',
+        borderRadius: '4px',
+      },
+    },
+  },
 })

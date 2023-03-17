@@ -1,50 +1,51 @@
-import { prisma } from '../../../prisma/client';
+import { prisma } from "../../../prisma/client"
 
 export const getCopyByProductId = async (productId: string) => {
   const copy = await prisma.copyProduct.findMany({
     where: {
-      productId
+      productId,
     },
     include: {
-      paragraphs: true
-    }
+      paragraphs: true,
+    },
   })
 
   return copy
 }
 
-type copyPost = {
+export type copyPost = {
   paragraphs: {
-    message:string
-  }[],
+    message: string
+  }[]
   productId: string
 }
+
 export const postCopyProduct = async (data: copyPost) => {
-  const {paragraphs, productId} = data;
+  const { paragraphs, productId } = data
   try {
     const isCopy = await prisma.copyProduct.findFirst({
       where: {
-        productId
-      }
+        productId,
+      },
     })
-    if(!isCopy){
+    if (!isCopy) {
       const copyProduct = await prisma.copyProduct.create({
         data: {
           paragraphs: {
-            create: paragraphs
+            create: paragraphs,
           },
           product: {
             connect: {
-              id: productId
-            }
-          }
-        }
-      });
+              id: productId,
+            },
+          },
+        },
+      })
       return copyProduct
     } else {
-      throw new Error(`Error creating copyProduct: copy already exists`);
+      throw new Error(`Error creating copyProduct: copy already exists`)
     }
   } catch (error) {
-    throw new Error(`Error creating copyProduct: ${error}`);
+    throw new Error(`Error creating copyProduct: ${error}`)
   }
-};
+}

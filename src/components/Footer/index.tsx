@@ -1,23 +1,33 @@
-import Image from 'next/image';
-import React from 'react';
-import { Container, Informative, MenuFooter, Sac, Section, SocialFooter } from './Footer';
+import Image from 'next/image'
+import React from 'react'
+import {
+  Container,
+  Informative,
+  MenuFooter,
+  Sac,
+  Section,
+  SocialFooter,
+} from './Footer'
 import logo from '../../assets/logo-ecomprei.svg'
-import {FaFacebookF, FaTiktok, FaInstagram, FaWhatsapp} from 'react-icons/fa'
-import Link from 'next/link';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import { FaFacebookF, FaTiktok, FaInstagram, FaWhatsapp } from 'react-icons/fa'
+import Link from 'next/link'
 
 const Footer: React.FC = () => {
-  const matches = useMediaQuery('(min-width: 768px)')
-
   return (
     <Container>
-      <Section render={{'@initial': 'mobile', "@bp2": "desktop"}}>
+      <Section render={{ '@initial': 'mobile', '@bp2': 'desktop' }}>
         <div>
           <Sac>
             <h4>ATENDIMENTO AO CLIENTE</h4>
-            <span><strong>SAC</strong> (Serviço de atendimento ao Cliente)</span>
-            <span><strong>E-mail:</strong> contato@ecomprei.shop</span>
-            <span><strong>Whatsapp:</strong> +55 (21) 966554433</span>
+            <span>
+              <strong>SAC</strong> (Serviço de atendimento ao Cliente)
+            </span>
+            <span>
+              <strong>E-mail:</strong> contato@ecomprei.shop
+            </span>
+            <span>
+              <strong>Whatsapp:</strong> +55 (21) 966554433
+            </span>
           </Sac>
         </div>
         <MenuFooter>
@@ -34,7 +44,7 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </MenuFooter>
-        <SocialFooter render={{'@initial': 'mobile', "@bp2": "desktop"}}>
+        <SocialFooter render={{ '@initial': 'mobile', '@bp2': 'desktop' }}>
           <Image src={logo} alt="É Comprei" />
           <div>
             <Link href="#">
@@ -52,12 +62,15 @@ const Footer: React.FC = () => {
           </div>
         </SocialFooter>
       </Section>
-      <Informative render={{'@initial': 'mobile', "@bp2": "desktop"}}>
+      <Informative render={{ '@initial': 'mobile', '@bp2': 'desktop' }}>
         <div>ⓒ Direitos reservados ecomprei.shop</div>
-        <span>Preço e condições de pagamento exclusivos para compras neste site oficial, podendo variar com o tempo da oferta.</span>
+        <span>
+          Preço e condições de pagamento exclusivos para compras neste site
+          oficial, podendo variar com o tempo da oferta.
+        </span>
       </Informative>
     </Container>
   )
 }
 
-export default Footer;
+export default Footer

@@ -1,5 +1,5 @@
 import react from 'react'
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
 
 interface LayoutProps {
   children: react.ReactNode
@@ -11,13 +11,13 @@ const Layout = ({ children }: LayoutProps) => (
     animate={{ x: 0, opacity: 1 }}
     exit={{ x: 300, opacity: 0 }}
     transition={{
-      type: "spring",
+      type: 'spring',
       stiffness: 260,
       damping: 20,
     }}
-    style={{width: '100%'}}
+    style={{ width: '100%' }}
   >
     {children}
   </motion.div>
-);
-export default Layout;
+)
+export default Layout

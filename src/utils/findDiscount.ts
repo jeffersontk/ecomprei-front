@@ -1,4 +1,4 @@
-export function findMyDiscount(discount:number): string{
+export function findMyDiscount(discount: number): string {
   switch (discount) {
     case 5:
       return 'JWaeYuwb'

@@ -1,100 +1,128 @@
-import { useToast } from '@chakra-ui/react';
-import { sizeProduct, variantProduct } from 'prisma/prisma-client';
-import React, { createContext, useState, useEffect } from 'react';
-import { sizeType } from '../utils/types/productsType';
+import { useToast } from '@chakra-ui/react'
+import { variantProduct } from 'prisma/prisma-client'
+import React, { createContext, useState, useEffect } from 'react'
+import { sizeType } from '../utils/types/productsType'
 
-interface CartProviderProps  {
+interface CartProviderProps {
   children: React.ReactNode
 }
 
 interface CartItem {
-  id: string;
-  title: string;
-  price: number;
+  id: string
+  title: string
+  price: number
   imgUrl: string
   sizes: sizeType[]
   variantColors: variantProduct[]
-  quantity: number;
-  colorSelect?: string;
-  sizeSelect?: string;
-  priceDefaultId: string;
+  quantity: number
+  colorSelect?: string
+  sizeSelect?: string
+  priceDefaultId: string
   discount: number
 }
 
 interface CartContextData {
-  cartItems: CartItem[];
-  getTotalPrice(cart: CartItem[]): {totalPrice: number, totalDiscount: number, totalDiscountInPercentage: number, totalToPay: number};
-  addToCart(item: CartItem): void;
-  removeFromCart(index: number): void;
-  updateQuantity(id: string, quantity: number): void;
-  clearCart(): void;
+  cartItems: CartItem[]
+  getTotalPrice(cart: CartItem[]): {
+    totalPrice: number
+    totalDiscount: number
+    totalDiscountInPercentage: number
+    totalToPay: number
+  }
+  addToCart(item: CartItem): void
+  removeFromCart(index: number): void
+  updateQuantity(id: string, quantity: number): void
+  clearCart(): void
 }
 
-const CartContext = createContext<CartContextData>({} as CartContextData);
+const CartContext = createContext<CartContextData>({} as CartContextData)
 
 const CartProvider = ({ children }: CartProviderProps) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([])
   const toast = useToast()
 
-
   useEffect(() => {
-    setCartItems(JSON.parse(localStorage.getItem('cartItems') || '[]'));
-  }, []);
+    setCartItems(JSON.parse(localStorage.getItem('cartItems') || '[]'))
+  }, [])
 
-  const getTotalPrice = (cart: CartItem[]): {totalPrice: number, totalDiscount: number, totalDiscountInPercentage: number, totalToPay: number} => {
-    const totalPrice = cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
-    const totalDiscount = cart.reduce((sum, product) => sum + (product.price * product.quantity * product.discount / 100), 0);
-    const totalDiscountInPercentage = (totalDiscount / totalPrice) * 100;
-    const totalToPay = totalPrice - totalDiscount;
+  const getTotalPrice = (
+    cart: CartItem[],
+  ): {
+    totalPrice: number
+    totalDiscount: number
+    totalDiscountInPercentage: number
+    totalToPay: number
+  } => {
+    const totalPrice = cart.reduce(
+      (sum, product) => sum + product.price * product.quantity,
+      0,
+    )
+    const totalDiscount = cart.reduce(
+      (sum, product) =>
+        sum + (product.price * product.quantity * product.discount) / 100,
+      0,
+    )
+    const totalDiscountInPercentage = (totalDiscount / totalPrice) * 100
+    const totalToPay = totalPrice - totalDiscount
 
     return {
       totalPrice,
       totalDiscount,
       totalDiscountInPercentage,
       totalToPay,
-    };
+    }
   }
 
   const addToCart = (item: CartItem) => {
     if (typeof window !== 'undefined') {
-      setCartItems([...cartItems, item]);
-      localStorage.setItem('cartItems', JSON.stringify([...cartItems, item]));
+      setCartItems([...cartItems, item])
+      localStorage.setItem('cartItems', JSON.stringify([...cartItems, item]))
       toast({
         title: '',
-        description: "Produto adicionado ao carrinho",
+        description: 'Produto adicionado ao carrinho',
         status: 'success',
         duration: 2000,
       })
     }
-  };
+  }
 
   const removeFromCart = (index: number) => {
-    setCartItems(cartItems.filter((item, i) => i !== index));
-    localStorage.setItem('cartItems', JSON.stringify(cartItems.filter((item, i) => i !== index)));
-  };
+    setCartItems(cartItems.filter((item, i) => i !== index))
+    localStorage.setItem(
+      'cartItems',
+      JSON.stringify(cartItems.filter((item, i) => i !== index)),
+    )
+  }
 
   const updateQuantity = (id: string, quantity: number) => {
     setCartItems(
       cartItems.map((item) => {
         if (item.id === id) {
-          return { ...item, quantity };
+          return { ...item, quantity }
         }
-        return item;
-      })
-    );
-  };
+        return item
+      }),
+    )
+  }
 
   const clearCart = () => {
-    setCartItems([]);
-  };
+    setCartItems([])
+  }
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, getTotalPrice }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+        getTotalPrice,
+      }}
     >
       {children}
     </CartContext.Provider>
-  );
-};
+  )
+}
 
-export { CartContext, CartProvider };
+export { CartContext, CartProvider }

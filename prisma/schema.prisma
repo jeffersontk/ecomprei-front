@@ -107,3 +107,21 @@ model ProductsInCheckout {
   CheckoutSession   CheckoutSession? @relation(fields: [checkoutSessionId], references: [id])
   checkoutSessionId String?
 }
+
+model User {
+  id                Int             @id @default(autoincrement())
+  username          String          @unique
+  name              String
+  email             String          @unique
+  password          String
+  permissionLevel   PermissionLevel @default(vendedor)
+  sessionId         String?
+  sessionExpiration DateTime?
+
+  @@map(name: "users")
+}
+
+enum PermissionLevel {
+  admin
+  vendedor
+}

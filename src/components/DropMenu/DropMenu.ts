@@ -1,8 +1,8 @@
-import { styled } from "../../styles";
+import { styled } from '../../styles'
 
 export const ButtonDropMenu = styled('button', {
   border: 'none',
- backgroundColor: '#f9f9f9',
+  backgroundColor: '#f9f9f9',
 })
 
 export const MenuListDropdown = styled('div', {
@@ -24,12 +24,12 @@ export const MenuListDropdown = styled('div', {
     fontWeight: 600,
     fontSize: '0.875rem',
     color: '$graphite',
-    
+
     '&:hover': {
       background: '$orange500',
-      color: '$white', 
+      color: '$white',
       borderRadius: '4px',
       cursor: 'pointer',
-    }
-  }
+    },
+  },
 })
